@@ -1,0 +1,58 @@
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>HVHLO | Logg Inn</title>
+</head>
+<script type="text/javascript" src="html_script.js"></script>
+<script>
+    function login() {
+        //TODO make the loginstuff here in this function? (its called when the login button is pressed)
+
+        // Get info from inputs with these ids: "user_email" and .value
+
+        if (validate_email(document.getElementById("user_email"))) {
+            let email = String(document.getElementById("user_email").value);
+            
+            window.location.href = "/overview.html";    // Temperary redirect to overview page
+            alert("En e-post er sendt til deg på "+email+". Åpne den for å fortsette.").dismiss();
+        }
+    }
+
+    //TODO edit this to the real hospital name
+    const HOSPITAL_NAME = "Ingen Mansland Hospital";
+
+</script>
+<body>
+
+    <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+        <div id="top_header">
+            <div id="top_header_alignment" class="no_resize_for_padding">
+                <h1>HVHLO</h1> <!--TODO? add logo -->
+                <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+            </div>
+        </div> 
+
+        <div id="bottom_header">
+            <div class="nothing" style="height: 20px;"></div> <!-- just there to fix height -->
+        </div>
+        
+        <!-- table-row not on #center_body so display: flex can be used -->
+        <div style="display: table-row;"><div id="center_body" class="no_resize_for_padding">
+            <div id="login_cont" class="no_resize_for_padding">
+                <h3 id="login_title">Logg Inn i HVHLO</h3>
+
+                <p class="login_input_text">E-post</p>
+                <input onchange="validate_email(this)" oninput="erase_email_error()" type="email" name="user_email" id="user_email" class="login_input" placeholder="Ingen@mil.no">
+                <p id="email_note" class="hide" style="margin: 0px; color: rgb(255, 106, 106);">*Ikke gyldig e-post format</p>
+                
+                <button id="login_btn" class="" onclick="login()">Logg Inn</button>
+            </div>
+        </div></div>
+    </div>
+</body>
+<script>
+    change_hospital_name(HOSPITAL_NAME);
+</script>
+</html>

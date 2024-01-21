@@ -1,0 +1,130 @@
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>HVHLO | Oversikt</title>
+</head>
+<script>
+    const DATA = [
+        {
+            id: 0,
+            admitted_hospital: "",
+            first_name: "Ingen",
+            last_name: "Nokesteds",
+            birth: "",
+            criticality: "",
+            arrival: "2024-01-19-T18:19",
+            expected_departure: "",
+            departure: "2024-01-19-T19:19",
+            departure_status: "",
+            departure_destination: "",
+            nationality: "",
+            national_id: "",
+            comment: "Er fantastisk!",
+        },
+        {
+            id: 1,
+            admitted_hospital: "",
+            first_name: "Meg",
+            last_name: "Ergud",
+            birth: "",
+            criticality: "Kritisk",
+            arrival: "2024-01-19-T18:19",
+            expected_departure: "",
+            departure: "",
+            departure_status: "",
+            departure_destination: "",
+            nationality: "",
+            national_id: "",
+            comment: "",
+        },
+        {
+            id: 2,
+            admitted_hospital: "",
+            first_name: "Deg",
+            last_name: "Hakkepei Ling",
+            birth: "",
+            criticality: "",
+            arrival: "2024-01-19-T18:19",
+            expected_departure: "",
+            departure: "2024-01-19-T19:19",
+            departure_status: "",
+            departure_destination: "",
+            nationality: "",
+            national_id: "",
+            comment: "",
+        }
+    ];
+
+    //TODO edit this to the real hospital name
+    const HOSPITAL_NAME = "Ingen Mansland Hospital";
+
+</script>
+<script type="text/javascript" src="html_script.js"></script>
+<body onload="getTableData()">
+
+    <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+        <div id="top_header">
+            <div id="top_header_alignment" class="no_resize_for_padding">
+                <h1>HVHLO</h1> <!--TODO? add logo -->
+                <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+            </div>
+        </div>
+
+        <div id="bottom_header">
+            <div id="filter_cont">
+                <p style="margin: 0px; font-size: larger;">Filtrer pasienter</p>
+                <div>
+                    <input onchange="filter_changed()" type="checkbox" id="is_present" name="is_present" checked />
+                    <label for="is_present">Er tilstede</label>
+
+                    <input onchange="filter_changed()" type="checkbox" id="has_left" name="has_left" checked />
+                    <label for="has_left">Har dratt</label>
+                </div>
+            </div>
+        </div>
+    
+        <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
+            <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div id="header_choice_cont">
+                        <p style="margin: 0px; font-size: larger;">Velg viste tabell-kategorier</p>
+                        
+                        <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
+                            <option value="first_name" selected>Fornavn</option>
+                            <option value="last_name" selected>Etternavn</option>
+                            <option value="birth">Fødselsdato</option>
+                            <option value="arrival" selected>Ankomst</option>
+                            <option value="criticality">Kritikalitet</option>
+                            <option value="departure" selected>Avreise</option>
+                            <option value="expected_departure">Forventet avreise</option>
+                            <option value="departure_status">Avreisestatus</option>
+                            <option value="departure_destination">Avreisedestinasjon</option>
+                            <option value="nationality">Nasjonalitet</option>
+                            <option value="national_id">Nasjonal ID</option>
+                            <option value="comment">Kommentar</option>
+                        </select>
+                    </div>
+                    <button onclick="make_new()" id="make_new_btn">Opprett ny</button>
+                </div>
+
+
+                <p id="filter_note" class="hide" style="margin-top: 50px; margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellinformasjonen er filtrert.</p>
+                <table class="info_table" id="index_table">
+                    <thead>
+                        <tr id="table_head_row">
+                        </tr>
+                    </thead>
+                    <tbody id="table_body"> <!--TODO? make <td> scrollable on y (define width) -->
+                        <!-- This is where the info. from the data is added (se getTableData() in html_script.js) -->
+                    </tbody>
+                </table>
+
+            </div></div>
+        </div>
+    </div>
+</body>
+<script src="multiselect-dropdown.js" ></script>
+</html>
