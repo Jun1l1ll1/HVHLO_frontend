@@ -21,7 +21,6 @@ function getTableData() {
     }
 
     let cookie_list = document.cookie.split("; ")
-        console.log(cookie_list);
     let filter_cookie = [];
     let header_cookie = [];
     for (this_cookie of cookie_list) {
