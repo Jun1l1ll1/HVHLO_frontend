@@ -187,6 +187,11 @@ function getPersonData() {
         document.getElementById("criticality").value = criticality;
         document.getElementById("departure_status").value = departure_status;
 
+        // Changes color back to white if value exists in date-inputs
+        document.getElementById("arrival").value != "" ? document.getElementById("arrival").className = "" : "";
+        document.getElementById("arrival").value != "" ? document.getElementById("arrival").className = "" : "";
+        document.getElementById("arrival").value != "" ? document.getElementById("arrival").className = "" : "";
+
         // Add the comment if one exists
         if (comment.replaceAll("\n", "").replaceAll(" ", "") != "") {
             document.getElementById("no_comment_cont").className = "disappear";
@@ -395,7 +400,7 @@ function save_and_leave() {
     // send_back();
 }
 
-function add_comment() {
+function add_comment() { //TODO add a "there-is-a-comment-but-dont-show" feature (a speach bubble)
     document.getElementById("no_comment_cont").className = "disappear";
     document.getElementById("comment").className = "";
     document.getElementById("comment_note").className = "hide";
@@ -441,6 +446,12 @@ function change_hospital_name(name) {
 
 function copy_content() {
     document.getElementById("comment_data").value = document.getElementById("comment").innerText;
+}
+
+function no_enter_submit(event) {
+    if (event.keyCode === 13) {
+        return false;
+    }
 }
 
 

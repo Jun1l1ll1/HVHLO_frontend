@@ -67,6 +67,26 @@ button:active {
     accent-color: rgb(0, 139, 182);
 }
 
+#test_s {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 60px; 
+    background-color: rgba(0, 0, 0, 0); 
+    border: 2px solid rgb(43, 43, 43);
+    border-radius: 3px; 
+    -webkit-appearance: none;
+}
+#test_s::-webkit-slider-thumb {
+    width: 17px;
+    height: 17px;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    background: rgb(0, 139, 182);
+    /* box-shadow: -80px 0 0 80px #43e5f7; */
+  }
+
+
 #back_btn_cont {
     display: flex;
     margin-left: 10%;

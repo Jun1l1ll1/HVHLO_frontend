@@ -40,7 +40,7 @@
 </script>
 <script type="text/javascript" src="html_script.js"></script>
 <body onload="getPersonData()">
-<form action="/overview.html" onsubmit="return copy_content()"> <!--TODO? add method="post" -->
+<form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">

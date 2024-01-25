@@ -81,7 +81,23 @@
 
                     <input onchange="filter_changed()" type="checkbox" id="has_left" name="has_left" checked />
                     <label for="has_left">Har dratt</label>
-                </div>
+                </div> <!--TODO choose what type to use (from the two below) -->
+                <!-- <div style="display: flex;">
+                    <p style="margin: 0px;">Er tilstede</p>
+                    <input type="range" min="0" max="2" value="1" name="test_s" id="test_s">
+                    <p style="margin: 0px;">Har dratt</p>
+                    <p style="margin: 0px; margin-left: 20px; color: rgb(0, 139, 182);">*Viser alle</p>
+                </div> -->
+                <!-- <div>
+                    <input onchange="filter_changed()" type="radio" id="is_present" name="test_r" value="is_present" checked />
+                    <label for="is_present">Er tilstede</label>
+                
+                    <input type="radio" id="all" name="test_r" value="all" />
+                    <label for="all">Alle</label>
+                
+                    <input onchange="filter_changed()" type="radio" id="has_left" name="test_r" value="has_left" />
+                    <label for="has_left">Har dratt</label>
+                </div> -->
             </div>
         </div>
     
@@ -114,7 +130,7 @@
                 <p id="filter_note" class="hide" style="margin-top: 50px; margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellinformasjonen er filtrert.</p>
                 <table class="info_table" id="index_table">
                     <thead>
-                        <tr id="table_head_row">
+                        <tr id="table_head_row"> <!--TODO sort after this if you click on header-cell -->
                         </tr>
                     </thead>
                     <tbody id="table_body"> <!--TODO? make <td> scrollable on y (define width) -->
