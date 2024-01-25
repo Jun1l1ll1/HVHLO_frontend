@@ -178,6 +178,10 @@ button:active {
     background: rgb(29, 29, 29);
 }
 
+.input_date_empty::-webkit-datetime-edit {
+    color: #ffffff1c;
+}
+
 
 /* Comment stuff */
 #comment {

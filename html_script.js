@@ -108,7 +108,7 @@ function getPersonData() {
             <th>Ankomst</th>
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                    <input onchange="input_changed(this)" type="datetime-local" name="arrival" id="arrival" value="`+arrival+`"/>
+                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival" value="`+arrival+`"/>
                     <button type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
@@ -123,7 +123,7 @@ function getPersonData() {
         </tr>
         <tr>
             <th>Fødselsdato</th>
-            <td><input onchange="input_changed(this)" type="date" name="birth" id="birth" value="`+birth+`"/></td>
+            <td><input onchange="input_changed(this)" class="input_date_empty" type="date" name="birth" id="birth" value="`+birth+`"/></td>
         </tr>
         <tr>
             <th>Kritikalitet</th>
@@ -140,7 +140,7 @@ function getPersonData() {
             <th>Forventet avreise</th>
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                    <input onchange="input_changed(this)" type="datetime-local" name="expected_departure" id="expected_departure" value="`+exp_departure+`"/>
+                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure" value="`+exp_departure+`"/>
                     <button type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
@@ -149,7 +149,7 @@ function getPersonData() {
             <th>Avreise</th>
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                    <input onchange="input_changed(this)" type="datetime-local" name="departure" id="departure" value="`+departure+`"/>
+                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="departure" id="departure" value="`+departure+`"/>
                     <button type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
@@ -238,9 +238,16 @@ function input_changed(e) { //TODO? save current editing in cookie/page-storage
         let f_name = document.getElementById("first_name").value;
         let l_name = document.getElementById("last_name").value;
         f_name == "" && l_name == "" ? f_name = "Ukjent" : "";
-        let age = document.getElementById("birth").value;
-        age == "" ? age = "ukjent" : "";
+        
         document.getElementById("name_title").innerText = f_name +" "+ l_name;
+    }
+
+    if (e.type == "date" || e.type == "datetime-local") {
+        if (e.value != "") {
+            e.className = "";
+        } else {
+            e.className = "input_date_empty";
+        }
     }
 
     // Update new_data
@@ -431,6 +438,12 @@ function set_date_to_now(id) {
 function change_hospital_name(name) {
     document.getElementById("hospital_location").innerText = name;
 }
+
+
+function copy_content() {
+    document.getElementById("comment_data").value = document.getElementById("comment").innerText;
+}
+
 
 function object_equals(obj1, obj2) {
     if (Object.keys(obj1).length != Object.keys(obj2).length) {
