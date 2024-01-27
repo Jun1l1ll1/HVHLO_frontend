@@ -205,9 +205,8 @@ function getPersonData() {
         // Add the comment if one exists
         if (comment.replaceAll("\n", "").replaceAll(" ", "") != "") {
             document.getElementById("no_comment_cont").className = "disappear";
-            document.getElementById("comment").className = "";
             document.getElementById("comment").innerText = comment;
-            document.getElementById("comment_note").className = "hide";
+            document.getElementById("show_comment_cont").className = "";
         }
     }
     
@@ -415,15 +414,27 @@ function save_and_leave() {
     // Not used, using form insted!
 }
 
-function add_comment() { //TODO add a "there-is-a-comment-but-dont-show" feature (a speach bubble)
+function add_comment() {
     document.getElementById("no_comment_cont").className = "disappear";
+
+    document.getElementById("comment").className = "";
+    document.getElementById("comment_note").className = "hide";
+}
+
+function show_comment() {
+    document.getElementById("show_comment_cont").className = "disappear";
+
     document.getElementById("comment").className = "";
     document.getElementById("comment_note").className = "hide";
 }
 
 function close_comment() {
+    if (document.getElementById("comment").innerText != "") {
+        document.getElementById("show_comment_cont").className = "";
+    } else {
+        document.getElementById("no_comment_cont").className = "";
+    }
     document.getElementById("comment").className = "disappear";
-    document.getElementById("no_comment_cont").className = "";
     document.getElementById("comment_note").className = "disappear";
 }
 
