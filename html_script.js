@@ -90,7 +90,7 @@ function getPersonData() {
         f_name="",
         l_name="",
         birth="",
-        criticality="", //TODO add movability
+        criticality="",
         movability="",
         arrival="",
         exp_departure="",

@@ -71,7 +71,10 @@
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
                 <h1>HVHLO</h1> <!--TODO? add logo -->
-                <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                <div>
+                    <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> Logg ut</a>
+                </div>
             </div>
         </div>
 
@@ -84,7 +87,8 @@
 
                     <input onchange="filter_changed()" type="checkbox" id="has_left" name="has_left" checked />
                     <label for="has_left">Har dratt</label>
-                </div> <!--TODO choose what type to use (from the two below) -->
+                </div> 
+                <!-- TODO choose what type to use (from the two below) -->
                 <!-- <div style="display: flex;">
                     <p style="margin: 0px;">Er tilstede</p>
                     <input type="range" min="0" max="2" value="1" name="test_s" id="test_s">
