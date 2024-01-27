@@ -22,11 +22,11 @@ function getTableData() {
     }
 
     let cookie_list = document.cookie.split("; ")
-    let filter_cookie = [];
+    let filter_cookie = "all";
     let header_cookie = [];
     for (this_cookie of cookie_list) {
         if (this_cookie.split("=")[0] == "filter") {
-            filter_cookie = [...this_cookie.split("=")[1].split(",")];
+            filter_cookie = this_cookie.split("=")[1];
         } 
         else if (this_cookie.split("=")[0] == "table_header") {
             header_cookie = [...this_cookie.split("=")[1].split(",")];
@@ -34,10 +34,9 @@ function getTableData() {
     }
     
     // Set the filters to cookie filters
-    if (filter_cookie.length > 0) { // (if there is a cookie)
-        document.getElementById("is_present").checked = (filter_cookie[0]=="true");
-        document.getElementById("has_left").checked = (filter_cookie[1]=="true");
-    }
+    document.getElementById("is_present").checked = (filter_cookie == "is_present");
+    document.getElementById("all").checked = (filter_cookie == "all");
+    document.getElementById("has_left").checked = (filter_cookie == "has_left");
 
     // Set the header to cookie headers
     if (header_cookie.length > 0) { // (if there is a cookie)
@@ -63,11 +62,8 @@ function getTableData() {
     }
 
     let filtered_data;
-    if (filter_cookie.length > 0) {
-        filtered_data = update_table_filter(filter_cookie[0]=="true", filter_cookie[1]=="true");
-    } else {
-        filtered_data = update_table_filter( document.getElementById("is_present").checked,  document.getElementById("has_left").checked);
-    }
+    filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
+    
 
     //TODO? format fields with dates and time better
     let table_body = document.getElementById("table_body");
@@ -297,12 +293,12 @@ function input_changed(e) { //TODO? save current editing in cookie/page-storage
 function filter_changed() {
     
     let is_present = document.getElementById("is_present").checked;
+    let all = document.getElementById("all").checked;
     let has_left = document.getElementById("has_left").checked;
 
-    document.cookie = "filter="+[is_present,has_left]; // Save as cookie
-    console.log(document.cookie);
+    document.cookie = "filter="+ (is_present ? "is_present" : has_left ? "has_left" : "all"); // Save as cookie
 
-    let filtered_data = update_table_filter(is_present, has_left);
+    let filtered_data = update_table_filter(is_present, all, has_left);
 
     let headers = [];
     for (child of document.getElementById("header_choices").children) {
@@ -315,9 +311,10 @@ function filter_changed() {
 
 function header_choice_changed() {
     let is_present = document.getElementById("is_present").checked;
+    let all = document.getElementById("all").checked;
     let has_left = document.getElementById("has_left").checked;
 
-    let filtered_data = update_table_filter(is_present, has_left);
+    let filtered_data = update_table_filter(is_present, all, has_left);
 
     let headers = [];
     for (child of document.getElementById("header_choices").children) {
@@ -327,32 +324,33 @@ function header_choice_changed() {
     }
 
     document.cookie = "table_header="+headers; // Save as cookie
-    console.log(document.cookie);
 
     update_table_and_header(headers, filtered_data);
 
 }
 
 
-function update_table_filter(is_present, has_left) {
+function update_table_filter(is_present, all, has_left) {
     
     // Show note ("*Tabellinformasjonene er filtrert")
-    if (is_present & has_left) {
-        document.getElementById("filter_note").className = "hide";
-    }
-    else if (!(is_present & has_left)) {
+    if (is_present || has_left) {
         document.getElementById("filter_note").className = "show";
+    } else {
+        document.getElementById("filter_note").className = "hide";
     }
 
     // Filter the info
     let filtered_data = [];
-    for (person of DATA) {
-        if (is_present && person.departure == "") { // Has not departed
-            filtered_data.push(person);
+    if (!all) {
+        for (person of DATA) {
+            if (is_present && person.departure == "") { // Has not departed
+                filtered_data.push(person);
+            } else if (has_left && person.departure != "") { // Has departed
+                filtered_data.push(person);
+            }
         }
-        if (has_left && person.departure != "") { // Has departed
-            filtered_data.push(person);
-        }
+    } else {
+        filtered_data = [...DATA];
     }
 
     return filtered_data;

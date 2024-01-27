@@ -81,30 +81,30 @@
         <div id="bottom_header">
             <div id="filter_cont">
                 <p style="margin: 0px; font-size: larger;">Filtrer pasienter</p>
-                <div>
+                <!-- <div>
                     <input onchange="filter_changed()" type="checkbox" id="is_present" name="is_present" checked />
                     <label for="is_present">Er tilstede</label>
 
                     <input onchange="filter_changed()" type="checkbox" id="has_left" name="has_left" checked />
                     <label for="has_left">Har dratt</label>
-                </div> 
-                <!-- TODO choose what type to use (from the two below) -->
+                </div>  -->
+                
                 <!-- <div style="display: flex;">
                     <p style="margin: 0px;">Er tilstede</p>
                     <input type="range" min="0" max="2" value="1" name="test_s" id="test_s">
                     <p style="margin: 0px;">Har dratt</p>
                     <p style="margin: 0px; margin-left: 20px; color: rgb(0, 139, 182);">*Viser alle</p>
                 </div> -->
-                <!-- <div>
-                    <input onchange="filter_changed()" type="radio" id="is_present" name="test_r" value="is_present" checked />
+                <div>
+                    <input onchange="filter_changed()" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
                     <label for="is_present">Er tilstede</label>
                 
-                    <input type="radio" id="all" name="test_r" value="all" />
+                    <input onchange="filter_changed()" type="radio" id="all" name="filter_inputs" value="all" />
                     <label for="all">Alle</label>
                 
-                    <input onchange="filter_changed()" type="radio" id="has_left" name="test_r" value="has_left" />
+                    <input onchange="filter_changed()" type="radio" id="has_left" name="filter_inputs" value="has_left" />
                     <label for="has_left">Har dratt</label>
-                </div> -->
+                </div>
             </div>
         </div>
     
