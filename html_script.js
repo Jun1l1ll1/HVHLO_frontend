@@ -101,7 +101,7 @@ function getPersonData() {
         national_id="",
         comment=""
     ) {
-        change_hospital_name(HOSPITAL_NAME); //TODO add logout (link to index with ?logout=yes)
+        change_hospital_name(HOSPITAL_NAME);
 
         let table = document.getElementById("table_body"); 
         table.innerHTML += `
