@@ -26,6 +26,35 @@ button:active {
     background-color: rgb(0, 185, 241);
 }
 
+input[type=radio] {
+    /* accent-color: rgb(0, 139, 182); */
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0px;
+    +label {
+        padding-left: 3px;
+        padding-right: 3px;
+        border-radius: 3px;
+        border: 2px solid rgb(43, 43, 43);
+    }
+}
+input[type=radio]:active +label {
+    background-color: rgb(43, 43, 43);
+}
+input[type=radio]:checked +label {
+    background-color: rgb(0, 139, 182);
+    border-color: rgb(0, 139, 182);
+    /* font-weight: bold; */
+    /* text-shadow: -.5px .5px 0px rgb(222, 222, 222),
+                0px .5px 0px rgb(222, 222, 222),
+				.5px .5px 0px rgb(222, 222, 222),
+				.5px 0px 0px rgb(222, 222, 222),
+				.5px -.5px 0px rgb(222, 222, 222),
+				0px -.5px 0px rgb(222, 222, 222),
+				-.5px -.5px 0px rgb(222, 222, 222),
+				-.5px 0px 0px rgb(222, 222, 222); */
+}
+
 
 #full_page {
     display: table;
@@ -103,7 +132,7 @@ button:active {
     background-color: rgba(0, 0, 0, 0); 
     border: 2px solid rgb(43, 43, 43);
     border-radius: 3px; 
-    /* -webkit-appearance: none; */
+    -webkit-appearance: none;
     appearance: none;
 }
 #test_s::-webkit-slider-thumb {
