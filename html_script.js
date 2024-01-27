@@ -10,6 +10,7 @@ function getTableData() {
         last_name: "Etternavn",
         birth: "Fødselsdato",
         criticality: "Kritikalitet",
+        movability: "Flyttbarhet",
         arrival: "Ankomst",
         expected_departure: "Forventet avreise",
         departure: "Avreise",
@@ -89,7 +90,8 @@ function getPersonData() {
         f_name="",
         l_name="",
         birth="",
-        criticality="",
+        criticality="", //TODO add movability
+        movability="",
         arrival="",
         exp_departure="",
         departure="",
@@ -99,9 +101,9 @@ function getPersonData() {
         national_id="",
         comment=""
     ) {
-        change_hospital_name(HOSPITAL_NAME);
+        change_hospital_name(HOSPITAL_NAME); //TODO add logout (link to index with ?logout=yes)
 
-        let table = document.getElementById("table_body");
+        let table = document.getElementById("table_body"); 
         table.innerHTML += `
         <tr>
             <th>Ankomst</th>
@@ -132,6 +134,17 @@ function getPersonData() {
                     <option value="unknown">Uavklart</option>
                     <option value="critical">Kritisk</option>
                     <option value="stable">Stabil</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Flyttbarhet</th>
+            <td>
+                <select onchange="input_changed(this)" name="movability" id="movability">
+                    <option value=""></option>
+                    <option value="can_walk">Kan gå</option>
+                    <option value="stretcher">Båre</option>
+                    <option value="intravenously">Intravenøst</option>
                 </select>
             </td>
         </tr>
@@ -185,6 +198,7 @@ function getPersonData() {
         `
         // Sets the <select>s to existing info
         document.getElementById("criticality").value = criticality;
+        document.getElementById("movability").value = movability;
         document.getElementById("departure_status").value = departure_status;
 
         // Changes color back to white if value exists in date-inputs
@@ -214,6 +228,7 @@ function getPersonData() {
             DATA.last_name,
             DATA.birth,
             DATA.criticality,
+            DATA.movability,
             DATA.arrival,
             DATA.expected_departure,
             DATA.departure,
@@ -349,6 +364,7 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         last_name: "Etternavn",
         birth: "Fødselsdato",
         criticality: "Kritikalitet",
+        movability: "Flyttbarhet",
         arrival: "Ankomst",
         expected_departure: "Forventet avreise",
         departure: "Avreise",
@@ -398,6 +414,7 @@ function send_back() {
 function save_and_leave() {
     // save();
     // send_back();
+    // Not used, using form insted!
 }
 
 function add_comment() { //TODO add a "there-is-a-comment-but-dont-show" feature (a speach bubble)
