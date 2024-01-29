@@ -111,7 +111,7 @@ function getPersonData() {
             </td>
         </tr>
         <tr>
-            <th>Forrnavn</th>
+            <th>Fornavn</th>
             <td><input onchange="input_changed(this)" maxlength="50" type="text" name="first_name" id="first_name" value="`+f_name+`"/></td>
         </tr>
         <tr>
@@ -127,9 +127,9 @@ function getPersonData() {
             <td>
                 <select onchange="input_changed(this)" name="criticality" id="criticality">
                     <option value=""></option>
-                    <option value="unknown">Uavklart</option>
-                    <option value="critical">Kritisk</option>
-                    <option value="stable">Stabil</option>
+                    <option value="Uavklart">Uavklart</option>
+                    <option value="Kritisk">Kritisk</option>
+                    <option value="Stabil">Stabil</option>
                 </select>
             </td>
         </tr>
@@ -138,9 +138,9 @@ function getPersonData() {
             <td>
                 <select onchange="input_changed(this)" name="movability" id="movability">
                     <option value=""></option>
-                    <option value="can_walk">Kan gå</option>
-                    <option value="stretcher">Båre</option>
-                    <option value="intravenously">Intravenøst</option>
+                    <option value="Kan gå">Kan gå</option>
+                    <option value="Båre">Båre</option>
+                    <option value="Intravenøst">Intravenøst</option>
                 </select>
             </td>
         </tr>
@@ -167,15 +167,15 @@ function getPersonData() {
             <td>
                 <select onchange="input_changed(this)" name="departure_status" id="departure_status">
                     <option value=""></option>
-                    <option value="death">Død</option>
-                    <option value="perm_disability">Utskrevet med permanent funksjonshemming</option>
-                    <option value="medical_evac">Medisinsk evakuering</option>
-                    <option value="medical_repat">Medisinsk repatriering</option>
-                    <option value="civil_life">Returnert til sivilt liv</option>
-                    <option value="dutie_modified">Returnert til tjeneste (modifisert tjeneste)</option>
-                    <option value="dutie_rtd">Returnert til tjeneste (RTD)</option>
-                    <option value="dutie_rtu">Returnert til korps (RTU)</option>
-                    <option value="stratevac">Strategisk evakuering (stratevac)</option>
+                    <option value="Død">Død</option>
+                    <option value="Utskrevet med permanent funksjonshemming">Utskrevet med permanent funksjonshemming</option>
+                    <option value="Medisinsk evakuering">Medisinsk evakuering</option>
+                    <option value="Medisinsk repatriering">Medisinsk repatriering</option>
+                    <option value="Returnert til sivilt liv">Returnert til sivilt liv</option>
+                    <option value="Returnert til tjeneste (modifisert tjeneste)">Returnert til tjeneste (modifisert tjeneste)</option>
+                    <option value="Returnert til tjeneste (RTD)">Returnert til tjeneste (RTD)</option>
+                    <option value="Returnert til korps (RTU)">Returnert til korps (RTU)</option>
+                    <option value="Strategisk evakuering (stratevac)">Strategisk evakuering (stratevac)</option>
                 </select>
             </td>
         </tr>
@@ -206,7 +206,8 @@ function getPersonData() {
         if (comment.replaceAll("\n", "").replaceAll(" ", "") != "") {
             document.getElementById("no_comment_cont").className = "disappear";
             document.getElementById("comment").innerText = comment;
-            document.getElementById("show_comment_cont").className = "";
+            document.getElementById("comment").className = "";
+            document.getElementById("comment_note").className = "hide";
         }
     }
     
@@ -421,7 +422,7 @@ function add_comment() {
     document.getElementById("comment_note").className = "hide";
 }
 
-function show_comment() {
+function show_comment() { //TODO change to fit overview
     document.getElementById("show_comment_cont").className = "disappear";
 
     document.getElementById("comment").className = "";
@@ -429,11 +430,8 @@ function show_comment() {
 }
 
 function close_comment() {
-    if (document.getElementById("comment").innerText != "") {
-        document.getElementById("show_comment_cont").className = "";
-    } else {
-        document.getElementById("no_comment_cont").className = "";
-    }
+    document.getElementById("no_comment_cont").className = "";
+
     document.getElementById("comment").className = "disappear";
     document.getElementById("comment_note").className = "disappear";
 }

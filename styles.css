@@ -223,6 +223,9 @@ input[type=radio]:checked +label {
 .info_table#index_table tbody tr:active {
     background-color: rgb(43, 43, 43);
 }
+.info_table#index_table tbody td {
+    height: 35px; /* basically min-height */
+}
 
 .info_table#detail_table td {
     padding-top: 0px;

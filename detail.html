@@ -74,7 +74,7 @@
                 <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellen har ulagret informasjon.</p>
                 
 
-                <!-- The three different comment types -->
+                <!-- The 2 different comment types -->
                 <div contenteditable="true" id="comment" class="disappear"></div>
                 
                 <div style="float: right;" id="no_comment_cont"><button type="button" onclick="add_comment()" id="no_comment_btn">
@@ -82,11 +82,12 @@
                     <span>Kommenter</span>
                 </button></div>
 
-                <div style="float: right; margin-bottom: 10px;" id="show_comment_cont" class="disappear">
+                <!-- <div style="float: right; margin-bottom: 10px;" id="show_comment_cont" class="disappear">
                     <button type="button" style="background-color: rgba(0,0,0,0);" onclick="show_comment()">
                         <img src="/img/comment_filled_icon.svg" width="50" alt="Lagre og forlat">
                     </button>
-                </div>
+                </div> -->
+
                 <!-- -->
 
 
@@ -134,7 +135,7 @@
 
     // close the comment field if its empty and user click outside it
     window.addEventListener("mousedown", function (event) {
-        if (event.target != COMMENT_BOX && COMMENT_BOX.className != "disappear") {
+        if (event.target != COMMENT_BOX && COMMENT_BOX.className != "disappear" && COMMENT_BOX.innerText == "") {
             close_comment();
         }
     }, false)
