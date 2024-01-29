@@ -78,6 +78,7 @@ function getTableData() {
                 row.innerHTML += `<td>`+person[column]+`</td>`;
             }
         }
+        // row.innerHTML += `<td>hei</td>`; //TODO make this the column for comment
     }
 }
 
