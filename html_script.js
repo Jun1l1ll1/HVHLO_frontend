@@ -65,7 +65,7 @@ function getTableData() {
         table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
     // show what its sorted after
-    document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>";
+    sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : "";
 
     let filtered_data;
     filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
@@ -412,7 +412,7 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         } 
     }
 
-    document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>"; //TODO? add text that informs it is sorted
+    sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
 
 }
 
