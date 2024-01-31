@@ -68,6 +68,16 @@
 <body onload="getTableData()">
 
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+        
+        <div id="show_comment_full_page" class="disappear" onclick="hide_comment()">
+            <div id="overview_comment" onclick="dont_do_parent_event(event)">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum!
+            </div>
+        </div>
+
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
                 <h1>HVHLO</h1> <!--TODO? add logo -->
@@ -104,6 +114,8 @@
                         <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
                             <option value="first_name" selected>Fornavn</option>
                             <option value="last_name" selected>Etternavn</option>
+                            <option value="nationality">Nasjonalitet</option>
+                            <option value="national_id">Nasjonal ID</option>
                             <option value="birth">Fødselsdato</option>
                             <option value="arrival" selected>Ankomst</option>
                             <option value="criticality">Kritikalitet</option>
@@ -112,9 +124,7 @@
                             <option value="expected_departure">Forventet avreise</option>
                             <option value="departure_status">Avreisestatus</option>
                             <option value="departure_destination">Avreisedestinasjon</option>
-                            <option value="nationality">Nasjonalitet</option>
-                            <option value="national_id">Nasjonal ID</option>
-                            <option value="comment">Kommentar</option>
+                            <!-- <option value="comment">Kommentar</option> -->
                         </select>
                     </div>
                     <button onclick="make_new()" id="make_new_btn">Opprett ny</button>

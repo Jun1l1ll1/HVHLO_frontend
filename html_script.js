@@ -65,7 +65,11 @@ function getTableData() {
         table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
     // show what its sorted after
-    sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : "";
+    try {
+        sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
+    } catch (error) {
+        //TODO? do something if the category sorted after is not shown
+    }
 
     let filtered_data;
     filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
@@ -77,14 +81,12 @@ function getTableData() {
         table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
         let row = document.getElementById("person_id_"+person.id);
         for (column of headers) {
-            if (column == "comment") {
-                let yn = person[column] != "" ? "Ja" : "Nei";
-                row.innerHTML += `<td>`+yn+`</td>`;
-            } else {
-                row.innerHTML += `<td>`+person[column]+`</td>`;
-            }
+            row.innerHTML += `<td>`+person[column]+`</td>`;
         }
-        // row.innerHTML += `<td>hei</td>`; //TODO make this the column for comment
+        
+        if (person.comment != "") {
+            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
+        }
     }
 }
 
@@ -401,6 +403,10 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
                 row.innerHTML += `<td>`+person[column]+`</td>`;
             }
         }
+
+        if (person.comment != "") {
+            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
+        }
     }
 
     // Show currently sorted after
@@ -412,7 +418,11 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         } 
     }
 
-    sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
+    try {
+        sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
+    } catch (error) {
+        //TODO? do something if the category sorted after is not shown
+    }
 
 }
 
@@ -435,15 +445,9 @@ function save_and_leave() {
     // Not used, using form insted!
 }
 
+
 function add_comment() {
     document.getElementById("no_comment_cont").className = "disappear";
-
-    document.getElementById("comment").className = "";
-    document.getElementById("comment_note").className = "hide";
-}
-
-function show_comment() { //TODO change to fit overview
-    document.getElementById("show_comment_cont").className = "disappear";
 
     document.getElementById("comment").className = "";
     document.getElementById("comment_note").className = "hide";
@@ -454,6 +458,21 @@ function close_comment() {
 
     document.getElementById("comment").className = "disappear";
     document.getElementById("comment_note").className = "disappear";
+}
+
+function show_comment(event, comment) { //TODO show popup
+    document.getElementById("overview_comment").innerText = comment;
+    document.getElementById("show_comment_full_page").className = "display_flex";
+    dont_do_parent_event(event); // Stops the edit() onclick event that would have triggered
+}
+
+function hide_comment() {
+    document.getElementById("show_comment_full_page").className = "disappear";
+}
+
+
+function dont_do_parent_event(event) {
+    event.stopPropagation();
 }
 
 function validate_email(e) {

@@ -78,13 +78,13 @@
                 <div contenteditable="true" id="comment" class="disappear"></div>
                 
                 <div style="float: right;" id="no_comment_cont"><button type="button" onclick="add_comment()" id="no_comment_btn">
-                    <img src="/img/comment_icon.svg" alt="Lagre og forlat">
+                    <img src="/img/comment_icon.svg" alt="Kommenter">
                     <span>Kommenter</span>
                 </button></div>
 
                 <!-- <div style="float: right; margin-bottom: 10px;" id="show_comment_cont" class="disappear">
                     <button type="button" style="background-color: rgba(0,0,0,0);" onclick="show_comment()">
-                        <img src="/img/comment_filled_icon.svg" width="50" alt="Lagre og forlat">
+                        <img src="/img/comment_filled_icon.svg" width="50" alt="Se kommentar">
                     </button>
                 </div> -->
 
@@ -113,8 +113,7 @@
     </div>
     <textarea id="comment_data" class="disappear" name="comment_data"></textarea>
 </form>
-</body> <!--! Change is made in the event that closes comment below (this is outside body) -->
-        <!--! (starts with: window.addEventListener[...]) -->
+</body>
 <script>
     // onchange does not work on contenteditable divs, thus an event is used
     const COMMENT_BOX = document.getElementById("comment");
