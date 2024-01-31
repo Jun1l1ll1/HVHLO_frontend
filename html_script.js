@@ -120,6 +120,14 @@ function getPersonData() {
             <td><input onchange="input_changed(this)" maxlength="50" type="text" name="last_name" id="last_name" value="`+l_name+`"/></td>
         </tr>
         <tr>
+            <th>Nasjonalitet</th>
+            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="nationality" id="nationality" value="`+nationality+`"/></td>
+        </tr>
+        <tr>
+            <th>Nasjonal ID</th>
+            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="national_id" id="national_id" value="`+national_id+`"/></td>
+        </tr>
+        <tr>
             <th>Fødselsdato</th>
             <td><input onchange="input_changed(this)" class="input_date_empty" type="date" name="birth" id="birth" value="`+birth+`"/></td>
         </tr>
@@ -184,14 +192,6 @@ function getPersonData() {
             <th>Avreisedestinasjon</th>
             <td><input onchange="input_changed(this)" maxlength="50" type="text" name="departure_destination" id="departure_destination" value="`+departure_destination+`"/></td>
         </tr>
-        <tr>
-            <th>Nasjonalitet</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="nationality" id="nationality" value="`+nationality+`"/></td>
-        </tr>
-        <tr>
-            <th>Nasjonal ID</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="national_id" id="national_id" value="`+national_id+`"/></td>
-        </tr>
         `
         // Sets the <select>s to existing info
         document.getElementById("criticality").value = criticality;
@@ -199,9 +199,10 @@ function getPersonData() {
         document.getElementById("departure_status").value = departure_status;
 
         // Changes color back to white if value exists in date-inputs
-        document.getElementById("arrival").value != "" ? document.getElementById("arrival").className = "" : "";
-        document.getElementById("arrival").value != "" ? document.getElementById("arrival").className = "" : "";
-        document.getElementById("arrival").value != "" ? document.getElementById("arrival").className = "" : "";
+        arrival != "" ? document.getElementById("arrival").className = "" : "";
+        exp_departure != "" ? document.getElementById("expected_departure").className = "" : "";
+        departure != "" ? document.getElementById("departure").className = "" : "";
+        birth != "" ? document.getElementById("birth").className = "" : "";
 
         // Add the comment if one exists
         if (comment.replaceAll("\n", "").replaceAll(" ", "") != "") {
