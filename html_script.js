@@ -36,6 +36,11 @@ function getTableData() {
             sort_cookie = this_cookie.split("=")[1];
         } 
     }
+
+    // sort DATA
+    if (sort_cookie != "") {
+        DATA.sort((a, b) => (a[sort_cookie] > b[sort_cookie] ? 1 : -1));
+    }
     
     // Set the filters to cookie filters
     document.getElementById("is_present").checked = (filter_cookie == "is_present");
