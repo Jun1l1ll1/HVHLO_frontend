@@ -24,6 +24,7 @@ function getTableData() {
     let cookie_list = document.cookie.split("; ")
     let filter_cookie = "all";
     let header_cookie = [];
+    let sort_cookie = "";
     for (this_cookie of cookie_list) {
         if (this_cookie.split("=")[0] == "filter") {
             filter_cookie = this_cookie.split("=")[1];
@@ -31,6 +32,9 @@ function getTableData() {
         else if (this_cookie.split("=")[0] == "table_header") {
             header_cookie = [...this_cookie.split("=")[1].split(",")];
         }
+        else if (this_cookie.split("=")[0] == "sort") {
+            sort_cookie = this_cookie.split("=")[1];
+        } 
     }
     
     // Set the filters to cookie filters
@@ -58,8 +62,10 @@ function getTableData() {
     }
 
     for (head of headers) {
-        table_head.innerHTML += `<th>`+h[head]+`</th>`;
+        table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
+    // show what its sorted after
+    document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>";
 
     let filtered_data;
     filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
@@ -378,7 +384,7 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
     let table_head = document.getElementById("table_head_row");
     table_head.innerHTML = "";
     for (head of table_headers) {
-        table_head.innerHTML += `<th>`+h[head]+`</th>`;
+        table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
 
     let table_body = document.getElementById("table_body");
@@ -396,6 +402,18 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
             }
         }
     }
+
+    // Show currently sorted after
+    let cookie_list = document.cookie.split("; ");
+    let sort_cookie = "";
+    for (this_cookie of cookie_list) {
+        if (this_cookie.split("=")[0] == "sort") {
+            sort_cookie = this_cookie.split("=")[1];
+        } 
+    }
+
+    document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>"; //TODO? add text that informs it is sorted
+
 }
 
 
@@ -464,6 +482,29 @@ function set_date_to_now(id) {
     document.getElementById(id).value = yyyy+"-"+mm+"-"+dd+"T"+time;
     input_changed(document.getElementById(id));
 }
+
+function sort_table(category) {
+    // Sort DATA
+    DATA.sort((a, b) => (a[category] > b[category] ? 1 : -1));
+    document.cookie = "sort="+category; // Save as cookie
+
+    // Update table //TODO make function with this task
+    let is_present = document.getElementById("is_present").checked;
+    let all = document.getElementById("all").checked;
+    let has_left = document.getElementById("has_left").checked;
+
+    let filtered_data = update_table_filter(is_present, all, has_left);
+
+    let headers = [];
+    for (child of document.getElementById("header_choices").children) {
+        if (child.selected) {
+            headers.push(child.value);
+        }
+    }
+
+    update_table_and_header(headers, filtered_data);
+}
+
 
 function change_hospital_name(name) {
     document.getElementById("hospital_location").innerText = name;

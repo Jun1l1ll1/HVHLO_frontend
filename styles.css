@@ -220,6 +220,10 @@ input[type=radio]:checked +label {
 .info_table#index_table th {
     background-color: rgb(43, 43, 43);
 }
+.header_sorted_after {
+    color: rgb(0, 139, 182);
+}
+
 .info_table#index_table tbody tr:active {
     background-color: rgb(43, 43, 43);
 }
