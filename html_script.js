@@ -120,7 +120,7 @@ function getPersonData() {
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                     <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival" value="`+arrival+`"/>
-                    <button type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                    <button tabindex="-1" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
         </tr>
@@ -171,7 +171,7 @@ function getPersonData() {
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                     <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure" value="`+exp_departure+`"/>
-                    <button type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                    <button tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
         </tr>
@@ -180,7 +180,7 @@ function getPersonData() {
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                     <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="departure" id="departure" value="`+departure+`"/>
-                    <button type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                    <button tabindex="-1" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
         </tr>
