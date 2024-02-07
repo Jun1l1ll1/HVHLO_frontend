@@ -509,7 +509,7 @@ function set_date_to_now(id) {
 
 function sort_table(category) {
     // Sort DATA
-    DATA.sort((a, b) => (a[category] > b[category] ? 1 : -1));
+    DATA.sort((a, b) => (a[category] >= b[category] ? 1 : -1));
     document.cookie = "sort="+category; // Save as cookie
 
     // Update table //TODO make function with this task
