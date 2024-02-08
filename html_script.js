@@ -86,11 +86,11 @@ function getTableData() {
         table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
         let row = document.getElementById("person_id_"+person.id);
         for (column of headers) {
-            row.innerHTML += `<td>`+person[column]+`</td>`;
+            row.innerHTML += `<td>`+person[column].replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`</td>`;
         }
         
         if (person.comment != "") {
-            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
+            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment.replaceAll("'", "&#39;").replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
         }
     }
 }
@@ -120,7 +120,7 @@ function getPersonData() {
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                     <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival" value="`+arrival+`"/>
-                    <button tabindex="-1" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                    <button tabindex="-1" id="arrival_now_btn" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
         </tr>
@@ -171,7 +171,7 @@ function getPersonData() {
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                     <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure" value="`+exp_departure+`"/>
-                    <button tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                    <button id="expected_departure_now_btn" tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
         </tr>
@@ -180,7 +180,7 @@ function getPersonData() {
             <td>
                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                     <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="departure" id="departure" value="`+departure+`"/>
-                    <button tabindex="-1" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                    <button tabindex="-1" id="departure_now_btn" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                 </div>
             </td>
         </tr>
@@ -211,10 +211,19 @@ function getPersonData() {
         document.getElementById("movability").value = movability;
         document.getElementById("departure_status").value = departure_status;
 
-        // Changes color back to white if value exists in date-inputs
-        arrival != "" ? document.getElementById("arrival").className = "" : "";
-        exp_departure != "" ? document.getElementById("expected_departure").className = "" : "";
-        departure != "" ? document.getElementById("departure").className = "" : "";
+        // Changes inputs if value exists in date-inputs
+        if (arrival != "") {
+            document.getElementById("arrival").className = "";
+            document.getElementById("arrival_now_btn").className = "disappear";
+        }
+        if (exp_departure != "") {
+            document.getElementById("exp_departure").className = "";
+            document.getElementById("exp_departure_now_btn").className = "disappear";
+        }
+        if (departure != "") {
+            document.getElementById("departure").className = "";
+            document.getElementById("departure_now_btn").className = "disappear";
+        }
         birth != "" ? document.getElementById("birth").className = "" : "";
 
         // Add the comment if one exists
@@ -275,8 +284,10 @@ function input_changed(e) { //TODO? save current editing in cookie/page-storage
     if (e.type == "date" || e.type == "datetime-local") {
         if (e.value != "") {
             e.className = "";
+            e.type == "datetime-local" ? document.getElementById(e.id + "_now_btn").className = "disappear" : "";
         } else {
             e.className = "input_date_empty";
+            e.type == "datetime-local" ? document.getElementById(e.id + "_now_btn").className = "" : "";
         }
     }
 
@@ -400,17 +411,11 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
         let row = document.getElementById("person_id_"+person.id);
         for (column of table_headers) {
-            if (column == "comment") {
-                let yn;
-                person[column] != "" ? yn = "Ja" : yn = "Nei";
-                row.innerHTML += `<td>`+yn+`</td>`;
-            } else {
-                row.innerHTML += `<td>`+person[column]+`</td>`;
-            }
+            row.innerHTML += `<td>`+person[column].replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`</td>`;
         }
 
         if (person.comment != "") {
-            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
+            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment.replaceAll("'", "&#39;").replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
         }
     }
 
@@ -465,8 +470,8 @@ function close_comment() {
     document.getElementById("comment_note").className = "disappear";
 }
 
-function show_comment(event, comment) { //TODO show popup
-    document.getElementById("overview_comment").innerText = comment;
+function show_comment(event, comment) {
+    document.getElementById("overview_comment").innerText = comment.replaceAll("&#39;", "'");
     document.getElementById("show_comment_full_page").className = "display_flex";
     dont_do_parent_event(event); // Stops the edit() onclick event that would have triggered
 }
