@@ -3,24 +3,6 @@ function getTableData() {
     
     change_hospital_name(HOSPITAL_NAME);
 
-    // Create the table
-    let table_head = document.getElementById("table_head_row");
-    let h = {
-        first_name: "Fornavn",
-        last_name: "Etternavn",
-        birth: "Fødselsdato",
-        criticality: "Kritikalitet",
-        movability: "Flyttbarhet",
-        arrival: "Ankomst",
-        expected_departure: "Forventet avreise",
-        departure: "Avreise",
-        departure_status: "Avreisestatus",
-        departure_destination: "Avreisedestinasjon",
-        nationality: "Nasjonalitet",
-        national_id: "Nasjonal ID",
-        comment: "Kommentar"
-    }
-
     let cookie_list = document.cookie.split("; ")
     let filter_cookie = "all";
     let header_cookie = [];
@@ -59,6 +41,7 @@ function getTableData() {
     }
 
 
+    // Create table
     let headers = [];
     for (child of document.getElementById("header_choices").children) {
         if (child.selected) {
@@ -66,33 +49,11 @@ function getTableData() {
         }
     }
 
-    for (head of headers) {
-        table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
-    }
-    // show what its sorted after
-    try {
-        sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
-    } catch (error) {
-        //TODO? do something if the category sorted after is not shown
-    }
-
     let filtered_data;
     filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
     
+    update_table_and_header(headers, filtered_data);
 
-    //TODO? format fields with dates and time better
-    let table_body = document.getElementById("table_body");
-    for (person of filtered_data) {
-        table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
-        let row = document.getElementById("person_id_"+person.id);
-        for (column of headers) {
-            row.innerHTML += `<td>`+person[column].replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`</td>`;
-        }
-        
-        if (person.comment != "") {
-            row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment.replaceAll("'", "&#39;").replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
-        }
-    }
 }
 
 function getPersonData() {
@@ -382,7 +343,7 @@ function update_table_filter(is_present, all, has_left) {
     return filtered_data;
 }
 
-function update_table_and_header(table_headers=[],filtered_data=[]) {
+function update_table_and_header(table_headers=[],filtered_data=[]) { 
     let h = {
         first_name: "Fornavn",
         last_name: "Etternavn",
@@ -405,6 +366,7 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
 
+    //TODO? format fields with dates and time better
     let table_body = document.getElementById("table_body");
     table_body.innerHTML = "";
     for (person of filtered_data) {
