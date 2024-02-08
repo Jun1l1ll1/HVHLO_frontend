@@ -74,6 +74,7 @@ function getPersonData() {
     ) {
         change_hospital_name(HOSPITAL_NAME);
 
+        //TODO? Place this in HTML file and edit value from here?
         let table = document.getElementById("table_body"); 
         table.innerHTML += `
         <tr>
