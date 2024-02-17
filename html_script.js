@@ -61,6 +61,8 @@ function getPersonData() {
         f_name="",
         l_name="",
         birth="",
+        incident="",
+        cause="",
         criticality="",
         movability="",
         arrival="",
@@ -99,12 +101,26 @@ function getPersonData() {
             <td><input onchange="input_changed(this)" maxlength="50" type="text" name="nationality" id="nationality" value="`+nationality+`"/></td>
         </tr>
         <tr>
-            <th>Nasjonal ID</th>
+            <th>Nasjonal ID og Journal nr</th>
             <td><input onchange="input_changed(this)" maxlength="50" type="text" name="national_id" id="national_id" value="`+national_id+`"/></td>
         </tr>
         <tr>
             <th>Fødselsdato</th>
             <td><input onchange="input_changed(this)" class="input_date_empty" type="date" name="birth" id="birth" value="`+birth+`"/></td>
+        </tr>
+        <tr>
+            <th>Hendelse</th>
+            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="incident" id="incident" value="`+incident+`"/></td>
+        </tr>
+        <tr>
+            <th>Årsak</th>
+            <td>
+                <select onchange="input_changed(this)" name="cause" id="cause">
+                    <option value=""></option>
+                    <option value="Sykdom">Sykdom</option>
+                    <option value="Skade">Skade</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <th>Kritikalitet</th>
@@ -169,6 +185,7 @@ function getPersonData() {
         </tr>
         `
         // Sets the <select>s to existing info
+        document.getElementById("cause").value = cause; 
         document.getElementById("criticality").value = criticality;
         document.getElementById("movability").value = movability;
         document.getElementById("departure_status").value = departure_status;
@@ -209,6 +226,8 @@ function getPersonData() {
             DATA.first_name,
             DATA.last_name,
             DATA.birth,
+            DATA.incident,
+            DATA.cause,
             DATA.criticality,
             DATA.movability,
             DATA.arrival,
@@ -349,6 +368,8 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         first_name: "Fornavn",
         last_name: "Etternavn",
         birth: "Fødselsdato",
+        incident: "Hendelse",
+        cause: "Årsak",
         criticality: "Kritikalitet",
         movability: "Flyttbarhet",
         arrival: "Ankomst",
