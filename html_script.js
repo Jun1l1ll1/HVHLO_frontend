@@ -395,7 +395,12 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
         let row = document.getElementById("person_id_"+person.id);
         for (column of table_headers) {
-            row.innerHTML += `<td>`+person[column].replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`</td>`;
+            if (person[column] != "" && (column == "arrival" || column == "expected_departure" || column == "departure")) {
+                let DTG_list = person[column].split(/[-T:]+/); // [yyyy, mm, dd, hour, min]
+                row.innerHTML += `<td>DTG `+DTG_list[2]+DTG_list[3]+DTG_list[4]+`</td>`;
+            } else {
+                row.innerHTML += `<td>`+person[column].replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`</td>`;
+            }
         }
 
         if (person.comment != "") {
