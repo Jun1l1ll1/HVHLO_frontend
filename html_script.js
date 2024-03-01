@@ -98,7 +98,13 @@ function getPersonData() {
         </tr>
         <tr>
             <th>Nasjonalitet</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="nationality" id="nationality" value="`+nationality+`"/></td>
+            <td>
+                <input onchange="input_changed(this)" maxlength="50" type="text" list="nationality_list" name="nationality" id="nationality" value="`+nationality+`"/>
+                <datalist id="nationality_list">
+                    <option value="NOR">Norge</option>
+                    <option value="ENG">England</option>
+                </datalist>
+            </td>
         </tr>
         <tr>
             <th>Nasjonal ID og Journal nr</th>
