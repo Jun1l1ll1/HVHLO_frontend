@@ -76,120 +76,18 @@ function getPersonData() {
     ) {
         change_hospital_name(HOSPITAL_NAME);
 
-        //TODO? Place this in HTML file and edit value from here?
-        let table = document.getElementById("table_body"); 
-        table.innerHTML += `
-        <tr>
-            <th>Ankomst</th>
-            <td>
-                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival" value="`+arrival+`"/>
-                    <button tabindex="-1" id="arrival_now_btn" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th>Fornavn</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="first_name" id="first_name" value="`+f_name+`"/></td>
-        </tr>
-        <tr>
-            <th>Etternavn</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="last_name" id="last_name" value="`+l_name+`"/></td>
-        </tr>
-        <tr>
-            <th>Nasjonalitet</th>
-            <td>
-                <input onchange="input_changed(this)" maxlength="50" type="text" list="nationality_list" name="nationality" id="nationality" value="`+nationality+`"/>
-                <datalist id="nationality_list">
-                    <option value="NOR">Norge</option>
-                    <option value="ENG">England</option>
-                </datalist>
-            </td>
-        </tr>
-        <tr>
-            <th>Nasjonal ID og Journal nr</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="national_id" id="national_id" value="`+national_id+`"/></td>
-        </tr>
-        <tr>
-            <th>Fødselsdato</th>
-            <td><input onchange="input_changed(this)" class="input_date_empty" type="date" name="birth" id="birth" value="`+birth+`"/></td>
-        </tr>
-        <tr>
-            <th>Hendelse</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="incident" id="incident" value="`+incident+`"/></td>
-        </tr>
-        <tr>
-            <th>Årsak</th>
-            <td>
-                <select onchange="input_changed(this)" name="cause" id="cause">
-                    <option value=""></option>
-                    <option value="Sykdom">Sykdom</option>
-                    <option value="Skade">Skade</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th>Kritikalitet</th>
-            <td>
-                <select onchange="input_changed(this)" name="criticality" id="criticality">
-                    <option value=""></option>
-                    <option value="Uavklart">Uavklart</option>
-                    <option value="Kritisk">Kritisk</option>
-                    <option value="Stabil">Stabil</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th>Flyttbarhet</th>
-            <td>
-                <select onchange="input_changed(this)" name="movability" id="movability">
-                    <option value=""></option>
-                    <option value="Kan gå">Kan gå</option>
-                    <option value="Båre">Båre</option>
-                    <option value="Intravenøst">Intravenøst</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th>Forventet avreise</th>
-            <td>
-                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure" value="`+exp_departure+`"/>
-                    <button id="expected_departure_now_btn" tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th>Avreise</th>
-            <td>
-                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="departure" id="departure" value="`+departure+`"/>
-                    <button tabindex="-1" id="departure_now_btn" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th>Avreisestatus</th>
-            <td>
-                <select onchange="input_changed(this)" name="departure_status" id="departure_status">
-                    <option value=""></option>
-                    <option value="Død">Død</option>
-                    <option value="Utskrevet med permanent funksjonshemming">Utskrevet med permanent funksjonshemming</option>
-                    <option value="Medisinsk evakuering">Medisinsk evakuering</option>
-                    <option value="Medisinsk repatriering">Medisinsk repatriering</option>
-                    <option value="Returnert til sivilt liv">Returnert til sivilt liv</option>
-                    <option value="Returnert til tjeneste (modifisert tjeneste)">Returnert til tjeneste (modifisert tjeneste)</option>
-                    <option value="Returnert til tjeneste (RTD)">Returnert til tjeneste (RTD)</option>
-                    <option value="Returnert til korps (RTU)">Returnert til korps (RTU)</option>
-                    <option value="Strategisk evakuering (stratevac)">Strategisk evakuering (stratevac)</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th>Avreisedestinasjon</th>
-            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="departure_destination" id="departure_destination" value="`+departure_destination+`"/></td>
-        </tr>
-        `
+        // Sets the <input>s to existing info
+        document.getElementById("arrival").value = arrival;
+        document.getElementById("first_name").value = f_name;
+        document.getElementById("last_name").value = l_name;
+        document.getElementById("nationality").value = nationality;
+        document.getElementById("national_id").value = national_id;
+        document.getElementById("birth").value = birth;
+        document.getElementById("incident").value = incident;
+        document.getElementById("expected_departure").value = exp_departure;
+        document.getElementById("departure").value = departure;
+        document.getElementById("departure_destination").value = departure_destination;
+
         // Sets the <select>s to existing info
         document.getElementById("cause").value = cause; 
         document.getElementById("criticality").value = criticality;
@@ -440,8 +338,12 @@ function edit(id) {
     window.location.href = "/detail.html?id="+id;
 }
 
-function send_back() {
-    window.location.href = "/overview.html";
+function send_back(check_for_changes=false) {
+    if (!check_for_changes || object_equals(DATA, new_data)) {
+        window.location.href = "/overview.html";
+    } else {
+        document.getElementById("save_popup_center").className = "display_flex";
+    }
 }
 
 function save_and_leave() {
@@ -473,6 +375,11 @@ function show_comment(event, comment) {
 
 function hide_comment() {
     document.getElementById("show_comment_full_page").className = "disappear";
+}
+
+
+function hide_save_popup() {
+    document.getElementById("save_popup_center").className = "disappear";
 }
 
 

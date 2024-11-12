@@ -45,6 +45,17 @@
 <body onload="getPersonData()">
 <form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+        <div id="save_popup_center" class="disappear">
+            <div id="save_popup">
+                <h3>Er du sikker på at du vil forlate uten å lagre?</h3>
+                <div id="save_popup_btns">
+                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn">Ja, forkast endringer</button>
+                    <button type="submit">Nei, lagre og gå tilbake</button>
+                    <button type="button" onclick="hide_save_popup()">Avbryt</button>
+                </div>
+            </div>
+        </div>
+
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
                 <h1>HVHLO</h1> <!--TODO? add logo -->
@@ -57,11 +68,11 @@
 
         <div id="bottom_header">
             <div id="back_btn_cont">
-                <button type="button" onclick="send_back()" class="back_btn">
+                <button type="button" onclick="send_back(true)" class="back_btn">
                     <img src="/img/back_icon.svg" alt="Forlat">
                     <span id="dont_save_btn_text">Tilbake uten å lagre</span>
                 </button>
-                <button type="submit" onclick="save_and_leave()" class="back_btn">
+                <button type="submit" class="back_btn">
                     <img src="/img/save_icon.svg" alt="Lagre og forlat">
                     <span>Lagre og gå tilbake</span>
                 </button>
@@ -97,16 +108,116 @@
 
                 <table class="info_table" id="detail_table"> <!--TODO? make more tables so there are spacing between categories -->
                     <tbody id="table_body">
-                        <!-- This is where the info. from the data is added (se getPersonData() in html_script.js) -->
-                        <!-- <tr>
-                            <th>Test</th>
+                        <tr>
+                            <th>Ankomst</th>
                             <td>
-                                <select onchange="input_changed(this)" name="test" id="test">
+                                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
+                                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival"/>
+                                    <button tabindex="-1" id="arrival_now_btn" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Fornavn</th>
+                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="first_name" id="first_name"/></td>
+                        </tr>
+                        <tr>
+                            <th>Etternavn</th>
+                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="last_name" id="last_name"/></td>
+                        </tr>
+                        <tr>
+                            <th>Nasjonalitet</th>
+                            <td>
+                                <input onchange="input_changed(this)" maxlength="50" type="text" list="nationality_list" name="nationality" id="nationality"/>
+                                <datalist id="nationality_list">
+                                    <option value="NOR">Norge</option>
+                                    <option value="ENG">England</option>
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Nasjonal ID og Journal nr</th>
+                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="national_id" id="national_id"/></td>
+                        </tr>
+                        <tr>
+                            <th>Fødselsdato</th>
+                            <td><input onchange="input_changed(this)" class="input_date_empty" type="date" name="birth" id="birth"/></td>
+                        </tr>
+                        <tr>
+                            <th>Hendelse</th>
+                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="incident" id="incident"/></td>
+                        </tr>
+                        <tr>
+                            <th>Årsak</th>
+                            <td>
+                                <select onchange="input_changed(this)" name="cause" id="cause">
                                     <option value=""></option>
-                                    <option value="death">Død</option>
+                                    <option value="Sykdom">Sykdom</option>
+                                    <option value="Skade">Skade</option>
                                 </select>
                             </td>
-                        </tr> -->
+                        </tr>
+                        <tr>
+                            <th>Kritikalitet</th>
+                            <td>
+                                <select onchange="input_changed(this)" name="criticality" id="criticality">
+                                    <option value=""></option>
+                                    <option value="Uavklart">Uavklart</option>
+                                    <option value="Kritisk">Kritisk</option>
+                                    <option value="Stabil">Stabil</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Flyttbarhet</th>
+                            <td>
+                                <select onchange="input_changed(this)" name="movability" id="movability">
+                                    <option value=""></option>
+                                    <option value="Kan gå">Kan gå</option>
+                                    <option value="Båre">Båre</option>
+                                    <option value="Intravenøst">Intravenøst</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Forventet avreise</th>
+                            <td>
+                                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
+                                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure"/>
+                                    <button id="expected_departure_now_btn" tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avreise</th>
+                            <td>
+                                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
+                                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="departure" id="departure"/>
+                                    <button tabindex="-1" id="departure_now_btn" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avreisestatus</th>
+                            <td>
+                                <select onchange="input_changed(this)" name="departure_status" id="departure_status">
+                                    <option value=""></option>
+                                    <option value="Død">Død</option>
+                                    <option value="Utskrevet med permanent funksjonshemming">Utskrevet med permanent funksjonshemming</option>
+                                    <option value="Medisinsk evakuering">Medisinsk evakuering</option>
+                                    <option value="Medisinsk repatriering">Medisinsk repatriering</option>
+                                    <option value="Returnert til sivilt liv">Returnert til sivilt liv</option>
+                                    <option value="Returnert til tjeneste (modifisert tjeneste)">Returnert til tjeneste (modifisert tjeneste)</option>
+                                    <option value="Returnert til tjeneste (RTD)">Returnert til tjeneste (RTD)</option>
+                                    <option value="Returnert til korps (RTU)">Returnert til korps (RTU)</option>
+                                    <option value="Strategisk evakuering (stratevac)">Strategisk evakuering (stratevac)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avreisedestinasjon</th>
+                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="departure_destination" id="departure_destination"/></td>
+                        </tr>
                     </tbody>
                 </table>
 

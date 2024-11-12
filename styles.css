@@ -1,6 +1,19 @@
+:root {
+    --bg_color: rgb(17, 17, 17);
+    --cont_color_dark: rgb(29, 29, 29);
+    --cont_color_light: rgb(43, 43, 43);
+
+    --dark_overlay_color: rgba(0, 0, 0, 0.7);
+
+    --primary_color: rgb(0, 139, 182);
+    --primary_color_light: rgb(0, 185, 241);
+
+    --error_notice_color: rgb(255, 106, 106);
+}
+
 
 body, html {
-    background-color: rgb(17, 17, 17);
+    background-color: var(--bg_color);
     margin: 0;
     color: rgb(222, 222, 222);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -12,7 +25,7 @@ a {
     border-radius: 3px;
 }
 a:active {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
 }
 
 button {
@@ -20,14 +33,14 @@ button {
     color: inherit;
     border-radius: 3px;
     padding: 0px;
-    background-color: rgb(0, 139, 182);
+    background-color: var(--primary_color);
 }
 button:active {
-    background-color: rgb(0, 185, 241);
+    background-color: var(--primary_color_light);
 }
 
 input[type=radio] {
-    /* accent-color: rgb(0, 139, 182); */
+    /* accent-color: var(--primary_color); */
     -webkit-appearance: none;
     appearance: none;
     margin: 0px;
@@ -35,15 +48,15 @@ input[type=radio] {
         padding-left: 3px;
         padding-right: 3px;
         border-radius: 3px;
-        border: 2px solid rgb(43, 43, 43);
+        border: 2px solid var(--cont_color_light);
     }
 }
 input[type=radio]:active +label {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
 }
 input[type=radio]:checked +label {
-    background-color: rgb(0, 139, 182);
-    border-color: rgb(0, 139, 182);
+    background-color: var(--primary_color);
+    border-color: var(--primary_color);
     /* font-weight: bold; */
     /* text-shadow: -.5px .5px 0px rgb(222, 222, 222),
                 0px .5px 0px rgb(222, 222, 222),
@@ -71,7 +84,7 @@ input[type=radio]:checked +label {
 #top_header {
     width: 100%;
     height: 75px;
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
     display: table-row;
 }
 
@@ -99,7 +112,7 @@ input[type=radio]:checked +label {
     margin-bottom: 15px;
 }
 #logout_link:active {
-    background-color: rgb(29, 29, 29);
+    background-color: var(--cont_color_dark);
 }
 #logout_link img {
     margin-right: 5px;
@@ -109,7 +122,7 @@ input[type=radio]:checked +label {
 #bottom_header {
     width: 100%;
     height: 0;
-    background-color: rgb(29, 29, 29);
+    background-color: var(--cont_color_dark);
     
     display: table-row;
 }
@@ -122,7 +135,7 @@ input[type=radio]:checked +label {
     margin-bottom: 30px;
 }
 #filter_cont input[type="checkbox"] {
-    accent-color: rgb(0, 139, 182);
+    accent-color: var(--primary_color);
 }
 
 #test_s {
@@ -130,7 +143,7 @@ input[type=radio]:checked +label {
     margin-right: 5px;
     width: 60px; 
     background-color: rgba(0, 0, 0, 0); 
-    border: 2px solid rgb(43, 43, 43);
+    border: 2px solid var(--cont_color_light);
     border-radius: 3px; 
     -webkit-appearance: none;
     appearance: none;
@@ -141,7 +154,7 @@ input[type=radio]:checked +label {
     border-radius: 3px;
     -webkit-appearance: none;
     cursor: ew-resize;
-    background: rgb(0, 139, 182);
+    background: var(--primary_color);
     /* box-shadow: -80px 0 0 80px #43e5f7; */
   }
 
@@ -151,16 +164,18 @@ input[type=radio]:checked +label {
     margin-left: 10%;
     margin-top: 30px;
     margin-bottom: 30px;
+    /* width: 80%; */
+    /* justify-content: space-between; <- Place "Lagre og gå tilbake" to the right*/
 }
 .back_btn {
     background-color: rgba(0,0,0,0);
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 7%;
     padding: 5px;
 }
 .back_btn:active {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
     border-radius: 3px;
 }
 .back_btn span {
@@ -181,7 +196,7 @@ input[type=radio]:checked +label {
     padding: 15px;
 }
 #center_body #body_cont {
-    background-color: rgb(29, 29, 29);
+    background-color: var(--cont_color_dark);
 
     width: 100%;
     height: 100%;
@@ -204,28 +219,28 @@ input[type=radio]:checked +label {
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 3px;
-    /* border: 2px solid rgb(43, 43, 43); */ /*TODO Find a way to have thicker border around edge, but not around comment_column (use an absolute div?) */
+    /* border: 2px solid var(--cont_color_light); */ /*TODO Find a way to have thicker border around edge, but not around comment_column (use an absolute div?) */
 }
 .info_table {
     width: 100%;
 }
 
 .info_table td, th {
-    border: 1px solid rgb(43, 43, 43);
-    border-bottom: 2px solid rgb(43, 43, 43);
+    border: 1px solid var(--cont_color_light);
+    border-bottom: 2px solid var(--cont_color_light);
     text-align: left;
     padding: 8px;
 }
 
 .info_table#index_table th {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
 }
 .header_sorted_after {
-    color: rgb(0, 139, 182);
+    color: var(--primary_color);
 }
 
 .info_table#index_table tbody tr:active {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
 }
 .info_table#index_table tbody td {
     height: 35px; /* basically min-height */
@@ -249,7 +264,7 @@ input[type=radio]:checked +label {
     outline: none;
 }
 .info_table td:has(input:focus), .info_table td:has(select:focus) {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
 }
 
 .info_table select {
@@ -261,7 +276,7 @@ input[type=radio]:checked +label {
     outline: none;
 }
 .info_table select option {
-    background: rgb(29, 29, 29);
+    background: var(--cont_color_dark);
 }
 
 .input_date_empty::-webkit-datetime-edit {
@@ -283,11 +298,12 @@ input[type=radio]:checked +label {
 
 #show_comment_full_page {
     position: absolute; 
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: var(--dark_overlay_color); 
     width: 100%; 
     height: 100%; 
     bottom: 0px;
     z-index: 10;
+    /* display: flex; <- flex is added with JS (collides with .disappear) */
     justify-content: center;
     /* align-items: center; */
 }
@@ -315,7 +331,7 @@ input[type=radio]:checked +label {
 }
 
 #comment_note {
-    color: rgb(255, 106, 106);
+    color: var(--error_notice_color);
     margin: 0px;
 }
 
@@ -327,7 +343,7 @@ input[type=radio]:checked +label {
     padding: 5px;
 }
 #no_comment_btn:active {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
     border-radius: 3px;
 }
 #no_comment_btn span {
@@ -335,11 +351,52 @@ input[type=radio]:checked +label {
 }
 
 
+/* Save popup */
+#save_popup_center {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: var(--dark_overlay_color); 
+    /* display: flex; <- flex is added with JS */
+    justify-content: center;
+    align-items: center;
+}
+
+#save_popup {
+    background-color: var(--cont_color_dark);
+    border-radius: 5px;
+    padding: 10px;
+    height: fit-content;
+    width: 30rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#save_popup_btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    >button {
+        padding: 5px;
+        font-size: 1rem;
+    }
+    >button:not(#save_popup_forkast_btn) {
+        background-color: var(--cont_color_light);
+    }
+}
+
+
 /* Login stuff */
 #center_body #login_cont {
     width: 400px;
     height: 240px;
-    background-color: rgb(29, 29, 29);
+    background-color: var(--cont_color_dark);
     border-radius: 5px;
 
     display: flex;
@@ -355,13 +412,13 @@ input[type=radio]:checked +label {
 
 .login_input {
     background-color: rgba(0,0,0,0);
-    border: 2px solid rgb(43, 43, 43);
+    border: 2px solid var(--cont_color_light);
     border-radius: 3px;
     color: inherit;
     padding: 5px;
 }
 .login_input:focus {
-    background-color: rgb(43, 43, 43);
+    background-color: var(--cont_color_light);
     outline: none;
 }
 .login_input_text {
@@ -381,7 +438,7 @@ input[type=radio]:checked +label {
 /** GENERAL CLASSES */
 
 .no_resize_for_padding {
-    /** So padding does not effect size */
+    /* So padding does not effect size */
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
@@ -404,7 +461,7 @@ input[type=radio]:checked +label {
     display: flex;
 }
 
-.nothing { /* Basically the same as .hide, but made seperatly to differentiate use */
+.nothing { /* Basically the same as .hide, but made seperatly to differentiate use (hides but keeps flow-impact) */
     opacity: 0;
 }
 
