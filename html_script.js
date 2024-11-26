@@ -165,17 +165,17 @@ function getHospitalData() {
                 <td>
                     <div class="hospital_radio_cont">
                         <label>
-                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_green" name="${key}_inputs" value="green" ${DATA[key] == "green" ? "checked" : ""} />
+                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_green" name="${key}" value="green" ${DATA[key] == "green" ? "checked" : ""} />
                             <span class="checkmark checkmark_green"></span>
                         </label>
                     
                         <label>
-                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_yellow" name="${key}_inputs" value="yellow" ${DATA[key] == "yellow" ? "checked" : ""} />
+                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_yellow" name="${key}" value="yellow" ${DATA[key] == "yellow" ? "checked" : ""} />
                             <span class="checkmark checkmark_yellow"></span>
                         </label>
                     
                         <label>
-                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_red" name="${key}_inputs" value="red" ${DATA[key] == "red" ? "checked" : ""} />
+                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_red" name="${key}" value="red" ${DATA[key] == "red" ? "checked" : ""} />
                             <span class="checkmark checkmark_red"></span>
                         </label>
                     </div>
@@ -210,9 +210,8 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
 
     // Update question description
     if (e.class = "hospital_question_radio") {
-        let Q_nr = e.name.replace("_inputs", "");
 
-        document.getElementById(Q_nr + "_description").innerText = QUESTIONS[Q_nr][e.value];
+        document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][e.value];
     }
 
     // Update new_data
@@ -231,8 +230,7 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
             }
         }
     } else if (page == "hospital") {
-        let Q_nr = e.name.replace("_inputs", "");
-        new_data[Q_nr] = e.value;
+        new_data[e.name] = e.value;
     }
 
     // Check if table has unsaved info

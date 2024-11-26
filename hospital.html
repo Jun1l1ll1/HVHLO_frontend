@@ -53,7 +53,7 @@
 </script>
 <script type="text/javascript" src="html_script.js"></script>
 <body onload="getHospitalData()">
-<form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)">
+<form action="/overview.html" onkeydown="return no_enter_submit(event)">
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
         <div id="save_popup_center" class="disappear">
             <div id="save_popup">
@@ -96,28 +96,7 @@
                 
                 <table id="hospital_table">
                     <tbody id="hospital_tbody">
-                        <tr>
-                            <th>Question</th>
-                            <td>
-                                <div class="hospital_radio_cont">
-                                    <label>
-                                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="Q1_radio_green" name="Q1_inputs" value="green" checked />
-                                        <span class="checkmark checkmark_green"></span>
-                                    </label>
-                                
-                                    <label>
-                                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="Q1_radio_yellow" name="Q1_inputs" value="yellow" />
-                                        <span class="checkmark checkmark_yellow"></span>
-                                    </label>
-                                
-                                    <label>
-                                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="Q1_radio_red" name="Q1_inputs" value="red" />
-                                        <span class="checkmark checkmark_red"></span>
-                                    </label>
-                                </div>
-                                <p><span class="hospital_radio_desc_color">></span> <span id="Q1_description">Veiviser</span></p>
-                            </td>
-                        </tr>
+                        <!-- Data is added in JS (getHospitalData() in html_script.js) -->
                     </tbody>
                 </table>
 
