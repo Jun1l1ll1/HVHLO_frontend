@@ -1,0 +1,98 @@
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>HVHLO | Sykehus status</title>
+</head>
+<script>
+    const DATA = { }
+
+    let new_data = {...DATA};
+
+    function save() {
+        //TODO send data to server(?)
+        // new_data has all the edited/new information
+    }
+
+    //TODO edit this to the real hospital name
+    const HOSPITAL_NAME = "Ingen Mansland Hospital";
+
+</script>
+<script type="text/javascript" src="html_script.js"></script>
+<body onload="getPersonData()">
+<form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
+    <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+        <div id="save_popup_center" class="disappear">
+            <div id="save_popup">
+                <h3>Er du sikker på at du vil forlate uten å lagre?</h3>
+                <div id="save_popup_btns">
+                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn">Ja, forkast endringer</button>
+                    <button type="submit">Nei, lagre og gå tilbake</button>
+                    <button type="button" onclick="hide_save_popup()">Avbryt</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="top_header">
+            <div id="top_header_alignment" class="no_resize_for_padding">
+                <h1>HVHLO</h1> <!--TODO? add logo -->
+                <div>
+                    <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> Logg ut</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom_header">
+            <div id="back_btn_cont">
+                <button type="button" onclick="send_back(true)" class="back_btn">
+                    <img src="/img/back_icon.svg" alt="Forlat">
+                    <span id="dont_save_btn_text">Tilbake uten å lagre</span>
+                </button>
+                <button type="submit" class="back_btn">
+                    <img src="/img/save_icon.svg" alt="Lagre og forlat">
+                    <span>Lagre og gå tilbake</span>
+                </button>
+            </div>
+        </div>
+    
+        <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
+            <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
+
+                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellen har ulagret informasjon.</p>
+
+                <!--TODO add inputs to change -->
+
+            </div></div>
+        </div>
+    </div>
+    <textarea id="comment_data" class="disappear" name="comment_data"></textarea>
+</form>
+</body>
+<script>
+    // onchange does not work on contenteditable divs, thus an event is used
+    const COMMENT_BOX = document.getElementById("comment");
+    if (COMMENT_BOX) {
+        COMMENT_BOX.addEventListener("input", function (event) {
+            input_changed(COMMENT_BOX);
+
+            if (COMMENT_BOX.innerText.length > 500) { // Can not go over 500 characters
+                document.getElementById("comment_note").className = "show";
+
+                COMMENT_BOX.innerText = COMMENT_BOX.innerText.slice(0, 500);
+                setEndOfContenteditable(COMMENT_BOX);
+            } else { // Hide note on edit (and not above 500 char.)
+                document.getElementById("comment_note").className = "hide";
+            }
+        }, false);
+    }
+
+    // close the comment field if its empty and user click outside it
+    window.addEventListener("mousedown", function (event) {
+        if (event.target != COMMENT_BOX && COMMENT_BOX.className != "disappear" && COMMENT_BOX.innerText == "") {
+            close_comment();
+        }
+    }, false)
+</script>
+</html>

@@ -95,21 +95,25 @@
         </div>
 
         <div id="bottom_header">
-            <div id="filter_cont">
-                <p style="margin: 0px; font-size: larger;">Filtrer pasienter</p>
-                <div style="margin-top: 5px;">
-                    <input onchange="filter_changed()" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
-                    <label for="is_present">Er tilstede</label>
-                
-                    <input onchange="filter_changed()" type="radio" id="all" name="filter_inputs" value="all" />
-                    <label for="all">Alle</label>
-                
-                    <input onchange="filter_changed()" type="radio" id="has_left" name="filter_inputs" value="has_left" />
-                    <label for="has_left">Har dratt</label>
+            <div id="bottom_header_alignment">
+                <div id="filter_cont">
+                    <p style="margin: 0px; font-size: larger;">Filtrer pasienter</p>
+                    <div style="margin-top: 5px;">
+                        <input onchange="filter_changed()" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
+                        <label for="is_present">Er tilstede</label>
+                    
+                        <input onchange="filter_changed()" type="radio" id="all" name="filter_inputs" value="all" />
+                        <label for="all">Alle</label>
+                    
+                        <input onchange="filter_changed()" type="radio" id="has_left" name="filter_inputs" value="has_left" />
+                        <label for="has_left">Har dratt</label>
+                    </div>
                 </div>
+    
+                <!--TODO: Add button and page to about hospital (where you can change hospital stats by assigning green, yellow or red to questions) -->
+    
+                <a href="./hospital.html" class="btn" id="edit_hospital_status">Rediger sykehus status</a>
             </div>
-
-            <!--TODO: Add button and page to about hospital (where you can change hospital stats by assigning green, yellow or red to questions) -->
         </div>
     
         <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->

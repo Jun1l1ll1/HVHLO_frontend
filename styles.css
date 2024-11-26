@@ -19,6 +19,10 @@ body, html {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+*[onclick], *[href] {
+    cursor: pointer;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -38,6 +42,18 @@ button {
 button:active {
     background-color: var(--primary_color_light);
 }
+.btn {
+    border: none;
+    color: inherit;
+    border-radius: 3px;
+    padding: 0px;
+    background-color: var(--primary_color);
+    user-select: none;
+
+    &:active {
+        background-color: var(--primary_color_light);
+    }
+}
 
 input[type=radio] {
     /* accent-color: var(--primary_color); */
@@ -49,6 +65,7 @@ input[type=radio] {
         padding-right: 3px;
         border-radius: 3px;
         border: 2px solid var(--cont_color_light);
+        cursor: pointer;
     }
 }
 input[type=radio]:active +label {
@@ -126,16 +143,32 @@ input[type=radio]:checked +label {
     
     display: table-row;
 }
+#bottom_header_alignment {
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-sizing: border-box;
+    padding-left: 10%;
+    padding-right: 10%;
+}
 
 #filter_cont {
     display: grid;
     grid-template-columns: auto;
-    margin-left: 10%;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 #filter_cont input[type="checkbox"] {
     accent-color: var(--primary_color);
+}
+
+#edit_hospital_status {
+    font-size: larger;
+    padding: 7px;
 }
 
 #test_s {
