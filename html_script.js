@@ -155,8 +155,39 @@ function getPersonData() {
     }
 }
 
+function getHospitalData() {
+    let tbody = document.getElementById("hospital_tbody");
+    tbody.innerHTML = "";
+    for (let key in QUESTIONS) {
+        tbody.innerHTML += `
+            <tr>
+                <th>${QUESTIONS[key]["question"]}</th>
+                <td>
+                    <div class="hospital_radio_cont">
+                        <label>
+                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_green" name="${key}_inputs" value="green" ${DATA[key] == "green" ? "checked" : ""} />
+                            <span class="checkmark checkmark_green"></span>
+                        </label>
+                    
+                        <label>
+                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_yellow" name="${key}_inputs" value="yellow" ${DATA[key] == "yellow" ? "checked" : ""} />
+                            <span class="checkmark checkmark_yellow"></span>
+                        </label>
+                    
+                        <label>
+                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_red" name="${key}_inputs" value="red" ${DATA[key] == "red" ? "checked" : ""} />
+                            <span class="checkmark checkmark_red"></span>
+                        </label>
+                    </div>
+                    <p><span class="hospital_radio_desc_color">></span> <span id="${key}_description">${QUESTIONS[key][DATA[key]]}</span></p>
+                </td>
+            </tr>
+        `;
+    }
+}
 
-function input_changed(e) { //TODO? save current editing in cookie/page-storage
+
+function input_changed(page, e) { //TODO? save current editing in cookie/page-storage
     // Update title if name or age was changed
     if (e.id == "first_name" || e.id == "last_name" || e.id == "birth") {
         let f_name = document.getElementById("first_name").value;
@@ -166,6 +197,7 @@ function input_changed(e) { //TODO? save current editing in cookie/page-storage
         document.getElementById("name_title").innerText = f_name +" "+ l_name;
     }
 
+    // Remove or show now btn
     if (e.type == "date" || e.type == "datetime-local") {
         if (e.value != "") {
             e.className = "";
@@ -176,19 +208,31 @@ function input_changed(e) { //TODO? save current editing in cookie/page-storage
         }
     }
 
+    // Update question description
+    if (e.class = "hospital_question_radio") {
+        let Q_nr = e.name.replace("_inputs", "");
+
+        document.getElementById(Q_nr + "_description").innerText = QUESTIONS[Q_nr][e.value];
+    }
+
     // Update new_data
-    for (key of Object.keys(new_data)) {
-        if (key == "id" || key == "admitted_hospital") {
-            continue;
+    if (page == "detail") {
+        for (key of Object.keys(new_data)) {
+            if (key == "id" || key == "admitted_hospital") {
+                continue;
+            }
+            let elem = document.getElementById(String(key));
+            if (elem.nodeName == "INPUT" || elem.nodeName == "SELECT") {
+                new_data[String(key)] = elem.value;
+            } else if (elem.nodeName == "DIV") {
+                new_data[String(key)] = elem.innerText;
+            } else {
+                console.error("unknown HTML node name - input_changed() - name:", elem.nodeName);
+            }
         }
-        let elem = document.getElementById(String(key));
-        if (elem.nodeName == "INPUT" || elem.nodeName == "SELECT") {
-            new_data[String(key)] = elem.value;
-        } else if (elem.nodeName == "DIV") {
-            new_data[String(key)] = elem.innerText;
-        } else {
-            console.error("unknown HTML node name - input_changed() - name:", elem.nodeName);
-        }
+    } else if (page == "hospital") {
+        let Q_nr = e.name.replace("_inputs", "");
+        new_data[Q_nr] = e.value;
     }
 
     // Check if table has unsaved info

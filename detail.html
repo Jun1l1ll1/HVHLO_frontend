@@ -107,28 +107,28 @@
                 <p id="comment_note" class="disappear">*Kommentaren kan ikke overstige 500 karakterer</p>
 
                 <table class="info_table" id="detail_table"> <!--TODO? make more tables so there are spacing between categories -->
-                    <tbody id="table_body">
+                    <tbody>
                         <tr>
                             <th>Ankomst</th>
                             <td>
                                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival"/>
+                                    <input onchange="input_changed('detail',this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival"/>
                                     <button tabindex="-1" id="arrival_now_btn" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>Fornavn</th>
-                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="first_name" id="first_name"/></td>
+                            <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="first_name" id="first_name"/></td>
                         </tr>
                         <tr>
                             <th>Etternavn</th>
-                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="last_name" id="last_name"/></td>
+                            <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="last_name" id="last_name"/></td>
                         </tr>
                         <tr>
                             <th>Nasjonalitet</th>
                             <td>
-                                <input onchange="input_changed(this)" maxlength="50" type="text" list="nationality_list" name="nationality" id="nationality"/>
+                                <input onchange="input_changed('detail',this)" maxlength="50" type="text" list="nationality_list" name="nationality" id="nationality"/>
                                 <datalist id="nationality_list">
                                     <option value="NOR">Norge</option>
                                     <option value="ENG">England</option>
@@ -137,20 +137,20 @@
                         </tr>
                         <tr>
                             <th>Nasjonal ID og Journal nr</th>
-                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="national_id" id="national_id"/></td>
+                            <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="national_id" id="national_id"/></td>
                         </tr>
                         <tr>
                             <th>Fødselsdato</th>
-                            <td><input onchange="input_changed(this)" class="input_date_empty" type="date" name="birth" id="birth"/></td>
+                            <td><input onchange="input_changed('detail',this)" class="input_date_empty" type="date" name="birth" id="birth"/></td>
                         </tr>
                         <tr>
                             <th>Hendelse</th>
-                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="incident" id="incident"/></td>
+                            <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="incident" id="incident"/></td>
                         </tr>
                         <tr>
                             <th>Årsak</th>
                             <td>
-                                <select onchange="input_changed(this)" name="cause" id="cause">
+                                <select onchange="input_changed('detail',this)" name="cause" id="cause">
                                     <option value=""></option>
                                     <option value="Sykdom">Sykdom</option>
                                     <option value="Skade">Skade</option>
@@ -160,7 +160,7 @@
                         <tr>
                             <th>Kritikalitet</th>
                             <td>
-                                <select onchange="input_changed(this)" name="criticality" id="criticality">
+                                <select onchange="input_changed('detail',this)" name="criticality" id="criticality">
                                     <option value=""></option>
                                     <option value="Uavklart">Uavklart</option>
                                     <option value="Kritisk">Kritisk</option>
@@ -171,7 +171,7 @@
                         <tr>
                             <th>Flyttbarhet</th>
                             <td>
-                                <select onchange="input_changed(this)" name="movability" id="movability">
+                                <select onchange="input_changed('detail',this)" name="movability" id="movability">
                                     <option value=""></option>
                                     <option value="Kan gå">Kan gå</option>
                                     <option value="Båre">Båre</option>
@@ -183,7 +183,7 @@
                             <th>Forventet avreise</th>
                             <td>
                                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure"/>
+                                    <input onchange="input_changed('detail',this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure"/>
                                     <button id="expected_departure_now_btn" tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                                 </div>
                             </td>
@@ -192,7 +192,7 @@
                             <th>Avreise</th>
                             <td>
                                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
-                                    <input onchange="input_changed(this)" class="input_date_empty" type="datetime-local" name="departure" id="departure"/>
+                                    <input onchange="input_changed('detail',this)" class="input_date_empty" type="datetime-local" name="departure" id="departure"/>
                                     <button tabindex="-1" id="departure_now_btn" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
                                 </div>
                             </td>
@@ -200,7 +200,7 @@
                         <tr>
                             <th>Avreisestatus</th>
                             <td>
-                                <select onchange="input_changed(this)" name="departure_status" id="departure_status">
+                                <select onchange="input_changed('detail',this)" name="departure_status" id="departure_status">
                                     <option value=""></option>
                                     <option value="Død">Død</option>
                                     <option value="Utskrevet med permanent funksjonshemming">Utskrevet med permanent funksjonshemming</option>
@@ -216,7 +216,7 @@
                         </tr>
                         <tr>
                             <th>Avreisedestinasjon</th>
-                            <td><input onchange="input_changed(this)" maxlength="50" type="text" name="departure_destination" id="departure_destination"/></td>
+                            <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="departure_destination" id="departure_destination"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -232,7 +232,7 @@
     const COMMENT_BOX = document.getElementById("comment");
     if (COMMENT_BOX) {
         COMMENT_BOX.addEventListener("input", function (event) {
-            input_changed(COMMENT_BOX);
+            input_changed('detail',COMMENT_BOX);
 
             if (COMMENT_BOX.innerText.length > 500) { // Can not go over 500 characters
                 document.getElementById("comment_note").className = "show";

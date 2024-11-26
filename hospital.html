@@ -6,7 +6,39 @@
     <title>HVHLO | Sykehus status</title>
 </head>
 <script>
-    const DATA = { }
+    const QUESTIONS = {
+        "Q1": {
+            "question": "Snø-statusen utenfor",
+            "green": "Hvit fin nysnø",
+            "yellow": "Slafsete/møkkete noen steder",
+            "red": "Slafsete/møkkete snø"
+        },
+        "Q2": {
+            "question": "1-3",
+            "green": "1",
+            "yellow": "2",
+            "red": "3"
+        },
+        "Q3": {
+            "question": "5-7",
+            "green": "5",
+            "yellow": "6",
+            "red": "7"
+        },
+        "Q4": {
+            "question": "2-4",
+            "green": "2",
+            "yellow": "3",
+            "red": "4"
+        }
+    }
+
+    const DATA = {
+        "Q1":"green",
+        "Q2":"yellow",
+        "Q3":"red",
+        "Q4":"green"
+    }
 
     let new_data = {...DATA};
 
@@ -20,8 +52,8 @@
 
 </script>
 <script type="text/javascript" src="html_script.js"></script>
-<body onload="getPersonData()">
-<form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
+<body onload="getHospitalData()">
+<form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)">
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
         <div id="save_popup_center" class="disappear">
             <div id="save_popup">
@@ -60,39 +92,38 @@
         <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
             <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
 
-                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellen har ulagret informasjon.</p>
-
-                <!--TODO add inputs to change -->
+                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Siden har ulagret informasjon.</p>
+                
+                <table id="hospital_table">
+                    <tbody id="hospital_tbody">
+                        <tr>
+                            <th>Question</th>
+                            <td>
+                                <div class="hospital_radio_cont">
+                                    <label>
+                                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="Q1_radio_green" name="Q1_inputs" value="green" checked />
+                                        <span class="checkmark checkmark_green"></span>
+                                    </label>
+                                
+                                    <label>
+                                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="Q1_radio_yellow" name="Q1_inputs" value="yellow" />
+                                        <span class="checkmark checkmark_yellow"></span>
+                                    </label>
+                                
+                                    <label>
+                                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="Q1_radio_red" name="Q1_inputs" value="red" />
+                                        <span class="checkmark checkmark_red"></span>
+                                    </label>
+                                </div>
+                                <p><span class="hospital_radio_desc_color">></span> <span id="Q1_description">Veiviser</span></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div></div>
         </div>
     </div>
-    <textarea id="comment_data" class="disappear" name="comment_data"></textarea>
 </form>
 </body>
-<script>
-    // onchange does not work on contenteditable divs, thus an event is used
-    const COMMENT_BOX = document.getElementById("comment");
-    if (COMMENT_BOX) {
-        COMMENT_BOX.addEventListener("input", function (event) {
-            input_changed(COMMENT_BOX);
-
-            if (COMMENT_BOX.innerText.length > 500) { // Can not go over 500 characters
-                document.getElementById("comment_note").className = "show";
-
-                COMMENT_BOX.innerText = COMMENT_BOX.innerText.slice(0, 500);
-                setEndOfContenteditable(COMMENT_BOX);
-            } else { // Hide note on edit (and not above 500 char.)
-                document.getElementById("comment_note").className = "hide";
-            }
-        }, false);
-    }
-
-    // close the comment field if its empty and user click outside it
-    window.addEventListener("mousedown", function (event) {
-        if (event.target != COMMENT_BOX && COMMENT_BOX.className != "disappear" && COMMENT_BOX.innerText == "") {
-            close_comment();
-        }
-    }, false)
-</script>
 </html>

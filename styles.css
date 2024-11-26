@@ -9,6 +9,10 @@
     --primary_color_light: rgb(0, 185, 241);
 
     --error_notice_color: rgb(255, 106, 106);
+
+    --green_color: #35e66a;
+    --yellow_color: #ffb25a;
+    --red_color: #ff4444;
 }
 
 
@@ -48,41 +52,15 @@ button:active {
     border-radius: 3px;
     padding: 0px;
     background-color: var(--primary_color);
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 
     &:active {
         background-color: var(--primary_color_light);
     }
-}
-
-input[type=radio] {
-    /* accent-color: var(--primary_color); */
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0px;
-    +label {
-        padding-left: 3px;
-        padding-right: 3px;
-        border-radius: 3px;
-        border: 2px solid var(--cont_color_light);
-        cursor: pointer;
-    }
-}
-input[type=radio]:active +label {
-    background-color: var(--cont_color_light);
-}
-input[type=radio]:checked +label {
-    background-color: var(--primary_color);
-    border-color: var(--primary_color);
-    /* font-weight: bold; */
-    /* text-shadow: -.5px .5px 0px rgb(222, 222, 222),
-                0px .5px 0px rgb(222, 222, 222),
-				.5px .5px 0px rgb(222, 222, 222),
-				.5px 0px 0px rgb(222, 222, 222),
-				.5px -.5px 0px rgb(222, 222, 222),
-				0px -.5px 0px rgb(222, 222, 222),
-				-.5px -.5px 0px rgb(222, 222, 222),
-				-.5px 0px 0px rgb(222, 222, 222); */
 }
 
 
@@ -162,8 +140,33 @@ input[type=radio]:checked +label {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-#filter_cont input[type="checkbox"] {
-    accent-color: var(--primary_color);
+.filter_radio {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0px;
+    +label {
+        padding-left: 3px;
+        padding-right: 3px;
+        border-radius: 3px;
+        border: 2px solid var(--cont_color_light);
+        cursor: pointer;
+    }
+    &:active +label {
+        background-color: var(--cont_color_light);
+    }
+    &:checked +label {
+        background-color: var(--primary_color);
+        border-color: var(--primary_color);
+        /* font-weight: bold; */
+        /* text-shadow: -.5px .5px 0px rgb(222, 222, 222),
+                    0px .5px 0px rgb(222, 222, 222),
+                    .5px .5px 0px rgb(222, 222, 222),
+                    .5px 0px 0px rgb(222, 222, 222),
+                    .5px -.5px 0px rgb(222, 222, 222),
+                    0px -.5px 0px rgb(222, 222, 222),
+                    -.5px -.5px 0px rgb(222, 222, 222),
+                    -.5px 0px 0px rgb(222, 222, 222); */
+    }
 }
 
 #edit_hospital_status {
@@ -249,16 +252,15 @@ input[type=radio]:checked +label {
 
 
 .info_table {
+    width: 100%;
+
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 3px;
     /* border: 2px solid var(--cont_color_light); */ /*TODO Find a way to have thicker border around edge, but not around comment_column (use an absolute div?) */
 }
-.info_table {
-    width: 100%;
-}
 
-.info_table td, th {
+.info_table td, .info_table th {
     border: 1px solid var(--cont_color_light);
     border-bottom: 2px solid var(--cont_color_light);
     text-align: left;
@@ -314,6 +316,86 @@ input[type=radio]:checked +label {
 
 .input_date_empty::-webkit-datetime-edit {
     color: #ffffff1c;
+}
+
+#hospital_table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 30px;
+
+    th {
+        text-align: right;
+        width: 50%;
+        font-size: larger;
+    }
+    td {
+        text-align: left;
+    }
+}
+
+.hospital_radio_cont {
+    --radio_width: 10vw;
+    --radio_height: 50px;
+
+    display: flex; 
+    height: calc(var(--radio_height) + 2px*2);
+    border-radius: 5px;
+    overflow: hidden;
+    width: calc(var(--radio_width)*3 + 2px*4);
+
+    >label {
+
+        display: block;
+        position: relative;
+        cursor: pointer;
+        margin-right: calc(var(--radio_width) + 2px);
+        
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        >.hospital_question_radio {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0px;
+            +.checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: var(--radio_height);
+                width:  var(--radio_width);
+                border: 2px solid var(--cont_color_light);
+            }
+            &:checked + .checkmark {
+                --color: #fff;
+                &.checkmark_green {
+                    --color: var(--green_color);
+                }
+                &.checkmark_yellow {
+                    --color: var(--yellow_color);
+                }
+                &.checkmark_red {
+                    --color: var(--red_color);
+                }
+                background-color: var(--color);
+                border-color: var(--color);
+            }
+        }
+    }
+    + p {
+        margin-top: .5rem;
+    }
+
+    &:has(>label>.hospital_question_radio[value='green']:checked) + p>.hospital_radio_desc_color {
+        color: var(--green_color);
+    }
+    &:has(>label>.hospital_question_radio[value='yellow']:checked) + p>.hospital_radio_desc_color {
+        color: var(--yellow_color);
+    }
+    &:has(>label>.hospital_question_radio[value='red']:checked) + p>.hospital_radio_desc_color {
+        color: var(--red_color);
+    }
 }
 
 
