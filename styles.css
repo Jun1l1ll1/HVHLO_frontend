@@ -72,6 +72,12 @@ button:active {
 }
 
 
+.center_horizontal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 
 
 /** HEADERS */
@@ -319,17 +325,27 @@ button:active {
 }
 
 #hospital_table {
-    width: 100%;
+    width: fit-content;
     border-collapse: separate; 
-    border-spacing: 30px;
+    border-spacing: 0;
+    border: 1px solid var(--cont_color_light);
+
+    tr {
+        margin: 10px;
+    }
 
     th {
+        border: 1px solid var(--cont_color_light);
+        padding: 10px;
         text-align: right;
-        width: 50%;
         font-size: larger;
     }
     td {
+        border: 1px solid var(--cont_color_light);
         text-align: left;
+    }
+    td>p {
+        padding: 10px;
     }
 }
 
@@ -337,18 +353,18 @@ button:active {
     --radio_width: 10vw;
     --radio_height: 50px;
 
-    display: flex; 
-    height: calc(var(--radio_height) + 2px*2);
-    border-radius: 5px;
+    /* display: flex;  */
+    height: calc(var(--radio_height));
+    /* border-radius: 5px; */
     overflow: hidden;
-    width: calc(var(--radio_width)*3 + 2px*4);
+    width: calc(var(--radio_width));
 
     >label {
 
         display: block;
         position: relative;
         cursor: pointer;
-        margin-right: calc(var(--radio_width) + 2px);
+        /* margin-right: calc(var(--radio_width) + 2px); */
         
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -361,11 +377,10 @@ button:active {
             margin: 0px;
             +.checkmark {
                 position: absolute;
-                top: 0;
+                top: calc(var(--radio_height) / -2);
                 left: 0;
                 height: var(--radio_height);
                 width:  var(--radio_width);
-                border: 2px solid var(--cont_color_light);
             }
             &:checked + .checkmark {
                 --color: #fff;
@@ -383,9 +398,6 @@ button:active {
             }
         }
     }
-    + p {
-        margin-top: .5rem;
-    }
 
     &:has(>label>.hospital_question_radio[value='green']:checked) + p>.hospital_radio_desc_color {
         color: var(--green_color);
@@ -396,6 +408,10 @@ button:active {
     &:has(>label>.hospital_question_radio[value='red']:checked) + p>.hospital_radio_desc_color {
         color: var(--red_color);
     }
+}
+
+.hospital_radio_desc_cont {
+    width: 25vw;
 }
 
 

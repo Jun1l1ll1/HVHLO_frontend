@@ -162,23 +162,25 @@ function getHospitalData() {
         tbody.innerHTML += `
             <tr>
                 <th>${QUESTIONS[key]["question"]}</th>
-                <td>
-                    <div class="hospital_radio_cont">
-                        <label>
-                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_green" name="${key}" value="green" ${DATA[key] == "green" ? "checked" : ""} />
-                            <span class="checkmark checkmark_green"></span>
-                        </label>
-                    
-                        <label>
-                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_yellow" name="${key}" value="yellow" ${DATA[key] == "yellow" ? "checked" : ""} />
-                            <span class="checkmark checkmark_yellow"></span>
-                        </label>
-                    
-                        <label>
-                            <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_red" name="${key}" value="red" ${DATA[key] == "red" ? "checked" : ""} />
-                            <span class="checkmark checkmark_red"></span>
-                        </label>
-                    </div>
+                <td class="hospital_radio_cont">
+                    <label>
+                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_green" name="${key}" value="green" ${DATA[key] == "green" ? "checked" : ""} />
+                        <span class="checkmark checkmark_green"></span>
+                    </label>
+                </td>
+                <td class="hospital_radio_cont">
+                    <label>
+                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_yellow" name="${key}" value="yellow" ${DATA[key] == "yellow" ? "checked" : ""} />
+                        <span class="checkmark checkmark_yellow"></span>
+                    </label>
+                </td>
+                <td class="hospital_radio_cont">
+                    <label>
+                        <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_red" name="${key}" value="red" ${DATA[key] == "red" ? "checked" : ""} />
+                        <span class="checkmark checkmark_red"></span>
+                    </label>
+                </td>
+                <td class="hospital_radio_desc_cont">
                     <p><span class="hospital_radio_desc_color">></span> <span id="${key}_description">${QUESTIONS[key][DATA[key]]}</span></p>
                 </td>
             </tr>
