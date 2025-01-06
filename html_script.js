@@ -156,8 +156,12 @@ function getPersonData() {
 }
 
 function getHospitalData() {
+    const hexagon_sideID_queue = ["hexagon_top_middle", "hexagon_top_right", "hexagon_bottom_right", "hexagon_bottom_middle", "hexagon_bottom_left", "hexagon_top_left"]
+
     let tbody = document.getElementById("hospital_tbody");
     tbody.innerHTML = "";
+
+    let side_counter = 0
     for (let key in QUESTIONS) {
         tbody.innerHTML += `
             <tr>
@@ -185,6 +189,13 @@ function getHospitalData() {
                 </td>
             </tr>
         `;
+
+        if (side_counter < hexagon_sideID_queue.length) {
+            document.getElementById(hexagon_sideID_queue[side_counter]).id = "hexagon_"+key; // New id makes it easier to reffer to this when updating color on input changed
+            document.getElementById("hexagon_"+key).style.fill = "var(--"+DATA[key]+"_color)";
+        }
+
+        side_counter++;
     }
 }
 
@@ -210,9 +221,9 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
         }
     }
 
-    // Update question description
+    // Update question description and hexagon colors
     if (e.class = "hospital_question_radio") {
-
+        document.getElementById("hexagon_" + e.name).style.fill = "var(--"+e.value+"_color)";
         document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][e.value];
     }
 
