@@ -420,16 +420,6 @@ button:active {
             }
         }
     }
-
-    &:has(>label>.hospital_question_radio[value='green']:checked) + p>.hospital_radio_desc_color {
-        color: var(--green_color);
-    }
-    &:has(>label>.hospital_question_radio[value='yellow']:checked) + p>.hospital_radio_desc_color {
-        color: var(--yellow_color);
-    }
-    &:has(>label>.hospital_question_radio[value='red']:checked) + p>.hospital_radio_desc_color {
-        color: var(--red_color);
-    }
 }
 
 .hospital_radio_desc_cont {
