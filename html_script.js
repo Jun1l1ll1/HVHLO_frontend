@@ -3,6 +3,16 @@ function getTableData() {
     
     change_hospital_name(HOSPITAL_NAME);
 
+    // Set hexagon colors
+    let side_counter = 0
+    for (let key in QUESTIONS_DATA) {
+        if (side_counter < 6) { // Hexagon has 6 sides
+            document.getElementById("hex"+side_counter).style.fill = "var(--"+QUESTIONS_DATA[key]+"_color)"
+        }
+        side_counter++;
+    }
+
+    // Get header cookies
     let cookie_list = document.cookie.split("; ")
     let filter_cookie = "all";
     let header_cookie = [];

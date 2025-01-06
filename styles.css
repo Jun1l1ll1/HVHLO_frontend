@@ -181,10 +181,18 @@ button:active {
     }
 }
 
+#hospital_stat_cont {
+    display: flex;
+    align-items: center;
+}
+
 #edit_hospital_status {
     font-size: larger;
     padding: 7px;
+
+    margin-right: 10px;
 }
+
 
 #test_s {
     margin-left: 5px;
