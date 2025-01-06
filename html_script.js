@@ -255,6 +255,13 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
 
 }
 
+// Change upload picture image
+function update_img(event) {
+    document.getElementById("upload_pic_img").src = URL.createObjectURL(event.target.files[0]);
+
+    new_data.picture = true;
+}
+
 
 function filter_changed() {
     
@@ -362,6 +369,8 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
             }
         }
 
+        row.innerHTML += `<td class="picture_column"> <img onclick="upload_pic(event, '`+person["first_name"]+` `+person["last_name"]+`')" src="/img/picture_icon.svg" height="35" alt="Last opp bilde"> </td>`; 
+        
         if (person.comment != "") {
             row.innerHTML += `<td class="comment_column"> <img onclick="show_comment(event, '`+person.comment.replaceAll("'", "&#39;").replace(/[\u00A0-\u9999<>\u005C\u0026\u0022\u0027]/g, i => '&#' + i.charCodeAt(0) + ';')+`')" src="/img/comment_filled_icon.svg" height="35" alt="Se kommentar"> </td>`; 
         }
@@ -401,10 +410,11 @@ function send_back(check_for_changes=false) {
     }
 }
 
-function save_and_leave() {
-    // save();
-    // send_back();
-    // Not used, using form insted!
+
+function upload_pic(event, name) {
+    window.location.href = "/upload_picture.html?name="+name;
+
+    dont_do_parent_event(event); // Stops the edit() onclick event that would have triggered
 }
 
 

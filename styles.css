@@ -19,7 +19,7 @@
 body, html {
     background-color: var(--bg_color);
     margin: 0;
-    color: rgb(222, 222, 222);
+    color: #DEDEDE;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -76,6 +76,12 @@ button:active {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+.center_horizontal_column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -416,15 +422,15 @@ button:active {
 
 
 /* Comment stuff in overview */
-.info_table .comment_column {
+.info_table .comment_column, .info_table .picture_column {
     border: none;
     position: relative;
-    width: 15px; /* creates distance to right edge */
+    width: 30px; /* creates distance to left edge */
 } 
-.comment_column img {
+.comment_column img, .picture_column img {
     position: absolute;
     top: 0px;
-    left: 0px;
+    right: 0px;
 }
 
 #show_comment_full_page {
@@ -479,6 +485,42 @@ button:active {
 }
 #no_comment_btn span {
     padding-left: 5px;
+}
+
+
+/* Picture stuff */
+#upload_pic_inp {
+    display: none;
+
+    + label {
+        border: 2px solid var(--cont_color_light);
+        border-radius: 5px;
+    }
+}
+
+#upload_pic_textarea {
+    background-color: rgba(255, 94, 0, 0.075);
+    border: 2px solid rgba(255, 94, 0, 0.377);
+    border-radius: 5px;
+    color: #DEDEDE;
+
+    width: 70vw;
+    @media all and (min-width: 40rem) {
+        width: 30rem;
+     }
+    height: 3rem;
+}
+
+.upload_btn {
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+
+    >* {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
 
 

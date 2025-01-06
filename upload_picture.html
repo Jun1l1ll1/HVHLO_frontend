@@ -1,0 +1,92 @@
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>HVHLO | Bilde</title>
+</head>
+<script>
+    const DATA = {picture:false}
+
+    let new_data = {...DATA};
+
+    function save() {
+        //TODO send data to server(?)
+        // new_data has all the edited/new information
+    }
+
+    //TODO edit this to the real hospital name
+    const HOSPITAL_NAME = "Ingen Mansland Hospital";
+
+</script>
+<script type="text/javascript" src="html_script.js"></script>
+<body>
+<form action="/overview.html" onsubmit="return copy_content()" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
+    <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+        <div id="save_popup_center" class="disappear">
+            <div id="save_popup">
+                <h3>Er du sikker på at du vil forlate uten å laste opp bildet?</h3>
+                <div id="save_popup_btns">
+                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn">Ja, forkast bildet</button>
+                    <button type="submit">Nei, last opp og gå tilbake</button>
+                    <button type="button" onclick="hide_save_popup()">Avbryt</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="top_header">
+            <div id="top_header_alignment" class="no_resize_for_padding">
+                <h1>HVHLO</h1> <!--TODO? add logo -->
+                <div>
+                    <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut" /> Logg ut</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom_header">
+            <div id="back_btn_cont">
+                <button type="button" onclick="send_back(true)" class="back_btn">
+                    <img src="/img/back_icon.svg" alt="Forlat">
+                    <span id="dont_save_btn_text">Tilbake</span>
+                </button>
+            </div>
+        </div>
+    
+        <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
+            <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
+                
+                <!-- <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellen har ulagret informasjon.</p> -->
+
+                <div class="center_horizontal_column">
+                    <div>
+                        <h3 id="name_title">Ukjent</h3>
+
+                        <h4>Last opp</h4>
+                        <div class="center_horizontal">
+                            <input onchange="update_img(event)" type="file" name="picture_path" id="upload_pic_inp" accept="image/*" capture="environment" />
+                            <label for="upload_pic_inp"><img id="upload_pic_img" style="width: 20vw;" src="/img/picture_icon.svg" alt="Last opp bilde"></label>
+                        </div>
+                        <br/>
+
+                        <h4>Kommentar</h4>
+                        <textarea name="comment" id="upload_pic_textarea"></textarea>
+                    </div>
+                    <br/><br/>
+
+                    <button type="submit" class="upload_btn">
+                        <img src="/img/save_icon.svg" alt="Lagre og forlat">
+                        <span>Last opp</span>
+                    </button>
+                </div>
+            </div></div>
+        </div>
+    </div>
+</form>
+<script>
+    const query_string = window.location.search;
+    const parameters = new URLSearchParams(query_string);
+    document.getElementById("name_title").innerText = parameters.get('name');
+</script>
+</body>
+</html>
