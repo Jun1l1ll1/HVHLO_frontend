@@ -32,6 +32,15 @@
 
     let new_data = {...DATA};
 
+    const PICTURES = [{
+        src: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Cheese_market_Basel.jpg",
+        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!"
+    },
+    {
+        src: "https://upload.wikimedia.org/wikipedia/en/a/a0/Grogu_%28Star_Wars%29.jpg",
+        comment: "Grogu"
+    }]
+
     function save() {
         //TODO send data to server(?)
         // new_data has all the edited/new information
@@ -218,6 +227,14 @@
                             <th>Avreisedestinasjon</th>
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="departure_destination" id="departure_destination"/></td>
                         </tr>
+                    </tbody>
+                </table>
+
+                <br/><br/><br/>
+
+                <table class="info_table" id="detail_pic_table">
+                    <tbody id="detail_pic_body">
+                        <!-- Pictures are added by getPersonData in html_script.js -->
                     </tbody>
                 </table>
 

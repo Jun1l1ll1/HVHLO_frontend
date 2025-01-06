@@ -297,6 +297,14 @@ button:active {
     padding-top: 0px;
     padding-bottom: 0px;
 }
+.info_table#detail_pic_table {
+    th>img {
+        width: 35vw;
+    }
+    td {
+        width: 100%;
+    }
+}
 
 .info_table input {
     color-scheme: dark;

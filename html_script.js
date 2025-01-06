@@ -152,6 +152,18 @@ function getPersonData() {
         age == "" ? age = "ukjent" : "";
         document.getElementById("name_title").innerText = f_name +" "+ l_name;
 
+        // Add images
+        let html_code = "";
+        for (let picture of PICTURES) {
+            html_code += `
+                <tr>
+                    <th><img src="`+picture.src+`" alt=""></th>
+                    <td>`+picture.comment+`</td>
+                </tr>
+            `;
+        }
+        document.getElementById("detail_pic_body").innerHTML = html_code;
+
     }
 }
 
