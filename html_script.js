@@ -183,7 +183,7 @@ function getPersonData() {
         for (let picture of PICTURES) {
             html_code += `
                 <tr>
-                    <th><img src="`+picture.src+`" alt=""></th>
+                    <th><img src="`+picture.src+`" alt="" onclick="show_picture_big('`+picture.src+`')"></th>
                     <td>`+picture.comment+`</td>
                 </tr>
             `;
@@ -480,6 +480,37 @@ function show_comment(event, comment) {
 
 function hide_comment() {
     document.getElementById("show_comment_full_page").className = "disappear";
+}
+
+
+function show_picture_big(src) {
+    document.getElementById("picture_big").src = src
+    document.getElementById("show_picture_full_page").className = "display_flex";
+}
+
+function hide_picture_big() {
+    document.getElementById("show_picture_full_page").className = "disappear";
+}
+
+let currentZoom = 1;
+let minZoom = 1;
+let maxZoom = 3;
+let stepSize = 0.1;
+function zoom_image(direction) {
+
+    let newZoom = currentZoom + direction * stepSize;
+
+    // Limit the zoom level to the minimum and maximum
+    // values
+    if (newZoom < minZoom || newZoom > maxZoom) {
+        return;
+    }
+
+    currentZoom = newZoom;
+
+    // Update the CSS transform of the image to scale it
+    let image = document.getElementById("picture_big");
+    image.style.transform = "scale(" + currentZoom + ")";
 }
 
 

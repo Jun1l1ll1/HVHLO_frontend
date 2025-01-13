@@ -494,6 +494,25 @@ button:active {
 }
 
 
+/* Focus on picture in detail */
+#show_picture_full_page {
+    position: fixed; 
+    background-color: var(--dark_overlay_color); 
+    width: 100%; 
+    height: 100%; 
+    bottom: 0px;
+    z-index: 10;
+    /* display: flex; <- flex is added with JS as display_flex class (collides with .disappear) */
+    justify-content: center;
+    align-items: center;
+}
+#picture_big {
+    object-fit: contain;
+    height: 90%;
+    width: 90%;
+}
+
+
 /* Picture stuff */
 #upload_pic_inp {
     display: none;

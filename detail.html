@@ -39,6 +39,10 @@
     {
         src: "https://upload.wikimedia.org/wikipedia/en/a/a0/Grogu_%28Star_Wars%29.jpg",
         comment: "Grogu"
+    },
+    {
+        src: "https://www.shutterstock.com/shutterstock/photos/2198009967/display_1500/stock-photo-autumn-forest-path-orange-color-tree-red-brown-maple-leaves-in-fall-city-park-nature-scene-in-2198009967.jpg",
+        comment: ""
     }]
 
     function save() {
@@ -65,12 +69,16 @@
             </div>
         </div>
 
+        <div id="show_picture_full_page" class="disappear" onclick="hide_picture_big()">
+            <img id="picture_big" src="./img/picture_icon.svg" /> <!--onclick="dont_do_parent_event(event)"-->
+        </div>
+
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
                 <h1>HVHLO</h1> <!--TODO? add logo -->
                 <div>
                     <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
-                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> Logg ut</a>
+                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut" /> Logg ut</a>
                 </div>
             </div>
         </div>
@@ -78,11 +86,11 @@
         <div id="bottom_header">
             <div id="back_btn_cont">
                 <button type="button" onclick="send_back(true)" class="back_btn">
-                    <img src="/img/back_icon.svg" alt="Forlat">
+                    <img src="/img/back_icon.svg" alt="Forlat" />
                     <span id="dont_save_btn_text">Tilbake uten å lagre</span>
                 </button>
                 <button type="submit" class="back_btn">
-                    <img src="/img/save_icon.svg" alt="Lagre og forlat">
+                    <img src="/img/save_icon.svg" alt="Lagre og forlat" />
                     <span>Lagre og gå tilbake</span>
                 </button>
             </div>
@@ -268,5 +276,12 @@
             close_comment();
         }
     }, false)
+
+    // Add scroll on picture when big
+    document.getElementById("show_picture_full_page").addEventListener("wheel", function(event) {
+        // Zoom in or out based on the scroll direction
+        let direction = event.deltaY > 0 ? -1 : 1;
+        zoom_image(direction);
+    });
 </script>
 </html>
