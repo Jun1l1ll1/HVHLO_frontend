@@ -295,7 +295,7 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
     }
 
     // Update question description and hexagon colors
-    if (e.class == "hospital_question_radio") {
+    if (e.className == "hospital_question_radio") {
         document.getElementById("hexagon_" + e.name).style.fill = "var(--"+e.value+"_color)";
         document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][e.value];
     }

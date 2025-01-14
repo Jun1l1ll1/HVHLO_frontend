@@ -368,12 +368,14 @@ button:active {
     }
     td>p {
         padding: 10px;
+        margin-bottom: 0px;
+        margin-top: 0px;
     }
 }
 
 .hospital_radio_cont {
     --radio_width: 10vw;
-    --radio_height: 50px;
+    --radio_height: 80px;
 
     /* display: flex;  */
     height: calc(var(--radio_height));
@@ -386,6 +388,7 @@ button:active {
         display: block;
         position: relative;
         cursor: pointer;
+        height: var(--radio_height);
         /* margin-right: calc(var(--radio_width) + 2px); */
         
         -webkit-user-select: none;
@@ -399,7 +402,7 @@ button:active {
             margin: 0px;
             +.checkmark {
                 position: absolute;
-                top: calc(var(--radio_height) / -2);
+                top: 0; /*calc(var(--radio_height) / -2);*/
                 left: 0;
                 height: var(--radio_height);
                 width:  var(--radio_width);
