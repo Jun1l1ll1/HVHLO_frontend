@@ -11,8 +11,8 @@ function getTableData() {
                 <!-- Sets colors in JS -->
                 <path fill="var(--cont_color_light)" id="hex0" d="M1129.625,179.1339l-169.75064,292.71548l-168.49479,-292.71547z"/>
                 <path fill="var(--cont_color_light)" id="hex1" d="M1129.34359,179.1883l-170.35577,292.36611l339.47849,0.56304z"/>
-                <path fill="var(--cont_color_light)" id="hex2" d="M959.64785,471.63011l-169.15306,292.58537l337.28211,-0.48646z"/>
-                <path fill="var(--cont_color_light)" id="hex3" d="M1297.24543,471.5l-169.75064,292.71548l-168.49187,-293.70958z"/>
+                <path fill="var(--cont_color_light)" id="hex2" d="M1297.24543,471.5l-169.75064,292.71548l-168.49187,-293.70958z"/>
+                <path fill="var(--cont_color_light)" id="hex3" d="M959.64785,471.63011l-169.15306,292.58537l337.28211,-0.48646z"/>
                 <path fill="var(--cont_color_light)" id="hex4" d="M960.24543,471.5l-169.75064,292.71548l-168.49479,-292.71547z"/>
                 <path fill="var(--cont_color_light)" id="hex5" d="M791.62372,179.13389l-169.19136,293.11723l338.31407,-0.18808z"/>
             </svg>
@@ -194,6 +194,8 @@ function getPersonData() {
 }
 
 function getHospitalData() {
+    change_hospital_name(HOSPITAL_NAME);
+
     const hexagon_sideID_queue = ["hexagon_top_middle", "hexagon_top_right", "hexagon_bottom_right", "hexagon_bottom_middle", "hexagon_bottom_left", "hexagon_top_left"]
 
     let tbody = document.getElementById("hospital_tbody");
@@ -260,7 +262,7 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
     }
 
     // Update question description and hexagon colors
-    if (e.class = "hospital_question_radio") {
+    if (e.class == "hospital_question_radio") {
         document.getElementById("hexagon_" + e.name).style.fill = "var(--"+e.value+"_color)";
         document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][e.value];
     }
@@ -555,7 +557,7 @@ function sort_table(category) {
     DATA.sort((a, b) => (a[category] >= b[category] ? 1 : -1));
     document.cookie = "sort="+category; // Save as cookie
 
-    // Update table //TODO make function with this task
+    // Update table
     let is_present = document.getElementById("is_present").checked;
     let all = document.getElementById("all").checked;
     let has_left = document.getElementById("has_left").checked;
