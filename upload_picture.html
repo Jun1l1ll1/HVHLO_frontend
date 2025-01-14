@@ -20,8 +20,8 @@
 
 </script>
 <script type="text/javascript" src="html_script.js"></script>
-<body>
-<form action="/overview.html" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
+<body onload="getPictureData()">
+<form id="picture_from" action="/overview.html" onkeydown="return no_enter_submit(event)"> <!--TODO? add method="post" -->
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
         <div id="save_popup_center" class="disappear">
             <div id="save_popup">
@@ -46,7 +46,7 @@
 
         <div id="bottom_header">
             <div id="back_btn_cont">
-                <button type="button" onclick="send_back(true)" class="back_btn">
+                <button type="button" onclick="send_back(true)" id="picture_back_btn" class="back_btn">
                     <img src="/img/back_icon.svg" alt="Forlat">
                     <span id="dont_save_btn_text">Tilbake</span>
                 </button>
@@ -82,11 +82,7 @@
             </div></div>
         </div>
     </div>
+    
 </form>
-<script>
-    const query_string = window.location.search;
-    const parameters = new URLSearchParams(query_string);
-    document.getElementById("name_title").innerText = parameters.get('name');
-</script>
 </body>
 </html>

@@ -144,14 +144,28 @@ function getPersonData() {
         }
     }
     
-    let url_info = window.location.href.split("?")[1];
+    const query_string = window.location.search;
+    const parameters = new URLSearchParams(query_string);
+    let url_id = parameters.get('id');
+
+    // Add take picture button
+    if (SHOW_PICTURE_ICON) {
+        document.getElementById("show_picture_btn_cont").innerHTML = `
+            <div style="float: right;"><button type="button" onclick="upload_pic(event, '${url_id}', '${DATA.first_name} ${DATA.last_name}', '/detail.html')" id="details_top_btn">
+                <img src="/img/picture_icon.svg" alt="Last opp bilde">
+                <span>Ta bilde</span>
+            </button></div>
+        `;
+    }
     
-    if (url_info == undefined) { // creating new
+    // creating new
+    if (url_id == undefined) { 
         create_table()
 
         document.getElementById("dont_save_btn_text").innerText = "Forkast og gå tilbake";
     } 
-    else { // editing existing info
+    // editing existing info
+    else { 
         create_table(
             DATA.first_name,
             DATA.last_name,
@@ -236,6 +250,25 @@ function getHospitalData() {
         }
 
         side_counter++;
+    }
+}
+
+function getPictureData() {
+    change_hospital_name(HOSPITAL_NAME);
+
+    const query_string = window.location.search;
+    const parameters = new URLSearchParams(query_string);
+    document.getElementById("name_title").innerText = parameters.get('name');
+
+    // Send back to previous page
+    let back_url = parameters.get('from') + (parameters.get('id')!=null ? "?id="+parameters.get('id') : "");
+    document.getElementById("picture_back_btn").setAttribute("onclick", "send_back(true, '"+back_url+"')");
+    document.getElementById("save_popup_forkast_btn").setAttribute("onclick", "send_back(false, '"+back_url+"')");
+    document.getElementById("picture_from").action = parameters.get('from');
+
+    console.log(back_url)
+    if (parameters.get('id') != null) {
+        document.getElementById("picture_from").innerHTML += `<input style="display: none;" type="text" name="id" id="id_input_autofill" value="${parameters.get('id')}"/>`;
     }
 }
 
@@ -444,17 +477,17 @@ function edit(id) {
     window.location.href = "/detail.html?id="+id;
 }
 
-function send_back(check_for_changes=false) {
+function send_back(check_for_changes=false, destination="/overview.html") {
     if (!check_for_changes || object_equals(DATA, new_data)) {
-        window.location.href = "/overview.html";
+        window.location.href = destination;
     } else {
         document.getElementById("save_popup_center").className = "display_flex";
     }
 }
 
 
-function upload_pic(event, name) {
-    window.location.href = "/upload_picture.html?name="+name;
+function upload_pic(event, id, name, from_url="/overview.html") {
+    window.location.href = `/upload_picture.html?${id == null || id == "null" ? "" : "id="+id+"&"}name=${name}&from=${from_url}`;
 
     dont_do_parent_event(event); // Stops the edit() onclick event that would have triggered
 }

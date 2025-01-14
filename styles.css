@@ -478,18 +478,18 @@ button:active {
     margin: 0px;
 }
 
-#no_comment_btn {
+#details_top_btn {
     background-color: rgba(0,0,0,0);
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     padding: 5px;
 }
-#no_comment_btn:active {
+#details_top_btn:active {
     background-color: var(--cont_color_light);
     border-radius: 3px;
 }
-#no_comment_btn span {
+#details_top_btn span {
     padding-left: 5px;
 }
 

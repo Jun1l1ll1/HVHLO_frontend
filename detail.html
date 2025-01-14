@@ -52,6 +52,7 @@
 
     //TODO edit this to the real hospital name
     const HOSPITAL_NAME = "Ingen Mansland Hospital";
+    const SHOW_PICTURE_ICON = true;
 
 </script>
 <script type="text/javascript" src="html_script.js"></script>
@@ -107,7 +108,7 @@
                 <!-- The 2 different comment types -->
                 <div contenteditable="true" id="comment" class="disappear"></div>
                 
-                <div style="float: right;" id="no_comment_cont"><button type="button" onclick="add_comment()" id="no_comment_btn">
+                <div style="float: right; margin-left: 20px;" id="no_comment_cont"><button type="button" onclick="add_comment()" id="details_top_btn">
                     <img src="/img/comment_icon.svg" alt="Kommenter">
                     <span>Kommenter</span>
                 </button></div>
@@ -119,6 +120,8 @@
                 </div> -->
 
                 <!-- -->
+
+                <div id="show_picture_btn_cont"> <!-- Button to upload image is added if SHOW_PICTURE_ICON is true --> </div>
 
 
                 <p id="comment_note" class="disappear">*Kommentaren kan ikke overstige 500 karakterer</p>
@@ -277,11 +280,12 @@
         }
     }, false)
 
-    // Add scroll on picture when big
-    document.getElementById("show_picture_full_page").addEventListener("wheel", function(event) {
-        // Zoom in or out based on the scroll direction
-        let direction = event.deltaY > 0 ? -1 : 1;
-        zoom_image(direction);
-    });
+    //TODO? Remove scroll in background and add this (probably unnessesary)
+    // // Add scroll on picture when big
+    // document.getElementById("show_picture_full_page").addEventListener("wheel", function(event) {
+    //     // Zoom in or out based on the scroll direction
+    //     let direction = event.deltaY > 0 ? -1 : 1;
+    //     zoom_image(direction);
+    // });
 </script>
 </html>
