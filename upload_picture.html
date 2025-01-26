@@ -62,7 +62,13 @@
                     <div>
                         <h3 id="name_title">Ukjent</h3>
 
-                        <h4>Last opp</h4>
+                        <h4 class="no_new_line">Last opp</h4>
+                        
+                        <select onchange="swap_picture_mode()" name="take_picture_select" id="take_picture_select">
+                            <option value="picture">Ta bilde</option>
+                            <option value="gallery">Bilde fra galleri</option>
+                        </select> <br/><br/>
+
                         <div class="center_horizontal">
                             <input onchange="update_img(event)" type="file" name="picture_path" id="upload_pic_inp" accept="image/*" capture="environment" />
                             <label for="upload_pic_inp"><img id="upload_pic_img" style="width: 20vw;" src="/img/picture_icon.svg" alt="Last opp bilde"></label>

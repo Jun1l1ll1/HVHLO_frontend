@@ -7,15 +7,17 @@ function getTableData() {
         // Add hospital-hexagon
         document.getElementById("hospital_stat_cont").innerHTML = `
             <a href="./hospital.html" class="btn" id="edit_hospital_status">Rediger sykehus status</a>
-            <svg id="hexagon" width="60px" stroke="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="610,122.5,700,700">
-                <!-- Sets colors in JS -->
-                <path fill="var(--cont_color_light)" id="hex0" d="M1129.625,179.1339l-169.75064,292.71548l-168.49479,-292.71547z"/>
-                <path fill="var(--cont_color_light)" id="hex1" d="M1129.34359,179.1883l-170.35577,292.36611l339.47849,0.56304z"/>
-                <path fill="var(--cont_color_light)" id="hex2" d="M1297.24543,471.5l-169.75064,292.71548l-168.49187,-293.70958z"/>
-                <path fill="var(--cont_color_light)" id="hex3" d="M959.64785,471.63011l-169.15306,292.58537l337.28211,-0.48646z"/>
-                <path fill="var(--cont_color_light)" id="hex4" d="M960.24543,471.5l-169.75064,292.71548l-168.49479,-292.71547z"/>
-                <path fill="var(--cont_color_light)" id="hex5" d="M791.62372,179.13389l-169.19136,293.11723l338.31407,-0.18808z"/>
-            </svg>
+            <a href="./hospital.html">
+                <svg id="hexagon" width="60px" stroke="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="610,122.5,700,700">
+                    <!-- Sets colors in JS -->
+                    <path fill="var(--cont_color_light)" id="hex0" d="M1129.625,179.1339l-169.75064,292.71548l-168.49479,-292.71547z"/>
+                    <path fill="var(--cont_color_light)" id="hex1" d="M1129.34359,179.1883l-170.35577,292.36611l339.47849,0.56304z"/>
+                    <path fill="var(--cont_color_light)" id="hex2" d="M1297.24543,471.5l-169.75064,292.71548l-168.49187,-293.70958z"/>
+                    <path fill="var(--cont_color_light)" id="hex3" d="M959.64785,471.63011l-169.15306,292.58537l337.28211,-0.48646z"/>
+                    <path fill="var(--cont_color_light)" id="hex4" d="M960.24543,471.5l-169.75064,292.71548l-168.49479,-292.71547z"/>
+                    <path fill="var(--cont_color_light)" id="hex5" d="M791.62372,179.13389l-169.19136,293.11723l338.31407,-0.18808z"/>
+                </svg>
+            </a>
         `;
 
         // Set hexagon colors
@@ -443,7 +445,7 @@ function update_table_and_header(table_headers=[],filtered_data=[]) {
         }
 
         if (SHOW_PICTURE_ICON) {
-            row.innerHTML += `<td class="picture_column"> <img onclick="upload_pic(event, '`+person["first_name"]+` `+person["last_name"]+`')" src="/img/picture_icon.svg" height="35" alt="Last opp bilde"> </td>`; 
+            row.innerHTML += `<td class="picture_column"> <img onclick="upload_pic(event, '`+person.id+`', '`+person["first_name"]+` `+person["last_name"]+`')" src="/img/picture_icon.svg" height="35" alt="Last opp bilde"> </td>`; 
         }
         
         if (person.comment != "") {
@@ -487,7 +489,7 @@ function send_back(check_for_changes=false, destination="/overview.html") {
 
 
 function upload_pic(event, id, name, from_url="/overview.html") {
-    window.location.href = `/upload_picture.html?${id == null || id == "null" ? "" : "id="+id+"&"}name=${name}&from=${from_url}`;
+    window.location.href = `/upload_picture.html?${id == null || id == "null" || id == "" ? "" : "id="+id+"&"}name=${name}&from=${from_url}`;
 
     dont_do_parent_event(event); // Stops the edit() onclick event that would have triggered
 }
@@ -515,6 +517,17 @@ function show_comment(event, comment) {
 
 function hide_comment() {
     document.getElementById("show_comment_full_page").className = "disappear";
+}
+
+
+function swap_picture_mode() {
+    let select_value = document.getElementById("take_picture_select").value;
+
+    if (select_value == "gallery") {
+        document.getElementById("upload_pic_inp").removeAttribute("capture");
+    } else if (select_value == "picture") {
+        document.getElementById("upload_pic_inp").setAttribute("capture", "environment");
+    }
 }
 
 

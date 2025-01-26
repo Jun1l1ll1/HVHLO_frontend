@@ -42,6 +42,7 @@ button {
     border-radius: 3px;
     padding: 0px;
     background-color: var(--primary_color);
+    cursor: pointer;
 }
 button:active {
     background-color: var(--primary_color_light);
@@ -517,12 +518,30 @@ button:active {
 
 
 /* Picture stuff */
+#take_picture_select {
+    background-color: rgba(0,0,0,0);
+    color: inherit;
+    height: 30px;
+    border: 2px solid var(--cont_color_light);
+    outline: none;
+
+    margin-left: 10px;
+
+    &:focus {
+        background-color: var(--cont_color_light);
+    }
+}
+#take_picture_select option {
+    background: var(--cont_color_dark);
+}
+
 #upload_pic_inp {
     display: none;
 
     + label {
         border: 2px solid var(--cont_color_light);
         border-radius: 5px;
+        cursor: pointer;
     }
 }
 
@@ -643,6 +662,10 @@ button:active {
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
+}
+
+.no_new_line {
+    display: inline;
 }
 
 .show {
