@@ -595,7 +595,7 @@ function set_date_to_now(id) {
     let time = String(date.getHours()).padStart(2,"0")+":"+String(date.getMinutes()).padStart(2,"0");
 
     document.getElementById(id).value = yyyy+"-"+mm+"-"+dd+"T"+time;
-    input_changed(document.getElementById(id));
+    input_changed('detail',document.getElementById(id));
 }
 
 function sort_table(category) {
