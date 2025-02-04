@@ -99,8 +99,26 @@
     
         <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
             <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
-                
+
                 <h3 id="name_title">Ukjent</h3>
+
+                <div id="ai_suggestions_cont">
+                    <div class="ai_suggestion">
+                        <p>KI har funnet <b>Juni</b> som <b>fornavn</b> i opplastet bilde, vil du bytte ut <b>Ingen</b> med dette?</p>
+                        <div>
+                            <button type="button" style="background-color: #0b965c; float: left;">Ja</button>
+                            <button type="button" style="background-color: #db3a3a; float: right;">Nei</button>
+                        </div>
+                    </div>
+                    <div class="ai_suggestion">
+                        <p>KI har funnet <b>NOR</b> som <b>nasjonalitet</b> i opplastet bilde, vil du legge dette til i tabellen?</p>
+                        <div>
+                            <button type="button" style="background-color: #0b965c; float: left;">Ja</button>
+                            <button type="button" style="background-color: #db3a3a; float: right;">Nei</button>
+                        </div>
+                    </div>
+                    <!-- More and less depending on amount of suggestions -->
+                </div>
 
                 <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellen har ulagret informasjon.</p>
                 

@@ -465,6 +465,37 @@ button:active {
 }
 
 
+/* AI suggestions i detail */
+.ai_suggestion {
+    background-color: #ffab2d3b;
+    border-radius: 5px;
+    border: 2px solid #d3a91e;
+    padding: 2px;
+    padding-left: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 5px;
+
+    >p {
+        margin: 0px;
+    }
+
+    >div {
+        width: 10rem;
+        height: 2rem;
+
+        >button {
+            height: 100%;
+            width: calc(50% - .5rem); /* 1rem space between the two buttons */
+            font-weight: bold;
+        }
+    }
+}
+
+
 /* Comment stuff in detail */
 #comment {
     background-color: rgba(255, 94, 0, 0.075);
