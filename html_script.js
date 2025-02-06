@@ -1,25 +1,7 @@
 
 function getTableData() {
     
-    change_hospital_name(HOSPITAL_NAME);
-
-    if (SHOW_HOSPITAL_STATUS) {
-        // Add hospital-hexagon
-        document.getElementById("hospital_stat_cont").innerHTML = `
-            <a href="./hospital.html" class="btn" id="edit_hospital_status">Rediger sykehus status</a>
-            <a href="./hospital.html">
-                <svg id="hexagon" width="60px" stroke="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="610,122.5,700,700">
-                    <!-- Sets colors in JS -->
-                    <path fill="var(--cont_color_light)" id="hex0" d="M1129.625,179.1339l-169.75064,292.71548l-168.49479,-292.71547z"/>
-                    <path fill="var(--cont_color_light)" id="hex1" d="M1129.34359,179.1883l-170.35577,292.36611l339.47849,0.56304z"/>
-                    <path fill="var(--cont_color_light)" id="hex2" d="M1297.24543,471.5l-169.75064,292.71548l-168.49187,-293.70958z"/>
-                    <path fill="var(--cont_color_light)" id="hex3" d="M959.64785,471.63011l-169.15306,292.58537l337.28211,-0.48646z"/>
-                    <path fill="var(--cont_color_light)" id="hex4" d="M960.24543,471.5l-169.75064,292.71548l-168.49479,-292.71547z"/>
-                    <path fill="var(--cont_color_light)" id="hex5" d="M791.62372,179.13389l-169.19136,293.11723l338.31407,-0.18808z"/>
-                </svg>
-            </a>
-        `;
-
+    try {
         // Set hexagon colors
         let side_counter = 0
         for (let key in QUESTIONS_DATA) {
@@ -28,7 +10,7 @@ function getTableData() {
             }
             side_counter++;
         }
-    }
+    } catch (err) { }
 
     // Get header cookies
     let cookie_list = document.cookie.split("; ")
