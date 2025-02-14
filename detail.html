@@ -120,7 +120,7 @@
                     <!-- More and less depending on amount of suggestions -->
                 </div>
 
-                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellen har ulagret informasjon.</p>
+                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: var(--primary_color_light);">*Tabellen har ulagret informasjon.</p>
                 
 
                 <!-- The 2 different comment types -->
@@ -156,7 +156,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Fornavn</th>
+                            <th onclick="toggleDiv('info_first_name');">Fornavn<div class="details_info" id="info_first_name" style="display:none;">Pasienten sitt fornavn</div></th> <!-- Add toggleDiv() and <div> to the rest as well -->
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="first_name" id="first_name"/></td>
                         </tr>
                         <tr>

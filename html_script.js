@@ -5,11 +5,15 @@ function getTableData() {
         // Set hexagon colors
         let side_counter = 0
         for (let key in QUESTIONS_DATA) {
-            if (side_counter < 6) { // Hexagon has 6 sides
-                document.getElementById("hex"+side_counter).style.fill = "var(--"+QUESTIONS_DATA[key]+"_color)"
+            if (key.startsWith("Q")) {
+                if (side_counter < 6) { // Hexagon has 6 sides
+                    document.getElementById("hex"+side_counter).style.fill = "var(--"+QUESTIONS_DATA[key]+"_color)";
+                }
+                side_counter++;
             }
-            side_counter++;
         }
+        // Set date text
+        document.getElementById("hospital_last_edited").innerText = QUESTIONS_DATA["Text"];
     } catch (err) { }
 
     // Get header cookies
@@ -499,6 +503,16 @@ function show_comment(event, comment) {
 
 function hide_comment() {
     document.getElementById("show_comment_full_page").className = "disappear";
+}
+
+
+function toggleDiv(divname) {
+    var div = document.getElementById(divname);
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
 }
 
 

@@ -302,9 +302,14 @@ button:active {
     height: 35px; /* basically min-height */
 }
 
-.info_table#detail_table td {
-    padding-top: 0px;
-    padding-bottom: 0px;
+.info_table#detail_table {
+    th {
+        width: 40%;
+    }
+    td {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 }
 .info_table#detail_pic_table {
     th>img {
@@ -526,6 +531,11 @@ button:active {
 }
 #details_top_btn span {
     padding-left: 5px;
+}
+
+.details_info {
+    font-weight: normal;
+    color: var(--primary_color_light);
 }
 
 
