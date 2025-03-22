@@ -1,5 +1,17 @@
+function setTexts(lang) { // lang = "NO" or "EN"
+    //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
+    fetch("translations.json")
+        .then(response => response.json()) // Parse JSON
+        .then(data => {
+            for (let id in data[lang]) {
+                document.querySelector("[langid='"+id+"']").innerText = data[lang][id];
+            }
+        }) // Work with JSON data
+        .catch(error => console.error("Error fetching translations:", error));
+}
 
 function getTableData() {
+    setTexts("EN");
     
     try {
         // Set hexagon colors
