@@ -1,4 +1,4 @@
-let language = "NO";
+let language = "NO";  //TODO get this from cookie inside the functions that use it
 
 async function changeLanguage(lang) { // lang = "NO" or "EN"
     //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
