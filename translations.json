@@ -29,6 +29,15 @@
 
 
 
+        "title_index": "HVHLO | Logg Inn",
+
+        "login_title": "Logg Inn i HVHLO",
+        "login_email": "E-post",
+        "invalid_email_note": "*Ikke gyldig e-post format",
+        "login": "Logg Inn",
+
+
+
         "title_overview": "HVHLO | Oversikt",
 
         "filter": "Filtrer pasienter",
@@ -89,7 +98,7 @@
         "unsaved_page_data_note": "*Siden har ulagret informasjon."
     },
 
-    
+
 
     "EN": {
         "loggout": "Log out",
@@ -118,6 +127,15 @@
         "expected_departure": "Expected departure",
         "departure_status": "Departure status",
         "departure_destination": "Departure destination",
+
+
+
+        "title_index": "HVHLO | Log in",
+
+        "login_title": "Log In to HVHLO",
+        "login_email": "E-mail",
+        "invalid_email_note": "*Invalid e-mail format",
+        "login": "Log In",
 
 
 

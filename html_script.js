@@ -1,6 +1,6 @@
 let language = "NO";
 
-async function setTexts(lang) { // lang = "NO" or "EN"
+async function changeLanguage(lang) { // lang = "NO" or "EN"
     //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
     await fetch("translations.json")
         .then(response => response.json()) // Parse JSON
@@ -12,18 +12,17 @@ async function setTexts(lang) { // lang = "NO" or "EN"
                         e.innerHTML = data[lang][id];
                     })
                 } catch {
-                    console.warn(id, data[lang][id]) /// For debugging
+                    // console.warn(id, data[lang][id]) // For debugging
                 }
             }
         })
         .catch(error => console.error("Error fetching translations:", error));
-    
-     
 }
 
 async function getTableData() {
-    await setTexts(language);
-    // Running function from multiselect-dropdown script, this gives the multiselect its functions
+    await changeLanguage(language);
+    // Running function from multiselect-dropdown script, this gives the multiselect it's functions.
+    // This needs to run after translations are done, and not before.
     MultiselectDropdown(window.MultiselectDropdownOptions);
     
     try {
@@ -96,7 +95,7 @@ async function getTableData() {
 }
 
 function getPersonData() {
-    setTexts(language);
+    changeLanguage(language);
 
     function create_table(
         f_name="",
@@ -224,7 +223,7 @@ function getPersonData() {
 
 function getHospitalData() {
     let lang = language;
-    setTexts(lang);
+    changeLanguage(lang);
 
     change_hospital_name(HOSPITAL_NAME);
 
