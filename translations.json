@@ -1,8 +1,62 @@
 {
     "NO": {
-        "filter": "Dette er en test"
+        "loggout": "Logg ut",
+
+        "filter": "Filtrer pasienter",
+        "filter_is_present": "Er tilstede",
+        "filter_show_all": "Alle",
+        "filter_has_left": "Har dratt",
+
+        "edit_hospital_status": "Rediger sykehus status",
+
+        "choose_table_categories": "Velg viste tabell-kategorier",
+        "header_choices_first_name": "Fornavn",
+        "header_choices_last_name": "Etternavn",
+        "header_choices_nationality": "Nasjonalitet",
+        "header_choices_national_id": "Nasjonal ID",
+        "header_choices_birth": "Fødselsdato",
+        "header_choices_arrival": "Ankomst",
+        "header_choices_incident": "Hendelse",
+        "header_choices_cause": "Årsak",
+        "header_choices_criticality": "Kritikalitet",
+        "header_choices_movability": "Flyttbarhet",
+        "header_choices_departure": "Avreise",
+        "header_choices_expected_departure": "Forventet avreise",
+        "header_choices_departure_status": "Avreisestatus",
+        "header_choices_departure_destination": "Avreisedestinasjon",
+
+        "create_new": "Opprett ny",
+
+        "is_filtered_note": "*Tabellinformasjonen er filtrert."
     },
     "EN": {
-        "filter": "This is a test"
+        "loggout": "Log out",
+
+        "filter": "Filter patients",
+        "filter_is_present": "Is present",
+        "filter_show_all": "All",
+        "filter_has_left": "Has left",
+
+        "edit_hospital_status": "Edit hospital status",
+
+        "choose_table_categories": "Choose shown table categories",
+        "header_choices_first_name": "First name",
+        "header_choices_last_name": "Last name",
+        "header_choices_nationality": "Nationality",
+        "header_choices_national_id": "National ID",
+        "header_choices_birth": "Birth",
+        "header_choices_arrival": "Arrival",
+        "header_choices_incident": "Incident",
+        "header_choices_cause": "Cause",
+        "header_choices_criticality": "Criticality",
+        "header_choices_movability": "Movability",
+        "header_choices_departure": "Departure",
+        "header_choices_expected_departure": "Expected departure",
+        "header_choices_departure_status": "Departure status",
+        "header_choices_departure_destination": "Departure destination",
+
+        "create_new": "Create new",
+
+        "is_filtered_note": "*Table information is filtered."
     }
 }

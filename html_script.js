@@ -4,14 +4,22 @@ function setTexts(lang) { // lang = "NO" or "EN"
         .then(response => response.json()) // Parse JSON
         .then(data => {
             for (let id in data[lang]) {
-                document.querySelector("[langid='"+id+"']").innerText = data[lang][id];
+                try {
+                    document.querySelector("[langid='"+id+"']").innerText = data[lang][id];
+                } catch { }
             }
+            // Running function from multiselect-dropdown script, this gives the multiselect its functions
+            MultiselectDropdown(window.MultiselectDropdownOptions);
         }) // Work with JSON data
         .catch(error => console.error("Error fetching translations:", error));
+    
+     
 }
 
 function getTableData() {
-    setTexts("EN");
+    let lang = "EN";
+
+    setTexts(lang);
     
     try {
         // Set hexagon colors

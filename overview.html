@@ -100,7 +100,7 @@
                 <h1>HVHLO</h1> <!--TODO? add logo -->
                 <div>
                     <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
-                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> Logg ut</a>
+                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> <span langid="loggout">Logg ut</span></a>
                 </div>
             </div>
         </div>
@@ -113,18 +113,18 @@
                     <p style="margin: 0px; font-size: larger;" langid="filter">Filtrer pasienter</p> 
                     <div style="margin-top: 5px;">
                         <input onchange="filter_changed()" class="filter_radio" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
-                        <label for="is_present">Er tilstede</label>
+                        <label for="is_present" langid="filter_is_present">Er tilstede</label>
                     
                         <input onchange="filter_changed()" class="filter_radio" type="radio" id="all" name="filter_inputs" value="all" />
-                        <label for="all">Alle</label>
+                        <label for="all" langid="filter_show_all">Alle</label>
                     
                         <input onchange="filter_changed()" class="filter_radio" type="radio" id="has_left" name="filter_inputs" value="has_left" />
-                        <label for="has_left">Har dratt</label>
+                        <label for="has_left" langid="filter_has_left">Har dratt</label>
                     </div>
                 </div>
     
                 <div id="hospital_stat_cont" style="display: flex;"> <!-- Change display to being flex or none (or no defined display and display: none;) -->
-                    <a href="./hospital.html" class="btn" id="edit_hospital_status">Rediger sykehus status</a>
+                    <a href="./hospital.html" class="btn" id="edit_hospital_status" langid="edit_hospital_status">Rediger sykehus status</a>
                     <a href="./hospital.html">
                         <svg id="hexagon" width="60px" stroke="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="610,122.5,700,700">
                             <!-- Sets colors in JS if id of hex[0-5] exists -->
@@ -146,31 +146,30 @@
                 
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div id="header_choice_cont">
-                        <p style="margin: 0px; font-size: larger;">Velg viste tabell-kategorier</p>
+                        <p style="margin: 0px; font-size: larger;" langid="choose_table_categories">Velg viste tabell-kategorier</p>
                         
                         <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
-                            <option value="first_name" selected>Fornavn</option>
-                            <option value="last_name" selected>Etternavn</option>
-                            <option value="nationality">Nasjonalitet</option>
-                            <option value="national_id">Nasjonal ID</option>
-                            <option value="birth">Fødselsdato</option>
-                            <option value="arrival" selected>Ankomst</option>
-                            <option value="incident">Hendelse</option>
-                            <option value="cause">Årsak</option>
-                            <option value="criticality">Kritikalitet</option>
-                            <option value="movability">Flyttbarhet</option>
-                            <option value="departure" selected>Avreise</option>
-                            <option value="expected_departure">Forventet avreise</option>
-                            <option value="departure_status">Avreisestatus</option>
-                            <option value="departure_destination">Avreisedestinasjon</option>
-                            <!-- <option value="comment">Kommentar</option> -->
+                            <option value="first_name" langid="header_choices_first_name" selected>Fornavn</option>
+                            <option value="last_name"langid="header_choices_last_name" selected>Etternavn</option>
+                            <option value="nationality" langid="header_choices_nationality" >Nasjonalitet</option>
+                            <option value="national_id" langid="header_choices_national_id" >Nasjonal ID</option>
+                            <option value="birth" langid="header_choices_birth" >Fødselsdato</option>
+                            <option value="arrival" langid="header_choices_arrival" selected>Ankomst</option>
+                            <option value="incident" langid="header_choices_incident" >Hendelse</option>
+                            <option value="cause" langid="header_choices_cause" >Årsak</option>
+                            <option value="criticality" langid="header_choices_criticality" >Kritikalitet</option>
+                            <option value="movability" langid="header_choices_movability" >Flyttbarhet</option>
+                            <option value="departure" langid="header_choices_departure" selected>Avreise</option>
+                            <option value="expected_departure" langid="header_choices_expected_departure" >Forventet avreise</option>
+                            <option value="departure_status" langid="header_choices_departure_status" >Avreisestatus</option>
+                            <option value="departure_destination" langid="header_choices_departure_destination" >Avreisedestinasjon</option>
                         </select>
                     </div>
-                    <button onclick="make_new()" id="make_new_btn">Opprett ny</button>
+                    <button onclick="make_new()" id="make_new_btn" langid="create_new">Opprett ny</button>
                 </div>
 
 
-                <p id="filter_note" class="hide" style="margin-top: 50px; margin-bottom: 0px; color: rgb(0, 139, 182);">*Tabellinformasjonen er filtrert.</p>
+                <p id="filter_note" class="hide" style="margin-top: 50px; margin-bottom: 0px; color: rgb(0, 139, 182);" langid="is_filtered_note">*Tabellinformasjonen er filtrert.</p>
                 <table class="info_table" id="index_table">
                     <thead>
                         <tr id="table_head_row">
@@ -185,5 +184,5 @@
         </div>
     </div>
 </body>
-<script src="multiselect-dropdown.js" ></script>
+<script src="multiselect-dropdown.js"></script>
 </html>
