@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>HVHLO | Oversikt</title>
+    <title langid="title_overview">HVHLO | Oversikt</title>
 </head>
 <script>
     const DATA = [
@@ -149,20 +149,20 @@
                         <p style="margin: 0px; font-size: larger;" langid="choose_table_categories">Velg viste tabell-kategorier</p>
                         
                         <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
-                            <option value="first_name" langid="header_choices_first_name" selected>Fornavn</option>
-                            <option value="last_name"langid="header_choices_last_name" selected>Etternavn</option>
-                            <option value="nationality" langid="header_choices_nationality" >Nasjonalitet</option>
-                            <option value="national_id" langid="header_choices_national_id" >Nasjonal ID</option>
-                            <option value="birth" langid="header_choices_birth" >Fødselsdato</option>
-                            <option value="arrival" langid="header_choices_arrival" selected>Ankomst</option>
-                            <option value="incident" langid="header_choices_incident" >Hendelse</option>
-                            <option value="cause" langid="header_choices_cause" >Årsak</option>
-                            <option value="criticality" langid="header_choices_criticality" >Kritikalitet</option>
-                            <option value="movability" langid="header_choices_movability" >Flyttbarhet</option>
-                            <option value="departure" langid="header_choices_departure" selected>Avreise</option>
-                            <option value="expected_departure" langid="header_choices_expected_departure" >Forventet avreise</option>
-                            <option value="departure_status" langid="header_choices_departure_status" >Avreisestatus</option>
-                            <option value="departure_destination" langid="header_choices_departure_destination" >Avreisedestinasjon</option>
+                            <option value="first_name" langid="first_name" selected>Fornavn</option>
+                            <option value="last_name"langid="last_name" selected>Etternavn</option>
+                            <option value="nationality" langid="nationality" >Nasjonalitet</option>
+                            <option value="national_id" langid="national_id" >Nasjonal ID</option>
+                            <option value="birth" langid="birth" >Fødselsdato</option>
+                            <option value="arrival" langid="arrival" selected>Ankomst</option>
+                            <option value="incident" langid="incident" >Hendelse</option>
+                            <option value="cause" langid="cause" >Årsak</option>
+                            <option value="criticality" langid="criticality" >Kritikalitet</option>
+                            <option value="movability" langid="movability" >Flyttbarhet</option>
+                            <option value="departure" langid="departure" selected>Avreise</option>
+                            <option value="expected_departure" langid="expected_departure" >Forventet avreise</option>
+                            <option value="departure_status" langid="departure_status" >Avreisestatus</option>
+                            <option value="departure_destination" langid="departure_destination" >Avreisedestinasjon</option>
                         </select>
                     </div>
                     <button onclick="make_new()" id="make_new_btn" langid="create_new">Opprett ny</button>

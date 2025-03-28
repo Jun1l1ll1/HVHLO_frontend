@@ -1,25 +1,27 @@
-function setTexts(lang) { // lang = "NO" or "EN"
+let language = "NO";
+
+async function setTexts(lang) { // lang = "NO" or "EN"
     //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
-    fetch("translations.json")
+    await fetch("translations.json")
         .then(response => response.json()) // Parse JSON
         .then(data => {
             for (let id in data[lang]) {
                 try {
-                    document.querySelector("[langid='"+id+"']").innerText = data[lang][id];
-                } catch { }
+                    document.querySelector("[langid='"+id+"']").innerHTML = data[lang][id];
+                } catch {
+                    console.warn(id, data[lang][id])
+                }
             }
-            // Running function from multiselect-dropdown script, this gives the multiselect its functions
-            MultiselectDropdown(window.MultiselectDropdownOptions);
         }) // Work with JSON data
         .catch(error => console.error("Error fetching translations:", error));
     
      
 }
 
-function getTableData() {
-    let lang = "EN";
-
-    setTexts(lang);
+async function getTableData() {
+    await setTexts(language);
+    // Running function from multiselect-dropdown script, this gives the multiselect its functions
+    MultiselectDropdown(window.MultiselectDropdownOptions);
     
     try {
         // Set hexagon colors
@@ -91,6 +93,8 @@ function getTableData() {
 }
 
 function getPersonData() {
+    setTexts(language);
+
     function create_table(
         f_name="",
         l_name="",
@@ -161,7 +165,7 @@ function getPersonData() {
         document.getElementById("show_picture_btn_cont").innerHTML = `
             <div style="float: right;"><button type="button" onclick="upload_pic(event, '${url_id}', '${DATA.first_name} ${DATA.last_name}', '/detail.html')" id="details_top_btn">
                 <img src="/img/picture_icon.svg" alt="Last opp bilde">
-                <span>Ta bilde</span>
+                <span langid="take_picture">Ta bilde</span>
             </button></div>
         `;
     }
@@ -410,24 +414,32 @@ function update_table_filter(is_present, all, has_left) {
     return filtered_data;
 }
 
-function update_table_and_header(table_headers=[],filtered_data=[]) { 
-    let h = {
-        first_name: "Fornavn",
-        last_name: "Etternavn",
-        birth: "Fødselsdato",
-        incident: "Hendelse",
-        cause: "Årsak",
-        criticality: "Kritikalitet",
-        movability: "Flyttbarhet",
-        arrival: "Ankomst",
-        expected_departure: "Forventet avreise",
-        departure: "Avreise",
-        departure_status: "Avreisestatus",
-        departure_destination: "Avreisedestinasjon",
-        nationality: "Nasjonalitet",
-        national_id: "Nasjonal ID",
-        comment: "Kommentar"
-    }
+async function update_table_and_header(table_headers=[],filtered_data=[]) { 
+    let h
+    let lang = language;
+    await fetch("translations.json")
+        .then(response => response.json()) // Parse JSON
+        .then(data => {
+            h = {
+                first_name: data[lang]["first_name"],
+                last_name: data[lang]["last_name"],
+                birth: data[lang]["birth"],
+                incident: data[lang]["incident"],
+                cause: data[lang]["cause"],
+                criticality: data[lang]["criticality"],
+                movability: data[lang]["movability"],
+                arrival: data[lang]["arrival"],
+                expected_departure: data[lang]["expected_departure"],
+                departure: data[lang]["departure"],
+                departure_status: data[lang]["departure_status"],
+                departure_destination: data[lang]["departure_destination"],
+                nationality: data[lang]["nationality"],
+                national_id: data[lang]["national_id"]
+            }
+        }) // Work with JSON data
+        .catch(error => console.error("Error fetching translations:", error));
+    
+
 
     let table_head = document.getElementById("table_head_row");
     table_head.innerHTML = "";

@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>HVHLO | Rediger</title>
+    <title langid="title_detail">HVHLO | Rediger</title>
 </head>
 <script>
     const DATA = {
@@ -61,11 +61,11 @@
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
         <div id="save_popup_center" class="disappear">
             <div id="save_popup">
-                <h3>Er du sikker på at du vil forlate uten å lagre?</h3>
+                <h3 langid="leave_confirmation">Er du sikker på at du vil forlate uten å lagre?</h3>
                 <div id="save_popup_btns">
-                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn">Ja, forkast endringer</button>
-                    <button type="submit">Nei, lagre og gå tilbake</button>
-                    <button type="button" onclick="hide_save_popup()">Avbryt</button>
+                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn" langid="confirm_discard_changes">Ja, forkast endringer</button>
+                    <button type="submit" langid="confirm_save_changes">Nei, lagre og gå tilbake</button>
+                    <button type="button" onclick="hide_save_popup()" langid="confirm_cancel">Avbryt</button>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 <h1>HVHLO</h1> <!--TODO? add logo -->
                 <div>
                     <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
-                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut" /> Logg ut</a>
+                    <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut" /> <span langid="loggout">Logg ut</span></a>
                 </div>
             </div>
         </div>
@@ -88,11 +88,11 @@
             <div id="back_btn_cont">
                 <button type="button" onclick="send_back(true)" class="back_btn">
                     <img src="/img/back_icon.svg" alt="Forlat" />
-                    <span id="dont_save_btn_text">Tilbake uten å lagre</span>
+                    <span id="dont_save_btn_text" langid="leave_dont_save">Tilbake uten å lagre</span>
                 </button>
                 <button type="submit" class="back_btn">
                     <img src="/img/save_icon.svg" alt="Lagre og forlat" />
-                    <span>Lagre og gå tilbake</span>
+                    <span langid="leave_save">Lagre og gå tilbake</span>
                 </button>
             </div>
         </div>
@@ -100,27 +100,27 @@
         <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
             <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
 
-                <h3 id="name_title">Ukjent</h3>
+                <h3 id="name_title" langid="unknown_name">Ukjent</h3>
 
                 <div id="ai_suggestions_cont">
                     <div class="ai_suggestion">
-                        <p>KI har funnet <b>Juni</b> som <b>fornavn</b> i opplastet bilde, vil du bytte ut <b>Ingen</b> med dette?</p>
+                        <p langid="ai_swap">KI har funnet <b>Juni</b> som <b>fornavn</b> i opplastet bilde, vil du bytte ut <b>Ingen</b> med dette?</p>
                         <div>
-                            <button type="button" style="background-color: #0b965c; float: left;">Ja</button>
-                            <button type="button" style="background-color: #db3a3a; float: right;">Nei</button>
+                            <button type="button" style="background-color: #0b965c; float: left;" langid="yes">Ja</button>
+                            <button type="button" style="background-color: #db3a3a; float: right;" langid="no">Nei</button>
                         </div>
                     </div>
                     <div class="ai_suggestion">
-                        <p>KI har funnet <b>NOR</b> som <b>nasjonalitet</b> i opplastet bilde, vil du legge dette til i tabellen?</p>
+                        <p langid="ai_add">KI har funnet <b>NOR</b> som <b>nasjonalitet</b> i opplastet bilde, vil du legge dette til i tabellen?</p>
                         <div>
-                            <button type="button" style="background-color: #0b965c; float: left;">Ja</button>
-                            <button type="button" style="background-color: #db3a3a; float: right;">Nei</button>
+                            <button type="button" style="background-color: #0b965c; float: left;" langid="yes">Ja</button>
+                            <button type="button" style="background-color: #db3a3a; float: right;" langid="no">Nei</button>
                         </div>
                     </div>
                     <!-- More and less depending on amount of suggestions -->
                 </div>
 
-                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: var(--primary_color_light);">*Tabellen har ulagret informasjon.</p>
+                <p id="filter_note" class="hide" style="margin-bottom: 0px; color: var(--primary_color_light);" langid="unsaved_data_note">*Tabellen har ulagret informasjon.</p>
                 
 
                 <!-- The 2 different comment types -->
@@ -128,7 +128,7 @@
                 
                 <div style="float: right; margin-left: 20px;" id="no_comment_cont"><button type="button" onclick="add_comment()" id="details_top_btn">
                     <img src="/img/comment_icon.svg" alt="Kommenter">
-                    <span>Kommenter</span>
+                    <span langid="comment">Kommenter</span>
                 </button></div>
 
                 <!-- <div style="float: right; margin-bottom: 10px;" id="show_comment_cont" class="disappear">
@@ -142,118 +142,118 @@
                 <div id="show_picture_btn_cont"> <!-- Button to upload image is added if SHOW_PICTURE_ICON is true --> </div>
 
 
-                <p id="comment_note" class="disappear">*Kommentaren kan ikke overstige 500 karakterer</p>
+                <p id="comment_note" class="disappear" langid="comment_max_char_note">*Kommentaren kan ikke overstige 500 karakterer</p>
 
                 <table class="info_table" id="detail_table"> <!--TODO? make more tables so there are spacing between categories -->
                     <tbody>
                         <tr>
-                            <th>Ankomst</th>
+                            <th><span langid="arrival">Fornavn</span></th>
                             <td>
                                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                                     <input onchange="input_changed('detail',this)" class="input_date_empty" type="datetime-local" name="arrival" id="arrival"/>
-                                    <button tabindex="-1" id="arrival_now_btn" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                                    <button tabindex="-1" id="arrival_now_btn" type="button" onclick="set_date_to_now('arrival')" style="padding-left: 10px; padding-right: 10px;" langid="now">Nå</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th onclick="toggleDiv('info_first_name');">Fornavn<div class="details_info" id="info_first_name" style="display:none;">Pasienten sitt fornavn</div></th> <!-- Add toggleDiv() and <div> to the rest as well -->
+                            <th onclick="toggleDiv('info_first_name');"><span langid="first_name">Fornavn</span><div class="details_info" id="info_first_name" style="display:none;">Pasienten sitt fornavn</div></th> <!-- Add toggleDiv() and <div> to the rest as well -->
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="first_name" id="first_name"/></td>
                         </tr>
                         <tr>
-                            <th>Etternavn</th>
+                            <th><span langid="last_name">Etternavn</span></th>
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="last_name" id="last_name"/></td>
                         </tr>
                         <tr>
-                            <th>Nasjonalitet</th>
+                            <th><span langid="nationality">Nasjonalitet</span></th>
                             <td>
                                 <input onchange="input_changed('detail',this)" maxlength="50" type="text" list="nationality_list" name="nationality" id="nationality"/>
                                 <datalist id="nationality_list">
-                                    <option value="NOR">Norge</option>
-                                    <option value="ENG">England</option>
+                                    <option value="NOR" langid="nationality_nor">Norge</option>
+                                    <option value="ENG" langid="nationality_eng">England</option>
                                 </datalist>
                             </td>
                         </tr>
                         <tr>
-                            <th>Nasjonal ID og Journal nr</th>
+                            <th><span langid="national_id_jurnal_nr">Nasjonal ID og Journal nr</span></th>
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="national_id" id="national_id"/></td>
                         </tr>
                         <tr>
-                            <th>Fødselsdato</th>
+                            <th><span langid="birth">Fødselsdato</span></th>
                             <td><input onchange="input_changed('detail',this)" class="input_date_empty" type="date" name="birth" id="birth"/></td>
                         </tr>
                         <tr>
-                            <th>Hendelse</th>
+                            <th><span langid="incident">Hendelse</span></th>
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="incident" id="incident"/></td>
                         </tr>
                         <tr>
-                            <th>Årsak</th>
+                            <th><span langid="cause">Årsak</span></th>
                             <td>
                                 <select onchange="input_changed('detail',this)" name="cause" id="cause">
                                     <option value=""></option>
-                                    <option value="Sykdom">Sykdom</option>
-                                    <option value="Skade">Skade</option>
+                                    <option value="Sykdom" langid="cause_sicknes">Sykdom</option>
+                                    <option value="Skade" langid="cause_injury">Skade</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <th>Kritikalitet</th>
+                            <th><span langid="criticality">Kritikalitet</span></th>
                             <td>
                                 <select onchange="input_changed('detail',this)" name="criticality" id="criticality">
                                     <option value=""></option>
-                                    <option value="Uavklart">Uavklart</option>
-                                    <option value="Kritisk">Kritisk</option>
-                                    <option value="Stabil">Stabil</option>
+                                    <option value="Uavklart" langid="criticality_unclear">Uavklart</option>
+                                    <option value="Kritisk" langid="criticality_critical">Kritisk</option>
+                                    <option value="Stabil" langid="criticality_stable">Stabil</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <th>Flyttbarhet</th>
+                            <th><span langid="movability">Flyttbarhet</span></th>
                             <td>
                                 <select onchange="input_changed('detail',this)" name="movability" id="movability">
                                     <option value=""></option>
-                                    <option value="Kan gå">Kan gå</option>
-                                    <option value="Båre">Båre</option>
-                                    <option value="Intravenøst">Intravenøst</option>
+                                    <option value="Kan gå" langid="movability_walk">Kan gå</option>
+                                    <option value="Båre" langid="movability_stretcher">Båre</option>
+                                    <option value="Intravenøst" langid="movability_intravenously">Intravenøst</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <th>Forventet avreise</th>
+                            <th><span langid="expected_departure">Forventet avreise</span></th>
                             <td>
                                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                                     <input onchange="input_changed('detail',this)" class="input_date_empty" type="datetime-local" name="expected_departure" id="expected_departure"/>
-                                    <button id="expected_departure_now_btn" tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                                    <button id="expected_departure_now_btn" tabindex="-1" type="button" onclick="set_date_to_now('expected_departure')" style="padding-left: 10px; padding-right: 10px;" langid="now">Nå</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>Avreise</th>
+                            <th><span langid="departure">Avreise</span></th>
                             <td>
                                 <div style="display: grid; grid-template-columns: auto fit-content(50%);">
                                     <input onchange="input_changed('detail',this)" class="input_date_empty" type="datetime-local" name="departure" id="departure"/>
-                                    <button tabindex="-1" id="departure_now_btn" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;">Nå</button>
+                                    <button tabindex="-1" id="departure_now_btn" type="button" onclick="set_date_to_now('departure')" style="padding-left: 10px; padding-right: 10px;" langid="now">Nå</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>Avreisestatus</th>
+                            <th><span langid="departure_status">Avreisestatus</span></th>
                             <td>
                                 <select onchange="input_changed('detail',this)" name="departure_status" id="departure_status">
                                     <option value=""></option>
-                                    <option value="Død">Død</option>
-                                    <option value="Utskrevet med permanent funksjonshemming">Utskrevet med permanent funksjonshemming</option>
-                                    <option value="Medisinsk evakuering">Medisinsk evakuering</option>
-                                    <option value="Medisinsk repatriering">Medisinsk repatriering</option>
-                                    <option value="Returnert til sivilt liv">Returnert til sivilt liv</option>
-                                    <option value="Returnert til tjeneste (modifisert tjeneste)">Returnert til tjeneste (modifisert tjeneste)</option>
-                                    <option value="Returnert til tjeneste (RTD)">Returnert til tjeneste (RTD)</option>
-                                    <option value="Returnert til korps (RTU)">Returnert til korps (RTU)</option>
-                                    <option value="Strategisk evakuering (stratevac)">Strategisk evakuering (stratevac)</option>
+                                    <option value="Død" langid="departure_status_dead">Død</option>
+                                    <option value="Utskrevet med permanent funksjonshemming" langid="departure_status_disability">Utskrevet med permanent funksjonshemming</option>
+                                    <option value="Medisinsk evakuering" langid="departure_status_evacuation">Medisinsk evakuering</option>
+                                    <option value="Medisinsk repatriering" langid="departure_status_repatriation">Medisinsk repatriering</option>
+                                    <option value="Returnert til sivilt liv" langid="departure_status_civil_life">Returnert til sivilt liv</option>
+                                    <option value="Returnert til tjeneste (modifisert tjeneste)" langid="departure_status_modified_duty">Returnert til tjeneste (modifisert tjeneste)</option>
+                                    <option value="Returnert til tjeneste (RTD)" langid="departure_status_rtd">Returnert til tjeneste (RTD)</option>
+                                    <option value="Returnert til korps (RTU)" langid="departure_status_rtu">Returnert til korps (RTU)</option>
+                                    <option value="Strategisk evakuering (stratevac)" langid="departure_status_stratevac">Strategisk evakuering (stratevac)</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <th>Avreisedestinasjon</th>
+                            <th><span langid="departure_destination">Avreisedestinasjon</span></th>
                             <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="departure_destination" id="departure_destination"/></td>
                         </tr>
                     </tbody>

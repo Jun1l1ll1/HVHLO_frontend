@@ -1,6 +1,27 @@
 {
     "NO": {
         "loggout": "Logg ut",
+        "yes": "Ja",
+        "no": "Nei",
+
+        "first_name": "Fornavn",
+        "last_name": "Etternavn",
+        "nationality": "Nasjonalitet",
+        "national_id": "Nasjonal ID",
+        "birth": "Fødselsdato",
+        "arrival": "Ankomst",
+        "incident": "Hendelse",
+        "cause": "Årsak",
+        "criticality": "Kritikalitet",
+        "movability": "Flyttbarhet",
+        "departure": "Avreise",
+        "expected_departure": "Forventet avreise",
+        "departure_status": "Avreisestatus",
+        "departure_destination": "Avreisedestinasjon",
+
+
+
+        "title_overview": "HVHLO | Oversikt",
 
         "filter": "Filtrer pasienter",
         "filter_is_present": "Er tilstede",
@@ -10,27 +31,82 @@
         "edit_hospital_status": "Rediger sykehus status",
 
         "choose_table_categories": "Velg viste tabell-kategorier",
-        "header_choices_first_name": "Fornavn",
-        "header_choices_last_name": "Etternavn",
-        "header_choices_nationality": "Nasjonalitet",
-        "header_choices_national_id": "Nasjonal ID",
-        "header_choices_birth": "Fødselsdato",
-        "header_choices_arrival": "Ankomst",
-        "header_choices_incident": "Hendelse",
-        "header_choices_cause": "Årsak",
-        "header_choices_criticality": "Kritikalitet",
-        "header_choices_movability": "Flyttbarhet",
-        "header_choices_departure": "Avreise",
-        "header_choices_expected_departure": "Forventet avreise",
-        "header_choices_departure_status": "Avreisestatus",
-        "header_choices_departure_destination": "Avreisedestinasjon",
-
+        
         "create_new": "Opprett ny",
 
-        "is_filtered_note": "*Tabellinformasjonen er filtrert."
+        "is_filtered_note": "*Tabellinformasjonen er filtrert.",
+
+
+
+        "title_detail": "HVHLO | Rediger",
+
+        "leave_confirmation": "Er du sikker på at du vil forlate uten å lagre?",
+        "confirm_discard_changes": "Ja, forkast endringer",
+        "confirm_save_changes": "Nei, lagre og gå tilbake",
+        "confirm_cancel": "Avbryt",
+
+        "leave_dont_save": "Tilbake uten å lagre",
+        "leave_save": "Lagre og gå tilbake",
+
+        "unknown_name": "Ukjent",
+
+        "ai_swap": "KI har funnet <b>%[new]</b> som <b>%[field]</b> i opplastet bilde, vil du bytte ut <b>%[old]</b> med dette?",
+        "ai_add": "KI har funnet <b>%[new]</b> som <b>%[field]</b> i opplastet bilde, vil du legge dette til i tabellen?",
+
+        "unsaved_data_note": "*Tabellen har ulagret informasjon.",
+
+        "take_picture": "Ta bilde",
+        "comment": "Kommenter",
+        "comment_max_char_note": "*Kommentaren kan ikke overstige 500 karakterer",
+        
+        "now": "Nå",
+
+        "nationality_nor": "Norge",
+        "nationality_eng": "England",
+        "national_id_jurnal_nr": "Nasjonal ID og Journal nr",
+        "cause_sicknes": "Sykdom",
+        "cause_injury": "Skade",
+        "criticality_unclear": "Uavklart",
+        "criticality_critical": "Kritisk",
+        "criticality_stable": "Stabil",
+        "movability_walk": "Kan gå",
+        "movability_stretcher": "Båre",
+        "movability_intravenously": "Intravenøst",
+        "departure_status_dead": "Død",
+        "departure_status_disability": "Utskrevet med permanent funksjonshemming",
+        "departure_status_evacuation": "Medisinsk evakuering",
+        "departure_status_repatriation": "Medisinsk repatriering",
+        "departure_status_civil_life": "Returnert til sivilt liv",
+        "departure_status_modified_duty": "Returnert til tjeneste (modifisert tjeneste)",
+        "departure_status_rtd": "Returnert til tjeneste (RTD)",
+        "departure_status_rtu": "Returnert til korps (RTU)",
+        "departure_status_stratevac": "Strategisk evakuering (stratevac)"
     },
+
+
     "EN": {
         "loggout": "Log out",
+        "yes": "Ja",
+        "no": "Nei",
+
+        "first_name": "First name",
+        "last_name": "Last name",
+        "nationality": "Nationality",
+        "national_id": "National ID",
+        "birth": "Birth",
+        "arrival": "Arrival",
+        "incident": "Incident",
+        "cause": "Cause",
+        "criticality": "Criticality",
+        "movability": "Movability",
+        "departure": "Departure",
+        "expected_departure": "Expected departure",
+        "departure_status": "Departure status",
+        "departure_destination": "Departure destination",
+
+
+
+        "title_overview": "HVHLO | Overview",
 
         "filter": "Filter patients",
         "filter_is_present": "Is present",
@@ -40,23 +116,55 @@
         "edit_hospital_status": "Edit hospital status",
 
         "choose_table_categories": "Choose shown table categories",
-        "header_choices_first_name": "First name",
-        "header_choices_last_name": "Last name",
-        "header_choices_nationality": "Nationality",
-        "header_choices_national_id": "National ID",
-        "header_choices_birth": "Birth",
-        "header_choices_arrival": "Arrival",
-        "header_choices_incident": "Incident",
-        "header_choices_cause": "Cause",
-        "header_choices_criticality": "Criticality",
-        "header_choices_movability": "Movability",
-        "header_choices_departure": "Departure",
-        "header_choices_expected_departure": "Expected departure",
-        "header_choices_departure_status": "Departure status",
-        "header_choices_departure_destination": "Departure destination",
 
         "create_new": "Create new",
 
-        "is_filtered_note": "*Table information is filtered."
+        "is_filtered_note": "*Table information is filtered.",
+
+
+
+        "title_detail": "HVHLO | Edit",
+
+        "leave_confirmation": "Are you sure you want to leave without saving?",
+        "confirm_discard_changes": "Yes, discard changes",
+        "confirm_save_changes": "No, save and go leave",
+        "confirm_cancel": "Cancel",
+
+        "leave_dont_save": "Leave without saving",
+        "leave_save": "Save and leave",
+
+        "unknown_name": "Unknown",
+
+        "ai_swap": "AI has found <b>%[new]</b> as <b>%[field]</b> in uploaded picture, do you want to swap out <b>%[old]</b> with this?",
+        "ai_add": "AI has found <b>%[new]</b> as <b>%[field]</b> in uploaded picture, do you want to add this to the table?",
+
+        "unsaved_data_note": "*The table has unsaved information.",
+
+        "take_picture": "Take picture",
+        "comment": "Comment",
+        "comment_max_char_note": "*The komment cannot exceed 500 characters",
+        
+        "now": "Now",
+
+        "nationality_nor": "Norway",
+        "nationality_eng": "England",
+        "national_id_jurnal_nr": "National ID og Journal nr",
+        "cause_sicknes": "Sickness",
+        "cause_injury": "Injury",
+        "criticality_unclear": "Unclear",
+        "criticality_critical": "Critical",
+        "criticality_stable": "Stable",
+        "movability_walk": "Can walk",
+        "movability_stretcher": "Stretcher",
+        "movability_intravenously": "Intravenously",
+        "departure_status_dead": "Death",
+        "departure_status_disability": "Discharged with permanent disability",
+        "departure_status_evacuation": "Medical evacuation",
+        "departure_status_repatriation": "Medical repatriation",
+        "departure_status_civil_life": "Returned to civilian life",
+        "departure_status_modified_duty": "Returned to duty (modified duty)",
+        "departure_status_rtd": "Returned to duty (RTD)",
+        "departure_status_rtu": "Returned to unit (RTU)",
+        "departure_status_stratevac": "Strategic evacuation (stratevac)"
     }
 }
