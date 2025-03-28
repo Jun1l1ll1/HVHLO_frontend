@@ -4,6 +4,14 @@
         "yes": "Ja",
         "no": "Nei",
 
+        "leave_confirmation": "Er du sikker på at du vil forlate uten å lagre?",
+        "confirm_discard_changes": "Ja, forkast endringer",
+        "confirm_save_changes": "Nei, lagre og gå tilbake",
+        "confirm_cancel": "Avbryt",
+
+        "leave_dont_save": "Tilbake uten å lagre",
+        "leave_save": "Lagre og gå tilbake",
+
         "first_name": "Fornavn",
         "last_name": "Etternavn",
         "nationality": "Nasjonalitet",
@@ -40,20 +48,12 @@
 
         "title_detail": "HVHLO | Rediger",
 
-        "leave_confirmation": "Er du sikker på at du vil forlate uten å lagre?",
-        "confirm_discard_changes": "Ja, forkast endringer",
-        "confirm_save_changes": "Nei, lagre og gå tilbake",
-        "confirm_cancel": "Avbryt",
-
-        "leave_dont_save": "Tilbake uten å lagre",
-        "leave_save": "Lagre og gå tilbake",
-
         "unknown_name": "Ukjent",
 
         "ai_swap": "KI har funnet <b>%[new]</b> som <b>%[field]</b> i opplastet bilde, vil du bytte ut <b>%[old]</b> med dette?",
         "ai_add": "KI har funnet <b>%[new]</b> som <b>%[field]</b> i opplastet bilde, vil du legge dette til i tabellen?",
 
-        "unsaved_data_note": "*Tabellen har ulagret informasjon.",
+        "unsaved_table_data_note": "*Tabellen har ulagret informasjon.",
 
         "take_picture": "Ta bilde",
         "comment": "Kommenter",
@@ -80,14 +80,29 @@
         "departure_status_modified_duty": "Returnert til tjeneste (modifisert tjeneste)",
         "departure_status_rtd": "Returnert til tjeneste (RTD)",
         "departure_status_rtu": "Returnert til korps (RTU)",
-        "departure_status_stratevac": "Strategisk evakuering (stratevac)"
+        "departure_status_stratevac": "Strategisk evakuering (stratevac)",
+
+
+
+        "title_hospital": "HVHLO | Sykehus status",
+
+        "unsaved_page_data_note": "*Siden har ulagret informasjon."
     },
 
+    
 
     "EN": {
         "loggout": "Log out",
-        "yes": "Ja",
-        "no": "Nei",
+        "yes": "Yes",
+        "no": "No",
+
+        "leave_confirmation": "Are you sure you want to leave without saving?",
+        "confirm_discard_changes": "Yes, discard changes",
+        "confirm_save_changes": "No, save and go leave",
+        "confirm_cancel": "Cancel",
+
+        "leave_dont_save": "Leave without saving",
+        "leave_save": "Save and leave",
 
         "first_name": "First name",
         "last_name": "Last name",
@@ -125,20 +140,12 @@
 
         "title_detail": "HVHLO | Edit",
 
-        "leave_confirmation": "Are you sure you want to leave without saving?",
-        "confirm_discard_changes": "Yes, discard changes",
-        "confirm_save_changes": "No, save and go leave",
-        "confirm_cancel": "Cancel",
-
-        "leave_dont_save": "Leave without saving",
-        "leave_save": "Save and leave",
-
         "unknown_name": "Unknown",
 
         "ai_swap": "AI has found <b>%[new]</b> as <b>%[field]</b> in uploaded picture, do you want to swap out <b>%[old]</b> with this?",
         "ai_add": "AI has found <b>%[new]</b> as <b>%[field]</b> in uploaded picture, do you want to add this to the table?",
 
-        "unsaved_data_note": "*The table has unsaved information.",
+        "unsaved_table_data_note": "*The table has unsaved information.",
 
         "take_picture": "Take picture",
         "comment": "Comment",
@@ -165,6 +172,12 @@
         "departure_status_modified_duty": "Returned to duty (modified duty)",
         "departure_status_rtd": "Returned to duty (RTD)",
         "departure_status_rtu": "Returned to unit (RTU)",
-        "departure_status_stratevac": "Strategic evacuation (stratevac)"
+        "departure_status_stratevac": "Strategic evacuation (stratevac)",
+
+
+
+        "title_hospital": "HVHLO | Hospital status",
+
+        "unsaved_page_data_note": "*The page has unsaved information."
     }
 }

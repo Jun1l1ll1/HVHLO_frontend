@@ -3,33 +3,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>HVHLO | Sykehus status</title>
+    <title langid="title_hospital">HVHLO | Sykehus status</title>
 </head>
 <script>
     const QUESTIONS = {
         "Q1": {
-            "question": "Snø-statusen utenfor",
-            "green": "Hvit fin nysnø",
-            "yellow": "Slafsete/møkkete noen steder",
-            "red": "Slafsete/møkkete snø"
+            "NO": {
+                "question": "Snø-statusen utenfor",
+                "green": "Hvit fin nysnø",
+                "yellow": "Slafsete/møkkete noen steder",
+                "red": "Slafsete/møkkete snø"
+            },
+            "EN": {
+                "question": "The snow status outside",
+                "green": "White pretty snow",
+                "yellow": "Dirty snow some places",
+                "red": "Dirty snow"
+            }
         },
         "Q2": {
-            "question": "IKT",
-            "green": "Super",
-            "yellow": "OK",
-            "red": "Kritisk"
+            "NO": {
+                "question": "IKT",
+                "green": "Super",
+                "yellow": "OK",
+                "red": "Kritisk"
+            },
+            "EN": {
+                "question": "IKT",
+                "green": "Super",
+                "yellow": "OK",
+                "red": "Critical"
+            }
         },
         "Q3": {
-            "question": "5-7",
-            "green": "5",
-            "yellow": "6",
-            "red": "7"
+            "NO": {
+                "question": "5-7",
+                "green": "5",
+                "yellow": "6",
+                "red": "7"
+            },
+            "EN": {
+                "question": "5-7",
+                "green": "5",
+                "yellow": "6",
+                "red": "7"
+            }
         },
         "Q4": {
-            "question": "2-4",
-            "green": "2",
-            "yellow": "3",
-            "red": "4"
+            "NO": {
+                "question": "2-4",
+                "green": "2",
+                "yellow": "3",
+                "red": "4"
+            },
+            "EN": {
+                "question": "2-4",
+                "green": "2",
+                "yellow": "3",
+                "red": "4"
+            }
         }
     }
 
@@ -57,11 +89,11 @@
     <div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
         <div id="save_popup_center" class="disappear">
             <div id="save_popup">
-                <h3>Er du sikker på at du vil forlate uten å lagre?</h3>
+                <h3 langid="leave_confirmation">Er du sikker på at du vil forlate uten å lagre?</h3>
                 <div id="save_popup_btns">
-                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn">Ja, forkast endringer</button>
-                    <button type="submit">Nei, lagre og gå tilbake</button>
-                    <button type="button" onclick="hide_save_popup()">Avbryt</button>
+                    <button type="button" onclick="send_back()" id="save_popup_forkast_btn" langid="confirm_discard_changes">Ja, forkast endringer</button>
+                    <button type="submit" langid="confirm_save_changes">Nei, lagre og gå tilbake</button>
+                    <button type="button" onclick="hide_save_popup()" langid="confirm_cancel">Avbryt</button>
                 </div>
             </div>
         </div>
@@ -79,12 +111,12 @@
         <div id="bottom_header">
             <div id="back_btn_cont">
                 <button type="button" onclick="send_back(true)" class="back_btn">
-                    <img src="/img/back_icon.svg" alt="Forlat">
-                    <span id="dont_save_btn_text">Tilbake uten å lagre</span>
+                    <img src="/img/back_icon.svg" alt="Forlat" />
+                    <span id="dont_save_btn_text" langid="leave_dont_save">Tilbake uten å lagre</span>
                 </button>
                 <button type="submit" class="back_btn">
-                    <img src="/img/save_icon.svg" alt="Lagre og forlat">
-                    <span>Lagre og gå tilbake</span>
+                    <img src="/img/save_icon.svg" alt="Lagre og forlat" />
+                    <span langid="leave_save">Lagre og gå tilbake</span>
                 </button>
             </div>
         </div>
@@ -94,7 +126,7 @@
 
                 <div class="center_horizontal">
                     <div>
-                        <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);">*Siden har ulagret informasjon.</p>
+                        <p id="filter_note" class="hide" style="margin-bottom: 0px; color: rgb(0, 139, 182);" langid="unsaved_page_data_note">*Siden har ulagret informasjon.</p>
                     
                         <table id="hospital_table">
                             <tbody id="hospital_tbody">

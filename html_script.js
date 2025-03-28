@@ -7,12 +7,15 @@ async function setTexts(lang) { // lang = "NO" or "EN"
         .then(data => {
             for (let id in data[lang]) {
                 try {
-                    document.querySelector("[langid='"+id+"']").innerHTML = data[lang][id];
+                    let matches = document.querySelectorAll("[langid='"+id+"']")
+                    matches.forEach(e => { // Add translation to all matching elements
+                        e.innerHTML = data[lang][id];
+                    })
                 } catch {
-                    console.warn(id, data[lang][id])
+                    console.warn(id, data[lang][id]) /// For debugging
                 }
             }
-        }) // Work with JSON data
+        })
         .catch(error => console.error("Error fetching translations:", error));
     
      
@@ -220,6 +223,9 @@ function getPersonData() {
 }
 
 function getHospitalData() {
+    let lang = language;
+    setTexts(lang);
+
     change_hospital_name(HOSPITAL_NAME);
 
     const hexagon_sideID_queue = ["hexagon_top_middle", "hexagon_top_right", "hexagon_bottom_right", "hexagon_bottom_middle", "hexagon_bottom_left", "hexagon_top_left"]
@@ -231,7 +237,7 @@ function getHospitalData() {
     for (let key in QUESTIONS) {
         tbody.innerHTML += `
             <tr>
-                <th>${QUESTIONS[key]["question"]}</th>
+                <th>${QUESTIONS[key][lang]["question"]}</th>
                 <td class="hospital_radio_cont">
                     <label>
                         <input onclick="input_changed('hospital', this)" class="hospital_question_radio" type="radio" id="${key}_radio_green" name="${key}" value="green" ${DATA[key] == "green" ? "checked" : ""} />
@@ -251,7 +257,7 @@ function getHospitalData() {
                     </label>
                 </td>
                 <td class="hospital_radio_desc_cont">
-                    <p id="${key}_description">${QUESTIONS[key][DATA[key]]}</p>
+                    <p id="${key}_description">${QUESTIONS[key][lang][DATA[key]]}</p>
                 </td>
             </tr>
         `;
@@ -308,8 +314,9 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
 
     // Update question description and hexagon colors
     if (e.className == "hospital_question_radio") {
+        let lang = language;
         document.getElementById("hexagon_" + e.name).style.fill = "var(--"+e.value+"_color)";
-        document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][e.value];
+        document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][lang][e.value];
     }
 
     // Update new_data
