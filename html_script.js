@@ -1,4 +1,4 @@
-let language = "NO";  //TODO get this from cookie inside the functions that use it
+let language = "EN";  //TODO get this from cookie inside the functions that use it
 
 async function changeLanguage(lang) { // lang = "NO" or "EN"
     //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
@@ -271,6 +271,8 @@ function getHospitalData() {
 }
 
 function getPictureData() {
+    changeLanguage(language);
+
     change_hospital_name(HOSPITAL_NAME);
 
     const query_string = window.location.search;

@@ -11,6 +11,10 @@
 
         "leave_dont_save": "Tilbake uten å lagre",
         "leave_save": "Lagre og gå tilbake",
+        
+        "unknown_name": "Ukjent",
+        
+        "take_picture": "Ta bilde",
 
         "first_name": "Fornavn",
         "last_name": "Etternavn",
@@ -57,14 +61,11 @@
 
         "title_detail": "HVHLO | Rediger",
 
-        "unknown_name": "Ukjent",
-
         "ai_swap": "KI har funnet <b>%[new]</b> som <b>%[field]</b> i opplastet bilde, vil du bytte ut <b>%[old]</b> med dette?",
         "ai_add": "KI har funnet <b>%[new]</b> som <b>%[field]</b> i opplastet bilde, vil du legge dette til i tabellen?",
 
         "unsaved_table_data_note": "*Tabellen har ulagret informasjon.",
 
-        "take_picture": "Ta bilde",
         "comment": "Kommenter",
         "comment_max_char_note": "*Kommentaren kan ikke overstige 500 karakterer",
         
@@ -95,7 +96,22 @@
 
         "title_hospital": "HVHLO | Sykehus status",
 
-        "unsaved_page_data_note": "*Siden har ulagret informasjon."
+        "unsaved_page_data_note": "*Siden har ulagret informasjon.",
+
+
+
+        "title_picture": "HVHLO | Bilde",
+
+        "picture_leave_confirmation": "Er du sikker på at du vil forlate uten å laste opp bildet?",
+        "picture_confirm_discard_changes": "Ja, forkast bildet",
+        "picture_confirm_save_changes": "Nei, last opp og gå tilbake",
+
+        "back": "Tilbake",
+
+        "upload": "Last opp",
+        "from_gallery": "Bilde fra galleri",
+
+        "comments": "Kommentar"
     },
 
 
@@ -196,6 +212,21 @@
 
         "title_hospital": "HVHLO | Hospital status",
 
-        "unsaved_page_data_note": "*The page has unsaved information."
+        "unsaved_page_data_note": "*The page has unsaved information.",
+        
+
+
+        "title_picture": "HVHLO | Picture",
+
+        "picture_leave_confirmation": "Are you sure you want to leave without uploading the picture?",
+        "picture_confirm_discard_changes": "Yes, discard the picture",
+        "picture_confirm_save_changes": "No, upload the picture og leave",
+
+        "back": "Back",
+
+        "upload": "Upload",
+        "from_gallery": "Picture from gallery",
+
+        "comments": "Comment"
     }
 }
