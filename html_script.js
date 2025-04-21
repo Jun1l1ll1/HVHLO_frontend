@@ -1,6 +1,5 @@
 
 async function changeLanguage(lang) { // lang = "NO" or "EN"
-    //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
     await fetch("translations.json")
         .then(response => response.json()) // Parse JSON
         .then(data => {
@@ -16,6 +15,8 @@ async function changeLanguage(lang) { // lang = "NO" or "EN"
             }
         })
         .catch(error => console.error("Error fetching translations:", error));
+    
+    //TODO? Use siganls to update multiselectDropdown instead of "MultiselectDropdown(window.MultiselectDropdownOptions);"
 }
 
 async function getTableData() {
@@ -510,10 +511,10 @@ async function update_table_and_header(table_headers=[],filtered_data=[]) {
 
 
 function toggleLangDropdown() {
-    let lang_radios = document.getElementsByClassName("lang_radio_label");
+    let lang_labels = document.getElementsByClassName("lang_radio_label");
 
-    for (let lang_radio of lang_radios) {
-        lang_radio.classList.toggle("fold_in");
+    for (let lang_label of lang_labels) {
+        lang_label.classList.toggle("fold_in");
     }
 }
 

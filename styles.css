@@ -134,41 +134,66 @@ button:active {
 
 #lang_cont {
     margin-left: 20px;
-
     position: relative;
+
     display: flex;
     align-items: center;
-    gap: 7px;
 }
 #lang_selector {
     background-color: rgba(0,0,0,0);
+    position: absolute;
+    z-index: 10;
 
     > img {
         height: 30px;
     }
 }
-.lang_radio_label {
-    /*TODO add animation (use transition?) */
-    --border_width: 3px;
+#lang_dropdown_cont {
+    --highlight_width: 3px;
 
-    > img {
-        height: 2rem;
-        border: var(--border_width) solid rgba(0,0,0,0);
-    }
+    position: relative;
 
-    &:has(+ input[type=radio]:checked) {
+    height: calc(2rem + 2*var(--highlight_width));
+    
+    margin-left: 14px;
+    display: flex;
+    gap: 7px;
+
+    .lang_radio_label {
+        position: absolute;
+        transition: 1s;
+    
         > img {
-            border: var(--border_width) solid var(--primary_color);
+            height: 2rem;
+            border: var(--highlight_width) solid rgba(0,0,0,0);
+        }
+    
+        &:has(+ input[type=radio]:checked) {
+            > img {
+                border: var(--highlight_width) solid var(--primary_color);
+            }
         }
     }
+    input[name=lang_radio] {
+        display: none;
+    }
 }
-input[name=lang_radio] {
-    display: none;
+
+#lang_dropdown_item_1 {
+    transform: translateX(100%);
+    &.fold_in {
+        transform: translateX(0);
+        opacity: 0;
+    }
 }
-.fold_in {
-    position: absolute;
-    display: none;
+#lang_dropdown_item_2 {
+    transform: translateX(200%) translateX(10px);
+    &.fold_in {
+        transform: translateX(0);
+        opacity: 0;
+    }
 }
+/*TODO Add #lang_dropdown_item_[nr] as languages increase */
 
 
 #bottom_header {

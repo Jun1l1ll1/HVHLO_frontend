@@ -101,11 +101,12 @@
                     <div id="lang_cont">
                         <button onclick="toggleLangDropdown()" id="lang_selector"><img src="/img/language_icon.svg" alt="Change language"></button>
 
-                        <label class="lang_radio_label fold_in" for="lang_NO"><img src="/img/flag_NO.png" alt="Norsk"></label>
-                        <input onchange="setLang('NO')" type="radio" value="NO" name="lang_radio" id="lang_NO" checked>
-                        <label class="lang_radio_label fold_in" for="lang_EN"><img src="/img/flag_NO.png" alt="English"></label>
-                        <input onchange="setLang('EN')" type="radio" value="EN" name="lang_radio" id="lang_EN">
-                        <!--TODO-->
+                        <div id="lang_dropdown_cont">
+                            <label id="lang_dropdown_item_1" class="lang_radio_label fold_in" for="lang_NO"><img src="/img/flag_NO.png" alt="Norsk"></label>
+                            <input onchange="setLang('NO')" type="radio" value="NO" name="lang_radio" id="lang_NO" checked>
+                            <label id="lang_dropdown_item_2" class="lang_radio_label fold_in" for="lang_EN"><img src="/img/flag_EN.svg" alt="English"></label>
+                            <input onchange="setLang('EN')" type="radio" value="EN" name="lang_radio" id="lang_EN">
+                        </div>
                     </div>
                 </div>
                 <div>
