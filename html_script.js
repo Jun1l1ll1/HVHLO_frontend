@@ -1,4 +1,3 @@
-let language = "EN";  //TODO get this from cookie inside the functions that use it
 
 async function changeLanguage(lang) { // lang = "NO" or "EN"
     //TODO Save preffrences in cookie (if none is selected, dont save as cookie, but stil use NO)
@@ -20,7 +19,9 @@ async function changeLanguage(lang) { // lang = "NO" or "EN"
 }
 
 async function getTableData() {
-    await changeLanguage(language);
+    let lang = getLang();
+    await changeLanguage(lang);
+    updateLangRadios(lang)
     // Running function from multiselect-dropdown script, this gives the multiselect it's functions.
     // This needs to run after translations are done, and not before.
     MultiselectDropdown(window.MultiselectDropdownOptions);
@@ -95,7 +96,7 @@ async function getTableData() {
 }
 
 function getPersonData() {
-    changeLanguage(language);
+    changeLanguage(getLang());
 
     function create_table(
         f_name="",
@@ -222,7 +223,7 @@ function getPersonData() {
 }
 
 function getHospitalData() {
-    let lang = language;
+    let lang = getLang();
     changeLanguage(lang);
 
     change_hospital_name(HOSPITAL_NAME);
@@ -271,7 +272,7 @@ function getHospitalData() {
 }
 
 function getPictureData() {
-    changeLanguage(language);
+    changeLanguage(getLang());
 
     change_hospital_name(HOSPITAL_NAME);
 
@@ -290,6 +291,24 @@ function getPictureData() {
         document.getElementById("picture_from").innerHTML += `<input style="display: none;" type="text" name="id" id="id_input_autofill" value="${parameters.get('id')}"/>`;
     }
 }
+
+
+function getLang() {
+    let lang = getCookie("language");
+    return lang != "" ? lang : "NO"; // If no language saved, use NO
+}
+
+function setLang(lang) {
+    changeLanguage(lang);
+    toggleLangDropdown()
+    //? MultiSelect if you click on page, but not otherwise? FIX????
+    document.cookie = "language="+lang; // Save as cookie
+}
+function updateLangRadios(lang) {
+    document.getElementById("lang_"+lang).checked = true;
+}
+
+
 
 
 function input_changed(page, e) { //TODO? save current editing in cookie/page-storage
@@ -315,7 +334,7 @@ function input_changed(page, e) { //TODO? save current editing in cookie/page-st
 
     // Update question description and hexagon colors
     if (e.className == "hospital_question_radio") {
-        let lang = language;
+        let lang = getLang();
         document.getElementById("hexagon_" + e.name).style.fill = "var(--"+e.value+"_color)";
         document.getElementById(e.name + "_description").innerText = QUESTIONS[e.name][lang][e.value];
     }
@@ -424,7 +443,7 @@ function update_table_filter(is_present, all, has_left) {
 
 async function update_table_and_header(table_headers=[],filtered_data=[]) { 
     let h
-    let lang = language;
+    let lang = getLang();
     await fetch("translations.json")
         .then(response => response.json()) // Parse JSON
         .then(data => {
@@ -480,14 +499,7 @@ async function update_table_and_header(table_headers=[],filtered_data=[]) {
     }
 
     // Show currently sorted after
-    let cookie_list = document.cookie.split("; ");
-    let sort_cookie = "";
-    for (this_cookie of cookie_list) {
-        if (this_cookie.split("=")[0] == "sort") {
-            sort_cookie = this_cookie.split("=")[1];
-        } 
-    }
-
+    let sort_cookie = getCookie("sort");
     try {
         sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
     } catch (error) {
@@ -496,6 +508,14 @@ async function update_table_and_header(table_headers=[],filtered_data=[]) {
 
 }
 
+
+function toggleLangDropdown() {
+    let lang_radios = document.getElementsByClassName("lang_radio_label");
+
+    for (let lang_radio of lang_radios) {
+        lang_radio.classList.toggle("fold_in");
+    }
+}
 
 function make_new() {
     window.location.href = "/detail.html";
@@ -672,6 +692,18 @@ function no_enter_submit(event) {
     }
 }
 
+
+
+function getCookie(name) {
+    let cookie_list = document.cookie.split("; ");
+    let chosen_cookie = "";
+    for (this_cookie of cookie_list) {
+        if (this_cookie.split("=")[0] == name) {
+            chosen_cookie = this_cookie.split("=")[1];
+        } 
+    }
+    return chosen_cookie
+}
 
 function object_equals(obj1, obj2) {
     if (Object.keys(obj1).length != Object.keys(obj2).length) {

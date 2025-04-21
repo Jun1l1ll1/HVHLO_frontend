@@ -96,7 +96,18 @@
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
                 <!--TODO Add lang select, with flag -->
-                <h1>HVHLO</h1> <!--TODO? add logo -->
+                <div class="align_items_horizontal">
+                    <h1>HVHLO</h1> <!--TODO? add logo -->
+                    <div id="lang_cont">
+                        <button onclick="toggleLangDropdown()" id="lang_selector"><img src="/img/language_icon.svg" alt="Change language"></button>
+
+                        <label class="lang_radio_label fold_in" for="lang_NO"><img src="/img/flag_NO.png" alt="Norsk"></label>
+                        <input onchange="setLang('NO')" type="radio" value="NO" name="lang_radio" id="lang_NO" checked>
+                        <label class="lang_radio_label fold_in" for="lang_EN"><img src="/img/flag_NO.png" alt="English"></label>
+                        <input onchange="setLang('EN')" type="radio" value="EN" name="lang_radio" id="lang_EN">
+                        <!--TODO-->
+                    </div>
+                </div>
                 <div>
                     <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
                     <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> <span langid="loggout">Logg ut</span></a>
@@ -122,7 +133,7 @@
                     </div>
                 </div>
     
-                <div id="hospital_stat_cont" style="display: flex;"> <!-- Change display to being flex or none (or no defined display and display: none;) -->
+                <div class="align_items_horizontal" style="display: flex;"> <!-- Change display to being flex or none (or no defined display and display: none;) -->
                     <a href="./hospital.html" class="btn" id="edit_hospital_status" langid="edit_hospital_status">Rediger sykehus status</a>
                     <a href="./hospital.html">
                         <svg id="hexagon" width="60px" stroke="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="610,122.5,700,700">

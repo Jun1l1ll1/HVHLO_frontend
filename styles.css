@@ -85,6 +85,11 @@ button:active {
     align-items: center;
 }
 
+.align_items_horizontal {
+    display: flex;
+    align-items: center;
+}
+
 
 
 /** HEADERS */
@@ -124,6 +129,45 @@ button:active {
 }
 #logout_link img {
     margin-right: 5px;
+}
+
+
+#lang_cont {
+    margin-left: 20px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+#lang_selector {
+    background-color: rgba(0,0,0,0);
+
+    > img {
+        height: 30px;
+    }
+}
+.lang_radio_label {
+    /*TODO add animation (use transition?) */
+    --border_width: 3px;
+
+    > img {
+        height: 2rem;
+        border: var(--border_width) solid rgba(0,0,0,0);
+    }
+
+    &:has(+ input[type=radio]:checked) {
+        > img {
+            border: var(--border_width) solid var(--primary_color);
+        }
+    }
+}
+input[name=lang_radio] {
+    display: none;
+}
+.fold_in {
+    position: absolute;
+    display: none;
 }
 
 
@@ -182,10 +226,10 @@ button:active {
     }
 }
 
-#hospital_stat_cont {
+/* #hospital_stat_cont {  - Unused, changed to .align_items_horizontal
     display: flex;
     align-items: center;
-}
+} */
 
 #edit_hospital_status {
     font-size: larger;
