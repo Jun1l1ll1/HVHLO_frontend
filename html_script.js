@@ -16,16 +16,14 @@ async function changeLanguage(lang) { // lang = "NO" or "EN"
         })
         .catch(error => console.error("Error fetching translations:", error));
     
-    //TODO? Use siganls to update multiselectDropdown instead of "MultiselectDropdown(window.MultiselectDropdownOptions);"
+    // Update all multiselect dropdowns
+    for (let multiselect of document.getElementsByClassName("multiselect-dropdown")) multiselect.refresh();
 }
 
 async function getTableData() {
     let lang = getLang();
-    await changeLanguage(lang);
+    changeLanguage(lang);
     updateLangRadios(lang)
-    // Running function from multiselect-dropdown script, this gives the multiselect it's functions.
-    // This needs to run after translations are done, and not before.
-    MultiselectDropdown(window.MultiselectDropdownOptions);
     
     try {
         // Set hexagon colors
@@ -443,36 +441,27 @@ function update_table_filter(is_present, all, has_left) {
 }
 
 async function update_table_and_header(table_headers=[],filtered_data=[]) { 
-    let h
-    let lang = getLang();
-    await fetch("translations.json")
-        .then(response => response.json()) // Parse JSON
-        .then(data => {
-            h = {
-                first_name: data[lang]["first_name"],
-                last_name: data[lang]["last_name"],
-                birth: data[lang]["birth"],
-                incident: data[lang]["incident"],
-                cause: data[lang]["cause"],
-                criticality: data[lang]["criticality"],
-                movability: data[lang]["movability"],
-                arrival: data[lang]["arrival"],
-                expected_departure: data[lang]["expected_departure"],
-                departure: data[lang]["departure"],
-                departure_status: data[lang]["departure_status"],
-                departure_destination: data[lang]["departure_destination"],
-                nationality: data[lang]["nationality"],
-                national_id: data[lang]["national_id"]
-            }
-        }) // Work with JSON data
-        .catch(error => console.error("Error fetching translations:", error));
-    
-
+    let h = {
+        first_name: "Fornavn",
+        last_name: "Etternavn",
+        birth: "Nasjonalitet",
+        incident: "Nasjonal ID",
+        cause: "Fødselsdato",
+        criticality: "Ankomst",
+        movability: "Hendelse",
+        arrival: "Årsak",
+        expected_departure: "Kritikalitet",
+        departure: "Flyttbarhet",
+        departure_status: "Avreise",
+        departure_destination: "Forventet avreise",
+        nationality: "Avreisestatus",
+        national_id: "Avreisedestinasjon"
+    }
 
     let table_head = document.getElementById("table_head_row");
     table_head.innerHTML = "";
     for (head of table_headers) {
-        table_head.innerHTML += `<th id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
+        table_head.innerHTML += `<th langid="`+head+`" id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
 
     //TODO? format fields with dates and time better

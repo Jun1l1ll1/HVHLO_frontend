@@ -219,10 +219,9 @@ function MultiselectDropdown(options){
   });
 }
 
-//* This is moved to be manually run in html_script.js (for it to be run after other changes are done)
-// window.addEventListener('load',()=>{
-//   MultiselectDropdown(window.MultiselectDropdownOptions);
-// });
+window.addEventListener('load',()=>{
+  MultiselectDropdown(window.MultiselectDropdownOptions);
+});
 
 
 
