@@ -295,6 +295,11 @@ function getPictureData() {
     }
 }
 
+function accessPageLoaded() {
+    changeLanguage(getLang());
+    change_hospital_name(HOSPITAL_NAME);
+}
+
 
 function getLang() {
     let lang = getCookie("language");

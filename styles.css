@@ -85,6 +85,12 @@ button:active {
     align-items: center;
 }
 
+.center_vertical {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .align_items_horizontal {
     display: flex;
     align-items: center;
@@ -119,7 +125,7 @@ button:active {
     display: flex;
     align-items: center;
 }
-.top_header_link {
+.top_header_link, #logout_link {
     padding: 3px;
     display: flex;
     align-items: center;
@@ -127,13 +133,14 @@ button:active {
     margin-left: auto;
     margin-top: 0px;
     margin-bottom: 15px;
-}
-.top_header_link:active {
-    background-color: var(--cont_color_dark);
-}
-.top_header_link img {
-    margin-right: 5px;
-    height: 24px;
+
+   &:active {
+        background-color: var(--cont_color_dark);
+    }
+    >img {
+        margin-right: 5px;
+        height: 24px;
+    }
 }
 
 
@@ -713,6 +720,15 @@ button:active {
         margin-right: 5px;
     }
 }
+
+
+/* access stuff */
+#access_qr_code {
+    max-width: 90%;
+    max-height: 90%;
+    height: 400px;
+}
+
 
 
 /* Save popup */

@@ -1,0 +1,48 @@
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title langid="title_access">HVHLO | Tilgang</title>
+</head>
+<script>
+
+    //TODO edit this to the real hospital name
+    const HOSPITAL_NAME = "Ingen Mansland Hospital";
+
+</script>
+<script type="text/javascript" src="html_script.js"></script>
+<body onload="accessPageLoaded()">
+<div id="full_page"> <!-- using display: table so body_cont takes up full screen-height -->
+
+    <div id="top_header">
+        <div id="top_header_alignment" class="no_resize_for_padding">
+            <h1>HVHLO</h1> <!--TODO? add logo -->
+            <div>
+                <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                <a id="logout_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut" /> <span langid="loggout">Logg ut</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottom_header">
+        <div id="back_btn_cont">
+            <button type="button" onclick="send_back()" class="back_btn">
+                <img src="/img/back_icon.svg" alt="Forlat" />
+                <span id="dont_save_btn_text" langid="back">Tilbake</span>
+            </button>
+        </div>
+    </div>
+
+    <div style="display: table-row;"> <!-- not on #center_body so display: flex can be used -->
+        <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
+
+            <div class="center_horizontal center_vertical">
+                <img id="access_qr_code" src="/img/qr_code.png" alt="QR kode for tilgang">
+            </div>
+
+        </div></div>
+    </div>
+</div>
+</body>
+</html>

@@ -114,7 +114,11 @@
         "upload": "Last opp",
         "from_gallery": "Bilde fra galleri",
 
-        "comments": "Kommentar"
+        "comments": "Kommentar",
+
+
+
+        "title_access": "HVHLO | Tilgang"
     },
 
 
@@ -233,6 +237,10 @@
         "upload": "Upload",
         "from_gallery": "Picture from gallery",
 
-        "comments": "Comment"
+        "comments": "Comment",
+
+
+
+        "title_access": "HVHLO | Access"
     }
 }
