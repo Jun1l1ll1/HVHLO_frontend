@@ -10,6 +10,7 @@
         {
             id: 0,
             admitted_hospital: "",
+            local_id: "",
             first_name: "Ingen",
             last_name: "Nokesteds",
             birth: "",
@@ -25,10 +26,12 @@
             nationality: "",
             national_id: "",
             comment: "<b>Er</b> fantastisk's!",
+            num_hint: 1,
         },
         {
             id: 1,
             admitted_hospital: "",
+            local_id: "",
             first_name: "Meg",
             last_name: "Ergud",
             birth: "",
@@ -44,10 +47,12 @@
             nationality: "",
             national_id: "",
             comment: "",
+            num_hint: 100,
         },
         {
             id: 2,
             admitted_hospital: "",
+            local_id: "",
             first_name: "Deg",
             last_name: "Hakkepei Ling",
             birth: "",
@@ -63,6 +68,7 @@
             nationality: "",
             national_id: "",
             comment: "",
+            num_hint: 0,
         }
     ];
 
@@ -159,6 +165,7 @@
                         <p style="margin: 0px; font-size: larger;" langid="choose_table_categories">Velg viste tabell-kategorier</p>
                         
                         <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
+                            <option value="local_id" langid="local_id" selected>Lokal ID</option>
                             <option value="first_name" langid="first_name" selected>Fornavn</option>
                             <option value="last_name"langid="last_name" selected>Etternavn</option>
                             <option value="nationality" langid="nationality" >Nasjonalitet</option>
@@ -173,6 +180,7 @@
                             <option value="expected_departure" langid="expected_departure" >Forventet avreise</option>
                             <option value="departure_status" langid="departure_status" >Avreisestatus</option>
                             <option value="departure_destination" langid="departure_destination" >Avreisedestinasjon</option>
+                            <option value="comment" langid="comment" >Kommentar</option>
                         </select>
                     </div>
                     <button onclick="make_new()" id="make_new_btn" langid="create_new">Opprett ny</button>

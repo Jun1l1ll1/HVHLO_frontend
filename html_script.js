@@ -1,5 +1,5 @@
 
-async function changeLanguage(lang) { // lang = "NO" or "EN"
+async function changeLanguage(lang) { // lang = "NO", "EN", osv.
     await fetch("translations.json")
         .then(response => response.json()) // Parse JSON
         .then(data => {
@@ -22,7 +22,7 @@ async function changeLanguage(lang) { // lang = "NO" or "EN"
 
 async function getTableData() {
     let lang = getLang();
-    changeLanguage(lang);
+    let changed_lang = changeLanguage(lang);
     updateLangRadios(lang)
     
     try {
@@ -90,6 +90,7 @@ async function getTableData() {
     let filtered_data;
     filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
     
+    await changed_lang;
     update_table_and_header(headers, filtered_data);
 
 }
@@ -297,11 +298,17 @@ function getLang() {
     return lang != "" ? lang : "NO"; // If no language saved, use NO
 }
 
-function setLang(lang) {
-    changeLanguage(lang);
+async function setLang(lang) {
+    let changed_lang = changeLanguage(lang);
     toggleLangDropdown()
-    //? MultiSelect if you click on page, but not otherwise? FIX????
     document.cookie = "language="+lang; // Save as cookie
+
+    // Show whats currently sorted after
+    await changed_lang; // Wait for translation to be done
+    let sort_cookie = getCookie("sort");
+    try {
+        sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : "";
+    } catch (error) { }
 }
 function updateLangRadios(lang) {
     document.getElementById("lang_"+lang).checked = true;
@@ -410,7 +417,6 @@ function header_choice_changed() {
     document.cookie = "table_header="+headers; // Save as cookie
 
     update_table_and_header(headers, filtered_data);
-
 }
 
 
@@ -440,8 +446,9 @@ function update_table_filter(is_present, all, has_left) {
     return filtered_data;
 }
 
-async function update_table_and_header(table_headers=[],filtered_data=[]) { 
+async function update_table_and_header(table_headers=[], filtered_data=[], change_lang=true) { 
     let h = {
+        local_id: "Lokal ID",
         first_name: "Fornavn",
         last_name: "Etternavn",
         birth: "Nasjonalitet",
@@ -455,11 +462,45 @@ async function update_table_and_header(table_headers=[],filtered_data=[]) {
         departure_status: "Avreise",
         departure_destination: "Forventet avreise",
         nationality: "Avreisestatus",
-        national_id: "Avreisedestinasjon"
+        national_id: "Avreisedestinasjon",
+        comment: "Kommentar"
+    }
+
+    if (change_lang) {
+        await fetch("translations.json")
+            .then(response => response.json()) // Parse JSON
+            .then(data => {
+                try {
+                    let lang_data = data[getLang()];
+                    h = {
+                        local_id: lang_data["local_id"],
+                        first_name: lang_data["first_name"],
+                        last_name: lang_data["last_name"],
+                        birth: lang_data["birth"],
+                        incident: lang_data["incident"],
+                        cause: lang_data["cause"],
+                        criticality: lang_data["criticality"],
+                        movability: lang_data["movability"],
+                        arrival: lang_data["arrival"],
+                        expected_departure: lang_data["expected_departure"],
+                        departure: lang_data["departure"],
+                        departure_status: lang_data["departure_status"],
+                        departure_destination: lang_data["departure_destination"],
+                        nationality: lang_data["nationality"],
+                        national_id: lang_data["national_id"],
+                        comment: lang_data["comment"]
+                    }
+                } catch { }
+            })
+            .catch(error => console.error("Error fetching translations:", error));
     }
 
     let table_head = document.getElementById("table_head_row");
     table_head.innerHTML = "";
+
+    // Add invisible head for suggestion exists row
+    table_head.innerHTML += `<th class="nothing"> </td>`;
+
     for (head of table_headers) {
         table_head.innerHTML += `<th langid="`+head+`" id="head_`+head+`" onclick="sort_table('`+head+`')">`+h[head]+`</th>`;
     }
@@ -470,6 +511,10 @@ async function update_table_and_header(table_headers=[],filtered_data=[]) {
     for (person of filtered_data) {
         table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
         let row = document.getElementById("person_id_"+person.id);
+
+        // Add suggestion_exists_icon if suggestion exists
+        row.innerHTML += `<td class="suggestion_exists_column">` + (person.num_hint > 0 ? `<img src="/img/suggestion_exists_icon.svg" height="20" alt="Forslag finnes">` : "") + `</td>`;
+
         for (column of table_headers) {
             if (person[column] != "" && (column == "arrival" || column == "expected_departure" || column == "departure")) {
                 let DTG_list = person[column].split(/[-T:]+/); // [yyyy, mm, dd, hour, min]
@@ -493,6 +538,7 @@ async function update_table_and_header(table_headers=[],filtered_data=[]) {
     try {
         sort_cookie != "" ? document.getElementById("head_"+sort_cookie).innerHTML += "<span class='header_sorted_after'> v</span>" : ""; //TODO? add text that informs it is sorted
     } catch (error) {
+        console.log("err");
         //TODO? do something if the category sorted after is not shown
     }
 

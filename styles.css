@@ -505,16 +505,18 @@ button:active {
 }
 
 
-/* Comment stuff in overview */
-.info_table .comment_column, .info_table .picture_column {
+/* Comment and icons stuff in overview */
+.info_table .comment_column, .info_table .picture_column, .info_table .suggestion_exists_column {
     border: none;
     position: relative;
-    width: 30px; /* creates distance to left edge */
+    padding: 0px;
+    width: 1px; /* width same as picture (fit-content did not work) */
 } 
 .comment_column img, .picture_column img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+    margin-left: 10px;
+}
+.suggestion_exists_column img {
+    margin-right: 10px;
 }
 
 #show_comment_full_page {
