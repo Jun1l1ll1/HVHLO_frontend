@@ -194,6 +194,33 @@ function MultiselectDropdown(options){
         if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
       };
       div.refresh();
+
+      div.refreshOpts=()=>{ // Added to change language on the options
+        // Remove all the current options
+        let child_list = [...list.children];
+        for (let c of child_list) {
+          list.removeChild(c);
+        }
+        // Add the options back, now using the newly updated language
+        Array.from(el.options).map(o=>{
+          var op=newEl('div',{class:o.selected?'checked':'',optEl:o})
+          var ic=newEl('input',{type:'checkbox',checked:o.selected});
+          op.appendChild(ic);
+          op.appendChild(newEl('label',{text:o.text}));
+  
+          op.addEventListener('click',()=>{
+            op.classList.toggle('checked');
+            op.querySelector("input").checked=!op.querySelector("input").checked;
+            op.optEl.selected=!!!op.optEl.selected;
+            el.dispatchEvent(new Event('change'));
+          });
+          ic.addEventListener('click',(ev)=>{
+            ic.checked=!ic.checked;
+          });
+          o.listitemEl=op;
+          list.appendChild(op);
+        });
+      };
     }
     el.loadOptions();
     

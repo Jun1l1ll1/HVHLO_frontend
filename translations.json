@@ -4,6 +4,8 @@
         "yes": "Ja",
         "no": "Nei",
 
+        "give_access": "Gi tilgang",
+
         "leave_confirmation": "Er du sikker på at du vil forlate uten å lagre?",
         "confirm_discard_changes": "Ja, forkast endringer",
         "confirm_save_changes": "Nei, lagre og gå tilbake",
@@ -121,6 +123,8 @@
         "loggout": "Log out",
         "yes": "Yes",
         "no": "No",
+
+        "give_access": "Give access",
 
         "leave_confirmation": "Are you sure you want to leave without saving?",
         "confirm_discard_changes": "Yes, discard changes",

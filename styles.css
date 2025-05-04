@@ -115,7 +115,11 @@ button:active {
     margin-bottom: 5px;
 }
 
-#logout_link {
+#access_and_logout_cont {
+    display: flex;
+    align-items: center;
+}
+.top_header_link {
     padding: 3px;
     display: flex;
     align-items: center;
@@ -124,11 +128,12 @@ button:active {
     margin-top: 0px;
     margin-bottom: 15px;
 }
-#logout_link:active {
+.top_header_link:active {
     background-color: var(--cont_color_dark);
 }
-#logout_link img {
+.top_header_link img {
     margin-right: 5px;
+    height: 24px;
 }
 
 

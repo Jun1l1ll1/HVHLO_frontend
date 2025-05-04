@@ -17,7 +17,10 @@ async function changeLanguage(lang) { // lang = "NO", "EN", osv.
         .catch(error => console.error("Error fetching translations:", error));
     
     // Update all multiselect dropdowns
-    for (let multiselect of document.getElementsByClassName("multiselect-dropdown")) multiselect.refresh();
+    for (let multiselect of document.getElementsByClassName("multiselect-dropdown")) {
+        multiselect.refresh(); // Refreshes the text on the selected and shown options
+        multiselect.refreshOpts(); // Refreshes the text on the options to choose (The text in the dropdown)
+    }
 }
 
 async function getTableData() {
