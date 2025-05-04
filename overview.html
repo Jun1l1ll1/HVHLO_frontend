@@ -183,7 +183,14 @@
                             <option value="comment" langid="comment" >Kommentar</option>
                         </select>
                     </div>
-                    <button onclick="make_new()" id="make_new_btn" langid="create_new">Opprett ny</button>
+
+                    <div id="new_patient_cont">
+                        <span id="new_patient_span" langid="create_new">Ny pasient</span>
+                        <div>
+                            <button onclick="make_new(true)" id="new_from_pic_btn" class="make_new_btns"><img src="./img/picture_icon.svg" alt="Ny fra foto" width="30px"></button>
+                            <button onclick="make_new()" id="new_btn" class="make_new_btns"><img src="./img/pencil_icon.svg" alt="Ny pasient" width="30px"></button>
+                        </div>
+                    </div>
                 </div>
 
 

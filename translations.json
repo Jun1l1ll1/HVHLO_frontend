@@ -55,7 +55,7 @@
 
         "choose_table_categories": "Velg viste tabell-kategorier",
         
-        "create_new": "Opprett ny",
+        "create_new": "Ny pasient",
 
         "is_filtered_note": "*Tabellinformasjonen er filtrert.",
 
@@ -148,7 +148,7 @@
         "comment": "Comment",
 
 
-        
+
         "title_index": "HVHLO | Log in",
 
         "login_title": "Log In to HVHLO",
@@ -169,7 +169,7 @@
 
         "choose_table_categories": "Choose shown table categories",
 
-        "create_new": "Create new",
+        "create_new": "New patient",
 
         "is_filtered_note": "*Table information is filtered.",
 

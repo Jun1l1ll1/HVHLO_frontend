@@ -140,7 +140,7 @@ button:active {
     align-items: center;
 }
 #lang_selector {
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     position: absolute;
     z-index: 10;
 
@@ -165,7 +165,7 @@ button:active {
     
         > img {
             height: 2rem;
-            border: var(--highlight_width) solid rgba(0,0,0,0);
+            border: var(--highlight_width) solid transparent;
         }
     
         &:has(+ input[type=radio]:checked) {
@@ -294,7 +294,7 @@ button:active {
     /* justify-content: space-between; <- Place "Lagre og gå tilbake" to the right*/
 }
 .back_btn {
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     display: flex;
     align-items: center;
     margin-right: 7%;
@@ -334,10 +334,37 @@ button:active {
     width: 75%;
 }
 
-#make_new_btn {
-    font-size: large;
-    padding: 5px;
-    height: fit-content;
+#new_patient_cont {
+    width: 10vw;
+    min-width: 100px;
+    
+    >div {
+        display: flex;
+
+        .make_new_btns {
+            padding: 5px;
+            height: fit-content;
+            width: 50%;
+            border: 2px solid transparent;
+
+            &#new_from_pic_btn {
+                border-top-right-radius: 0%;
+                border-bottom-right-radius: 0%;
+                border: 2px solid var(--cont_color_light);
+                background-color: transparent;
+            }
+            &#new_btn {
+                border-top-left-radius: 0%;
+                border-bottom-left-radius: 0%;
+            }
+        }
+    }
+    #new_patient_span {
+        font-size: larger;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 
@@ -391,7 +418,7 @@ button:active {
 
 .info_table input {
     color-scheme: dark;
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     width: 100%;
     height: 30px; /* defined to make input take all height, margin: 0 and height: 100% didnt work */
     padding: 0px;
@@ -406,7 +433,7 @@ button:active {
 }
 
 .info_table select {
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     color: inherit;
     width: 100%;
     height: 30px; /* defined to make select take more height, margin: 0 and height: 100% didnt work */
@@ -590,7 +617,7 @@ button:active {
 }
 
 #details_top_btn {
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -631,7 +658,7 @@ button:active {
 
 /* Picture stuff */
 #take_picture_select {
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     color: inherit;
     height: 30px;
     border: 2px solid var(--cont_color_light);
@@ -743,7 +770,7 @@ button:active {
 }
 
 .login_input {
-    background-color: rgba(0,0,0,0);
+    background-color: transparent;
     border: 2px solid var(--cont_color_light);
     border-radius: 3px;
     color: inherit;

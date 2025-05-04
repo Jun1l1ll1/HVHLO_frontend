@@ -553,8 +553,8 @@ function toggleLangDropdown() {
     }
 }
 
-function make_new() {
-    window.location.href = "/detail.html";
+function make_new(from_pic=false) {
+    window.location.href = "/detail.html"+(from_pic ? "?fromphoto=yes" : "");
 }
 
 function edit(id) {
