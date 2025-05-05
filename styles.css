@@ -119,6 +119,7 @@ button:active {
 
 #hospital_location {
     margin-bottom: 5px;
+    text-align: right;
 }
 
 #access_and_logout_cont {
