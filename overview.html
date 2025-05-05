@@ -114,34 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
-                    <div id="access_and_logout_cont">
-                        <a class="top_header_link" href="/access.html"><img src="./img/qr_code_icon.svg" alt="Tilgang" height="35"/> <span langid="give_access">Gi tilgang</span></a> <!--TODO Change link to the correct one -->
-                        <a class="top_header_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> <span langid="loggout">Logg ut</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div id="bottom_header">
-            <div id="bottom_header_alignment">
-                <!--TODO? Add full screen/display mode -->
-
-                <div id="filter_cont">
-                    <p style="margin: 0px; font-size: larger;" langid="filter">Filtrer pasienter</p> 
-                    <div style="margin-top: 5px;">
-                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
-                        <label for="is_present" langid="filter_is_present">Er tilstede</label>
-                    
-                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="all" name="filter_inputs" value="all" />
-                        <label for="all" langid="filter_show_all">Alle</label>
-                    
-                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="has_left" name="filter_inputs" value="has_left" />
-                        <label for="has_left" langid="filter_has_left">Har dratt</label>
-                    </div>
-                </div>
-    
                 <div class="align_items_horizontal" style="display: flex;"> <!-- Change display to being flex or none (or no defined display and display: none;) -->
                     <a href="./hospital.html" class="btn" id="edit_hospital_status" langid="edit_hospital_status">Rediger sykehus status</a>
                     <a href="./hospital.html">
@@ -157,6 +130,58 @@
                     </a>
                     <p id="hospital_last_edited" style="margin-left: 10px;">DTG 301155</p> <!-- The time it was last edited -->
                 </div>
+                
+                <div>
+                    <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                    <div id="access_and_logout_cont">
+                        <a class="top_header_link" href="/access.html"><img src="./img/qr_code_icon.svg" alt="Tilgang" height="35"/> <span langid="give_access">Gi tilgang</span></a> <!--TODO Change link to the correct one -->
+                        <a class="top_header_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> <span langid="loggout">Logg ut</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom_header">
+            <div id="bottom_header_alignment">
+                <!--TODO? Add full screen/display mode -->
+                <div id="header_choice_cont">
+                    <p style="margin: 0px; font-size: larger;" langid="choose_table_categories">Velg viste tabell-kategorier</p>
+                        
+                    <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
+                        <option value="local_id" langid="local_id" selected>Lokal ID</option>
+                        <option value="first_name" langid="first_name" selected>Fornavn</option>
+                        <option value="last_name"langid="last_name" selected>Etternavn</option>
+                        <option value="nationality" langid="nationality" >Nasjonalitet</option>
+                        <option value="national_id" langid="national_id" >Nasjonal ID</option>
+                        <option value="birth" langid="birth" >Fødselsdato</option>
+                        <option value="arrival" langid="arrival" selected>Ankomst</option>
+                        <option value="incident" langid="incident" >Hendelse</option>
+                        <option value="cause" langid="cause" >Årsak</option>
+                        <option value="criticality" langid="criticality" >Kritikalitet</option>
+                        <option value="movability" langid="movability" >Flyttbarhet</option>
+                        <option value="departure" langid="departure" selected>Avreise</option>
+                        <option value="expected_departure" langid="expected_departure" >Forventet avreise</option>
+                        <option value="departure_status" langid="departure_status" >Avreisestatus</option>
+                        <option value="departure_destination" langid="departure_destination" >Avreisedestinasjon</option>
+                        <option value="comment" langid="comment" >Kommentar</option>
+                    </select>
+                </div>
+                
+                <div id="filter_cont">
+                    <p style="margin: 0px; font-size: larger;" langid="filter">Filtrer pasienter</p> 
+                    <div style="margin-top: 5px;">
+                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
+                        <label for="is_present" langid="filter_is_present">Er tilstede</label>
+                    
+                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="all" name="filter_inputs" value="all" />
+                        <label for="all" langid="filter_show_all">Alle</label>
+                    
+                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="has_left" name="filter_inputs" value="has_left" />
+                        <label for="has_left" langid="filter_has_left">Har dratt</label>
+                    </div>
+                </div>
+    
+
             </div>
         </div>
     
@@ -164,29 +189,7 @@
             <div id="center_body" class="no_resize_for_padding"><div id="body_cont" class="no_resize_for_padding">
                 
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div id="header_choice_cont">
-                        <p style="margin: 0px; font-size: larger;" langid="choose_table_categories">Velg viste tabell-kategorier</p>
-                        
-                        <select id="header_choices" onchange="header_choice_changed()" multiple style="width: 100%;" multiselect-search="true" multiselect-hide-x = "false">
-                            <option value="local_id" langid="local_id" selected>Lokal ID</option>
-                            <option value="first_name" langid="first_name" selected>Fornavn</option>
-                            <option value="last_name"langid="last_name" selected>Etternavn</option>
-                            <option value="nationality" langid="nationality" >Nasjonalitet</option>
-                            <option value="national_id" langid="national_id" >Nasjonal ID</option>
-                            <option value="birth" langid="birth" >Fødselsdato</option>
-                            <option value="arrival" langid="arrival" selected>Ankomst</option>
-                            <option value="incident" langid="incident" >Hendelse</option>
-                            <option value="cause" langid="cause" >Årsak</option>
-                            <option value="criticality" langid="criticality" >Kritikalitet</option>
-                            <option value="movability" langid="movability" >Flyttbarhet</option>
-                            <option value="departure" langid="departure" selected>Avreise</option>
-                            <option value="expected_departure" langid="expected_departure" >Forventet avreise</option>
-                            <option value="departure_status" langid="departure_status" >Avreisestatus</option>
-                            <option value="departure_destination" langid="departure_destination" >Avreisedestinasjon</option>
-                            <option value="comment" langid="comment" >Kommentar</option>
-                        </select>
-                    </div>
-
+                    <div></div>
                     <div id="new_patient_cont">
                         <span id="new_patient_span" langid="create_new">Ny pasient</span>
                         <div>
