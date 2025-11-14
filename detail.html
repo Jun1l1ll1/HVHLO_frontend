@@ -74,6 +74,37 @@
             <img id="picture_big" src="./img/picture_icon.svg" /> <!--onclick="dont_do_parent_event(event)"-->
         </div>
 
+        <div id="departure_status_menu_center" class="disappear" onclick="toggle_departure_status_menu()">
+            <div id="dsm" onclick="dont_do_parent_event(event)">
+                <div class="dsm_row">
+                    <div style="--color: 25, 116, 55;">
+                        <div><img src="/img/duty_category_icon.svg" alt="Hjelmikon"></div>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til tjeneste (RTD)')"><img src="/img/RTD_opt_icon.svg" alt="RTD"></button>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til korps (RTU)')"><img src="/img/RTU_opt_icon.svg" alt="RTU"></button>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til tjeneste (modifisert tjeneste)')"><img src="/img/modified_work_opt_icon.svg" alt="Modifisert tjeneste"></button>
+                    </div>
+                </div>
+                <div class="dsm_row">
+                    <div style="--color: 38, 88, 197;">
+                        <div><img src="/img/civil_category_icon.svg" alt="Hjemikon"></div>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til sivilt liv')"><img src="/img/civil_opt_icon.svg" alt="Sivilt liv"></button>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Medisinsk repatriering')"><img src="/img/civil_hospital_opt_icon.svg" alt="Medisinsk repatriering"></button>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Utskrevet med permanent funksjonshemming')"><img src="/img/permanent_diseability_opt_icon.svg" alt="Permanent funksjonshemming"></button>
+                    </div>
+                </div>
+                <div class="dsm_row">
+                    <div style="--color: 148, 24, 24;">
+                        <div><img src="/img/hospital_category_icon.svg" alt="Sykehusikon"></div>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Medisinsk evakuering')"></button>
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Strategisk evakuering (stratevac)')"></button>
+                    </div>
+                    <div style="--color: 0, 0, 0;">
+                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Død')"><img src="/img/dead_opt_icon.svg" alt="Død"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
                 <div class="align_items_horizontal">
@@ -251,18 +282,21 @@
                         <tr>
                             <th><span langid="departure_status">Avreisestatus</span></th>
                             <td>
-                                <select onchange="input_changed('detail',this)" name="departure_status" id="departure_status">
-                                    <option value=""></option>
-                                    <option value="Død" langid="departure_status_dead">Død</option>
-                                    <option value="Utskrevet med permanent funksjonshemming" langid="departure_status_disability">Utskrevet med permanent funksjonshemming</option>
-                                    <option value="Medisinsk evakuering" langid="departure_status_evacuation">Medisinsk evakuering</option>
-                                    <option value="Medisinsk repatriering" langid="departure_status_repatriation">Medisinsk repatriering</option>
-                                    <option value="Returnert til sivilt liv" langid="departure_status_civil_life">Returnert til sivilt liv</option>
-                                    <option value="Returnert til tjeneste (modifisert tjeneste)" langid="departure_status_modified_duty">Returnert til tjeneste (modifisert tjeneste)</option>
-                                    <option value="Returnert til tjeneste (RTD)" langid="departure_status_rtd">Returnert til tjeneste (RTD)</option>
-                                    <option value="Returnert til korps (RTU)" langid="departure_status_rtu">Returnert til korps (RTU)</option>
-                                    <option value="Strategisk evakuering (stratevac)" langid="departure_status_stratevac">Strategisk evakuering (stratevac)</option>
-                                </select>
+                                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
+                                    <select onchange="input_changed('detail',this)" name="departure_status" id="departure_status">
+                                        <option value=""></option>
+                                        <option value="Død" langid="departure_status_dead">Død</option>
+                                        <option value="Utskrevet med permanent funksjonshemming" langid="departure_status_disability">Utskrevet med permanent funksjonshemming</option>
+                                        <option value="Medisinsk evakuering" langid="departure_status_evacuation">Medisinsk evakuering</option>
+                                        <option value="Medisinsk repatriering" langid="departure_status_repatriation">Medisinsk repatriering</option>
+                                        <option value="Returnert til sivilt liv" langid="departure_status_civil_life">Returnert til sivilt liv</option>
+                                        <option value="Returnert til tjeneste (modifisert tjeneste)" langid="departure_status_modified_duty">Returnert til tjeneste (modifisert tjeneste)</option>
+                                        <option value="Returnert til tjeneste (RTD)" langid="departure_status_rtd">Returnert til tjeneste (RTD)</option>
+                                        <option value="Returnert til korps (RTU)" langid="departure_status_rtu">Returnert til korps (RTU)</option>
+                                        <option value="Strategisk evakuering (stratevac)" langid="departure_status_stratevac">Strategisk evakuering (stratevac)</option>
+                                    </select>
+                                    <button tabindex="-1" id="" type="button" onclick="toggle_departure_status_menu('departure_status')" style="padding-left: 10px; padding-right: 10px;" langid="TODO">Meny</button>
+                                </div>
                             </td>
                         </tr>
                         <tr>

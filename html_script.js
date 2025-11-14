@@ -698,6 +698,24 @@ function set_date_to_now(id) {
     input_changed('detail',document.getElementById(id));
 }
 
+function toggle_departure_status_menu(ds_select_id = "") {
+    let dsm_center = document.getElementById("departure_status_menu_center");
+
+    if (ds_select_id != "") {
+        let dsm = document.getElementById("dsm");
+        dsm.innerHTML = dsm.innerHTML.replaceAll("%SELECT_ID%", ds_select_id);
+    }
+
+    dsm_center.classList.toggle("disappear");
+}
+
+function select_departure_status(select_id, option) {
+    let select = document.getElementById(select_id);
+    select.value = option;
+
+    toggle_departure_status_menu();
+}
+
 function sort_table(category) {
     // Sort DATA
     DATA.sort((a, b) => (a[category] >= b[category] ? 1 : -1));
