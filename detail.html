@@ -74,32 +74,34 @@
             <img id="picture_big" src="./img/picture_icon.svg" /> <!--onclick="dont_do_parent_event(event)"-->
         </div>
 
-        <div id="departure_status_menu_center" class="disappear" onclick="toggle_departure_status_menu()">
+        <!-- Multiple menus can be created, just duplicate code below and change "departure_status_menu_center" to "<select_id>_menu_center" -->
+        <!-- Also change "departure_status" in select_departure_status() and toggle_departure_status_menu() to "<select_id>" -->
+        <div id="departure_status_menu_center" class="disappear" onclick="toggle_departure_status_menu('departure_status')">
             <div id="dsm" onclick="dont_do_parent_event(event)">
                 <div class="dsm_row">
                     <div style="--color: 25, 116, 55;">
                         <div><img src="/img/duty_category_icon.svg" alt="Hjelmikon"></div>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til tjeneste (RTD)')"><img src="/img/RTD_opt_icon.svg" alt="RTD"></button>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til korps (RTU)')"><img src="/img/RTU_opt_icon.svg" alt="RTU"></button>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til tjeneste (modifisert tjeneste)')"><img src="/img/modified_work_opt_icon.svg" alt="Modifisert tjeneste"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Returnert til tjeneste (RTD)')"><img src="/img/RTD_opt_icon.svg" alt="RTD"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Returnert til korps (RTU)')"><img src="/img/RTU_opt_icon.svg" alt="RTU"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Returnert til tjeneste (modifisert tjeneste)')"><img src="/img/modified_work_opt_icon.svg" alt="Modifisert tjeneste"></button>
                     </div>
                 </div>
                 <div class="dsm_row">
                     <div style="--color: 38, 88, 197;">
                         <div><img src="/img/civil_category_icon.svg" alt="Hjemikon"></div>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Returnert til sivilt liv')"><img src="/img/civil_opt_icon.svg" alt="Sivilt liv"></button>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Medisinsk repatriering')"><img src="/img/civil_hospital_opt_icon.svg" alt="Medisinsk repatriering"></button>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Utskrevet med permanent funksjonshemming')"><img src="/img/permanent_diseability_opt_icon.svg" alt="Permanent funksjonshemming"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Returnert til sivilt liv')"><img src="/img/civil_opt_icon.svg" alt="Sivilt liv"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Medisinsk repatriering')"><img src="/img/civil_hospital_opt_icon.svg" alt="Medisinsk repatriering"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Utskrevet med permanent funksjonshemming')"><img src="/img/permanent_diseability_opt_icon.svg" alt="Permanent funksjonshemming"></button>
                     </div>
                 </div>
                 <div class="dsm_row">
                     <div style="--color: 148, 24, 24;">
                         <div><img src="/img/hospital_category_icon.svg" alt="Sykehusikon"></div>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Medisinsk evakuering')"></button>
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Strategisk evakuering (stratevac)')"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Medisinsk evakuering')"><img src="/img/medical_evacuation_opt_icon.svg" alt="Medisinsk evakuering"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Strategisk evakuering (stratevac)')"><img src="/img/stratevac_opt_icon.svg" alt="Stratevac"></button>
                     </div>
                     <div style="--color: 0, 0, 0;">
-                        <button type="button" onclick="select_departure_status('%SELECT_ID%', 'Død')"><img src="/img/dead_opt_icon.svg" alt="Død"></button>
+                        <button type="button" onclick="select_departure_status('departure_status', 'Død')"><img src="/img/dead_opt_icon.svg" alt="Død"></button>
                     </div>
                 </div>
             </div>
