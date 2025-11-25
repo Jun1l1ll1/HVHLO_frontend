@@ -114,7 +114,8 @@ function getPersonData() {
         departure_destination="",
         nationality="",
         national_id="",
-        comment=""
+        comment="",
+        _is_fnr=0
     ) {
         change_hospital_name(HOSPITAL_NAME);
 
@@ -123,7 +124,10 @@ function getPersonData() {
         document.getElementById("first_name").value = f_name;
         document.getElementById("last_name").value = l_name;
         document.getElementById("nationality").value = nationality;
+
         document.getElementById("national_id").value = national_id;
+        if (_is_fnr) document.getElementById("is_fnr_check").classList.remove("disappear");
+        
         document.getElementById("birth").value = birth;
         document.getElementById("incident").value = incident;
         document.getElementById("expected_departure").value = exp_departure;
@@ -197,7 +201,8 @@ function getPersonData() {
             DATA.departure_destination,
             DATA.nationality,
             DATA.national_id,
-            DATA.comment
+            DATA.comment,
+            DATA._is_fnr
         );
 
         // Set the title
@@ -437,7 +442,7 @@ function update_table_filter(search) {
     if (search_for != "") {
         for (person of DATA) {
             for (key of Object.keys(person)) {
-                if (key == "num_hint") continue; // Do not allow search on num_hint
+                if (key[0] == "_") continue; // Skip any keys starting with underscore
                 if (person[key].toString().toLowerCase().includes(search_for)) {
                     filtered_data.push(person);
                     break;

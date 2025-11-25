@@ -28,6 +28,9 @@
         national_id: "",
 
         comment: "",
+
+        _num_hint: 2,
+        _is_fnr: 1,
     }
 
     let new_data = {...DATA};
@@ -221,7 +224,12 @@
                         </tr>
                         <tr>
                             <th><span langid="national_id_jurnal_nr">Nasjonal ID og Journal nr</span></th>
-                            <td><input onchange="input_changed('detail',this)" maxlength="50" type="text" name="national_id" id="national_id"/></td>
+                            <td>
+                                <div style="display: grid; grid-template-columns: auto fit-content(50%);">
+                                    <input onchange="input_changed('detail',this)" maxlength="50" type="text" name="national_id" id="national_id"/>
+                                    <img class="disappear" id="is_fnr_check" src="img/checkmark_icon.svg" alt="Grønn hake">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th><span langid="birth">Fødselsdato</span></th>

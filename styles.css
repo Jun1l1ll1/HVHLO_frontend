@@ -391,6 +391,7 @@ button:active {
 
 
 .info_table {
+    --row_height: 30px; /* defined to make children take full/more height, margin: 0 and height: 100% on children didnt work */
     width: 100%;
 
     border-collapse: separate;
@@ -442,7 +443,7 @@ button:active {
     color-scheme: dark;
     background-color: transparent;
     width: 100%;
-    height: 30px; /* defined to make input take all height, margin: 0 and height: 100% didnt work */
+    height: var(--row_height);
     padding: 0px;
     border: none;
     color: inherit;
@@ -458,12 +459,16 @@ button:active {
     background-color: transparent;
     color: inherit;
     width: 100%;
-    height: 30px; /* defined to make select take more height, margin: 0 and height: 100% didnt work */
+    height: var(--row_height); 
     border: none;
     outline: none;
 }
 .info_table select option {
     background: var(--cont_color_dark);
+}
+
+.info_table #is_fnr_check {
+    height: var(--row_height);
 }
 
 .input_date_empty::-webkit-datetime-edit {
