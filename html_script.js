@@ -45,12 +45,12 @@ async function getTableData() {
 
     // Get header cookies
     let cookie_list = document.cookie.split("; ")
-    let filter_cookie = "all";
+    let search_filter_cookie = "";
     let header_cookie = [];
     let sort_cookie = "";
     for (this_cookie of cookie_list) {
-        if (this_cookie.split("=")[0] == "filter") {
-            filter_cookie = this_cookie.split("=")[1];
+        if (this_cookie.split("=")[0] == "search") {
+            search_filter_cookie = this_cookie.split("=")[1];
         } 
         else if (this_cookie.split("=")[0] == "table_header") {
             header_cookie = [...this_cookie.split("=")[1].split(",")];
@@ -66,9 +66,7 @@ async function getTableData() {
     }
     
     // Set the filters to cookie filters
-    document.getElementById("is_present").checked = (filter_cookie == "is_present");
-    document.getElementById("all").checked = (filter_cookie == "all");
-    document.getElementById("has_left").checked = (filter_cookie == "has_left");
+    document.getElementById("search_filter_inp").value = search_filter_cookie;
 
     // Set the header to cookie headers
     if (header_cookie.length > 0) { // (if there is a cookie)
@@ -91,7 +89,7 @@ async function getTableData() {
     }
 
     let filtered_data;
-    filtered_data = update_table_filter(document.getElementById("is_present").checked, document.getElementById("all").checked, document.getElementById("has_left").checked);
+    filtered_data = update_table_filter(document.getElementById("search_filter_inp").value);
     
     await changed_lang;
     update_table_and_header(headers, filtered_data);
@@ -289,7 +287,6 @@ function getPictureData() {
     document.getElementById("save_popup_forkast_btn").setAttribute("onclick", "send_back(false, '"+back_url+"')");
     document.getElementById("picture_from").action = parameters.get('from');
 
-    console.log(back_url)
     if (parameters.get('id') != null) {
         document.getElementById("picture_from").innerHTML += `<input style="display: none;" type="text" name="id" id="id_input_autofill" value="${parameters.get('id')}"/>`;
     }
@@ -389,31 +386,10 @@ function update_img(event) {
 }
 
 
-function filter_changed() {
-    
-    let is_present = document.getElementById("is_present").checked;
-    let all = document.getElementById("all").checked;
-    let has_left = document.getElementById("has_left").checked;
-
-    document.cookie = "filter="+ (is_present ? "is_present" : has_left ? "has_left" : "all"); // Save as cookie
-
-    let filtered_data = update_table_filter(is_present, all, has_left);
-
-    let headers = [];
-    for (child of document.getElementById("header_choices").children) {
-        if (child.selected) {
-            headers.push(child.value);
-        }
-    }
-    update_table_and_header(headers, filtered_data);
-}
-
 function header_choice_changed() {
-    let is_present = document.getElementById("is_present").checked;
-    let all = document.getElementById("all").checked;
-    let has_left = document.getElementById("has_left").checked;
 
-    let filtered_data = update_table_filter(is_present, all, has_left);
+    let search = document.getElementById("search_filter_inp").value;
+    let filtered_data = update_table_filter(search);
 
     let headers = [];
     for (child of document.getElementById("header_choices").children) {
@@ -427,11 +403,30 @@ function header_choice_changed() {
     update_table_and_header(headers, filtered_data);
 }
 
+function search_filter_changed() {
+    
+    let search = document.getElementById("search_filter_inp").value;
 
-function update_table_filter(is_present, all, has_left) {
+    document.cookie = "search=" + search; // Save as cookie
+
+    let filtered_data = update_table_filter(search);
+
+    let headers = [];
+    for (child of document.getElementById("header_choices").children) {
+        if (child.selected) {
+            headers.push(child.value);
+        }
+    }
+    update_table_and_header(headers, filtered_data);
+}
+
+
+function update_table_filter(search) {
+
+    let search_for = search.trim().toLowerCase();
     
     // Show note ("*Tabellinformasjonene er filtrert")
-    if (is_present || has_left) {
+    if (search_for != "") {
         document.getElementById("filter_note").className = "show";
     } else {
         document.getElementById("filter_note").className = "hide";
@@ -439,12 +434,14 @@ function update_table_filter(is_present, all, has_left) {
 
     // Filter the info
     let filtered_data = [];
-    if (!all) {
+    if (search_for != "") {
         for (person of DATA) {
-            if (is_present && person.departure == "") { // Has not departed
-                filtered_data.push(person);
-            } else if (has_left && person.departure != "") { // Has departed
-                filtered_data.push(person);
+            for (key of Object.keys(person)) {
+                if (key == "num_hint") continue; // Do not allow search on num_hint
+                if (person[key].toString().toLowerCase().includes(search_for)) {
+                    filtered_data.push(person);
+                    break;
+                }
             }
         }
     } else {
@@ -716,11 +713,8 @@ function sort_table(category) {
     document.cookie = "sort="+category; // Save as cookie
 
     // Update table
-    let is_present = document.getElementById("is_present").checked;
-    let all = document.getElementById("all").checked;
-    let has_left = document.getElementById("has_left").checked;
-
-    let filtered_data = update_table_filter(is_present, all, has_left);
+    let search = document.getElementById("search_filter_inp").value;
+    let filtered_data = update_table_filter(search);
 
     let headers = [];
     for (child of document.getElementById("header_choices").children) {

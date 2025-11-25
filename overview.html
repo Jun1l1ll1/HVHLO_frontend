@@ -169,16 +169,7 @@
                 
                 <div id="filter_cont">
                     <p style="margin: 0px; font-size: larger;" langid="filter">Filtrer pasienter</p> 
-                    <div style="margin-top: 5px;">
-                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="is_present" name="filter_inputs" value="is_present" checked />
-                        <label for="is_present" langid="filter_is_present">Er tilstede</label>
-                    
-                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="all" name="filter_inputs" value="all" />
-                        <label for="all" langid="filter_show_all">Alle</label>
-                    
-                        <input onchange="filter_changed()" class="filter_radio" type="radio" id="has_left" name="filter_inputs" value="has_left" />
-                        <label for="has_left" langid="filter_has_left">Har dratt</label>
-                    </div>
+                    <input oninput="search_filter_changed()" type="text" name="search_filter_inp" id="search_filter_inp"/>
                 </div>
     
 

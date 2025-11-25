@@ -235,7 +235,16 @@ button:active {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.filter_radio {
+#search_filter_inp {
+    color-scheme: dark;
+    background-color: var(--cont_color_light);
+    border: none;
+    padding: .25rem;
+    color: inherit;
+    font-size: large;
+    border-radius: 3px;
+}
+/* .filter_radio {
     -webkit-appearance: none;
     appearance: none;
     margin: 0px;
@@ -260,9 +269,9 @@ button:active {
                     .5px -.5px 0px rgb(222, 222, 222),
                     0px -.5px 0px rgb(222, 222, 222),
                     -.5px -.5px 0px rgb(222, 222, 222),
-                    -.5px 0px 0px rgb(222, 222, 222); */
+                    -.5px 0px 0px rgb(222, 222, 222);
     }
-}
+} */
 
 /* #hospital_stat_cont {  - Unused, changed to .align_items_horizontal
     display: flex;
