@@ -6,6 +6,12 @@
     <title langid="title_overview">HVHLO | Oversikt</title>
 </head>
 <script>
+
+    const STEDVALG = [{"sted": "Oslo sykehus"},{"sted": "Grottenveien sykehjem"},{"sted": "Sjølyst sykeleir"}];
+    // Oppgave: Dersom det er TO ELLER FLERE valg i denne listen, så ønskes det at man kan velge sted ved å trykke på (eller ved) sykehus-navnet (som er øverst til høyre), kun fra "overview"-siden.
+    //          Valget kan gjerne være litt "tydelig", så kanskje det skal komme opp som valg midt på siden, og med mulighet for å velge ett av stedene og så OK. Eller Avbryt for å ikke bytte sted.
+    //          Dersom man velger å bytte sted, så gjøres det ved at man kaller på overview-siden med parametren "bytt_sted" lik navnet på det nye stedet. For eksempel "overview?bytt_sted=Oslo%20sykehus". (Navnet på sykehuset må URL-encodes.)
+    
     const DATA = [
         {
             id: 0,
