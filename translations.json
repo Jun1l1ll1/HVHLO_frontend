@@ -4,7 +4,9 @@
         "yes": "Ja",
         "no": "Nei",
 
+        "change_location": "Bytt sted",
         "give_access": "Gi tilgang",
+        "statistics": "Statistikk",
 
         "leave_confirmation": "Er du sikker på at du vil forlate uten å lagre?",
         "confirm_discard_changes": "Ja, forkast endringer",
@@ -128,7 +130,9 @@
         "yes": "Yes",
         "no": "No",
 
+        "change_location": "Change location",
         "give_access": "Give access",
+        "statistics": "Statistics",
 
         "leave_confirmation": "Are you sure you want to leave without saving?",
         "confirm_discard_changes": "Yes, discard changes",

@@ -612,6 +612,23 @@ function hide_comment() {
 }
 
 
+function show_location_select(location_choices) {
+    let html = "";
+    for (let location of location_choices) {
+        html += `<a href="./overview.html?bytt_sted=${encodeURIComponent(location.sted)}" class="btn">${location.sted}</a>`; 
+    }
+    html += '<button onclick="hide_location_select()" langid="confirm_cancel">Avbryt</button>';
+    document.getElementById("location_select_cont").innerHTML = html;
+
+    document.getElementById("more_options_chbx").checked = false;
+    document.getElementById("show_location_select_full_page").className = "display_flex";
+}
+
+function hide_location_select() {
+    document.getElementById("show_location_select_full_page").className = "disappear";
+}
+
+
 function toggleDiv(divname) {
     var div = document.getElementById(divname);
     if (div.style.display === "none") {

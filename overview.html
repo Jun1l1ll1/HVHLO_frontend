@@ -8,9 +8,6 @@
 <script>
 
     const STEDVALG = [{"sted": "Oslo sykehus"},{"sted": "Grottenveien sykehjem"},{"sted": "Sjølyst sykeleir"}];
-    // Oppgave: Dersom det er TO ELLER FLERE valg i denne listen, så ønskes det at man kan velge sted ved å trykke på (eller ved) sykehus-navnet (som er øverst til høyre), kun fra "overview"-siden.
-    //          Valget kan gjerne være litt "tydelig", så kanskje det skal komme opp som valg midt på siden, og med mulighet for å velge ett av stedene og så OK. Eller Avbryt for å ikke bytte sted.
-    //          Dersom man velger å bytte sted, så gjøres det ved at man kaller på overview-siden med parametren "bytt_sted" lik navnet på det nye stedet. For eksempel "overview?bytt_sted=Oslo%20sykehus". (Navnet på sykehuset må URL-encodes.)
     
     const DATA = [
         {
@@ -107,6 +104,12 @@
                 optio, eaque rerum!
             </div>
         </div>
+        
+        <div id="show_location_select_full_page" class="disappear" onclick="hide_location_select()">
+            <div id="location_select_cont" onclick="dont_do_parent_event(event)">
+                <!-- Content is added in the show_location_select() function -->
+            </div>
+        </div>
 
         <div id="top_header">
             <div id="top_header_alignment" class="no_resize_for_padding">
@@ -141,9 +144,21 @@
                 </div>
                 
                 <div>
-                    <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                    <div id="location_and_menu">
+                        <h2 id="hospital_location">Ingen Mansland Sykehus</h2>
+                        
+                        <label for="more_options_chbx" id="more_options_menu" class="btn"><img src="./img/menu_icon.svg" height="25" alt="Meny"/></label>
+                        <input type="checkbox" name="more_options_chbx" id="more_options_chbx">
+                        <label id="hide_more_options_cont" for="more_options_chbx"></label> <!-- Take the whole page when menu is open (to close it when you click outside) -->
+                        <div id="more_options_cont">
+                            <label for="more_options_chbx" class="btn">X</label>
+                            <br/>
+                            <button onclick="show_location_select(STEDVALG)"> <img src="./img/change_location_icon.svg" alt="Bytt sted"/> <span langid="change_location">Bytt sted</span></button>
+                            <a href="/access.html"><img src="./img/qr_code_icon.svg" alt="Tilgang"/> <span langid="give_access">Gi tilgang</span></a>
+                            <a href="/statistics.html"><img src="./img/statistics_icon.svg" alt="Statistikk"/> <span langid="statistics">Statistikk</span></a> <!--TODO Change link to the correct one -->
+                        </div>
+                    </div>
                     <div id="access_and_logout_cont">
-                        <a class="top_header_link" href="/access.html"><img src="./img/qr_code_icon.svg" alt="Tilgang" height="35"/> <span langid="give_access">Gi tilgang</span></a> <!--TODO Change link to the correct one -->
                         <a class="top_header_link" href="/index.html?logout=yes"><img src="/img/logout_icon.svg" alt="Logg ut"> <span langid="loggout">Logg ut</span></a>
                     </div>
                 </div>
