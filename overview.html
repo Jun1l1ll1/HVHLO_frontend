@@ -107,7 +107,10 @@
         
         <div id="show_location_select_full_page" class="disappear" onclick="hide_location_select()">
             <div id="location_select_cont" onclick="dont_do_parent_event(event)">
-                <!-- Content is added in the show_location_select() function -->
+                <div id="location_select_options_cont">
+                    <!-- Content is added in the show_location_select() function -->
+                </div>
+                <button onclick="hide_location_select()" langid="confirm_cancel">Avbryt</button>
             </div>
         </div>
 

@@ -690,19 +690,27 @@ button:active {
     height: fit-content;
     cursor: default;
 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    > #location_select_options_cont {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
 
-    > * {
+        > * {
+            font-size: x-large;
+            padding: 7px 10px;
+            display: flex;
+            justify-content: center;
+            background-color: var(--cont_color_light);
+        }
+    }
+
+    > button {
+        margin-top: 10px;
+        width: 100%;
         font-size: x-large;
         padding: 7px 10px;
         display: flex;
         justify-content: center;
-        background-color: var(--cont_color_light);
-    }
-
-    > button {
         background-color: transparent;
     }
 }
