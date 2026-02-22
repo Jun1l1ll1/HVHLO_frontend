@@ -1051,3 +1051,16 @@ button:active {
     opacity: 0;
 }
 
+
+
+
+/** Country classes */
+/*
+    Every row in overview has its country code as a class.
+    Create new classes here to affect all rows with that country code.
+*/
+
+.ZZZ {
+    color: var(--yellow_color);
+    font-style: italic;
+}

@@ -519,7 +519,7 @@ async function update_table_and_header(table_headers=[], filtered_data=[], chang
     let table_body = document.getElementById("table_body");
     table_body.innerHTML = "";
     for (person of filtered_data) {
-        table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')"></tr>`;
+        table_body.innerHTML += `<tr id="person_id_`+person.id+`" onclick="edit('`+person.id+`')" class="${person.nationality}"></tr>`;
         let row = document.getElementById("person_id_"+person.id);
 
         // Add suggestion_exists_icon if suggestion exists
